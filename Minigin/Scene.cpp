@@ -28,6 +28,22 @@ void fox::Scene::Update(float deltaTime)
 	}
 }
 
+void fox::Scene::FixedUpdate(float tick)
+{
+	for (GameObject* const object : m_Objects)
+	{
+		object->FixedUpdate(tick);
+	}
+}
+
+void fox::Scene::LateUpdate(float deltaTime)
+{
+	for (GameObject* const object : m_Objects)
+	{
+		object->LateUpdate(deltaTime);
+	}
+}
+
 void fox::Scene::Render() const
 {
 	for (const GameObject* const object : m_Objects)

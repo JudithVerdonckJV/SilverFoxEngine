@@ -24,6 +24,16 @@ void fox::SceneManager::Update(float deltaTime)
 	m_pScenesMap[m_ActiveScene]->Update(deltaTime);
 }
 
+void fox::SceneManager::FixedUpdate(float tick)
+{
+	m_pScenesMap[m_ActiveScene]->FixedUpdate(tick);
+}
+
+void fox::SceneManager::LateUpdate(float deltaTime)
+{
+	m_pScenesMap[m_ActiveScene]->LateUpdate(deltaTime);
+}
+
 void fox::SceneManager::Render()
 {
 	m_pScenesMap[m_ActiveScene]->Render();

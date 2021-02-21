@@ -15,6 +15,9 @@ namespace fox
 		void AddScene(const std::string& name);
 
 		void Update(float deltaTime);
+		void FixedUpdate(float ticked);
+		void LateUpdate(float deltaTime);
+
 		void Render();
 
 		void SetActiveScene(const std::string& name);

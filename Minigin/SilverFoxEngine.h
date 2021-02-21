@@ -11,7 +11,7 @@ namespace fox
 		void Run();
 
 	private:
-		float m_msPerUpdate{};
+		float m_msPerFrame{ };
 		SDL_Window* m_Window{};
 
 		void InitSDL();

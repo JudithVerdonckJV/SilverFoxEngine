@@ -1,12 +1,14 @@
 #include "MiniginPCH.h"
 #include "SilverFoxEngine.h"
+
 #include <chrono>
 #include <thread>
+#include <SDL.h>
+
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include <SDL.h>
 #include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
@@ -16,7 +18,7 @@ using namespace std::chrono;
 
 void fox::SilverFoxEngine::Initialize()
 {
-	m_msPerUpdate = 16.f/1000.f;
+	m_msPerFrame = 1.f / 60.f * 1000.f;
 	
 	InitSDL();
 }
@@ -80,16 +82,24 @@ void fox::SilverFoxEngine::Run()
 			const auto currentTime{ high_resolution_clock::now() };
 			float deltaTime{ duration<float>(currentTime - lastTime).count() };
 			lastTime = currentTime;
-			lag += deltaTime;
-
+			
 			doContinue = input.ProcessInput();
-			while (lag >= m_msPerUpdate)
+
+			sceneManager.Update(deltaTime);
+
+			lag += deltaTime;
+			while (lag >= m_msPerFrame * 1000.f)
 			{
-				sceneManager.Update(m_msPerUpdate);
-				lag -= m_msPerUpdate;
+				sceneManager.FixedUpdate(m_msPerFrame);
+				lag -= m_msPerFrame;
 			}
 			
+			sceneManager.LateUpdate(deltaTime);
+
 			renderer.Render();
+
+			const auto sleepTime = currentTime + milliseconds((long)m_msPerFrame) - high_resolution_clock::now();
+			this_thread::sleep_for(sleepTime);
 		}
 	}
 

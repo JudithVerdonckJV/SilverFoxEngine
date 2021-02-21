@@ -12,6 +12,9 @@ namespace fox
 		void AddObject(GameObject* const object);
 
 		void Update(float deltaTime);
+		void FixedUpdate(float tick);
+		void LateUpdate(float deltaTime);
+
 		void Render() const;
 
 		~Scene();

@@ -5,8 +5,11 @@
 
 fox::GameObject::GameObject()
 	: m_pComponents{}
-	, m_pTransform{ new Transform{} }
+	, m_pTransform{ }
 {
+	Transform* transform{ new Transform };
+	AddComponent(transform);
+	m_pTransform = transform; // direct access, no casting needed
 }
 
 fox::GameObject::~GameObject()
@@ -15,8 +18,6 @@ fox::GameObject::~GameObject()
 	{
 		delete comp;
 	}
-
-	delete m_pTransform;
 }
 
 void fox::GameObject::Render() const
@@ -50,7 +51,6 @@ void fox::GameObject::LateUpdate(float deltaTime)
 		comp->LateUpdate(deltaTime);
 	}
 }
-
 
 void fox::GameObject::AddComponent(IComponent* const newComponent)
 {

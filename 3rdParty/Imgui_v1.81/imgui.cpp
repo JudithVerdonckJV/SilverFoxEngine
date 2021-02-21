@@ -3377,6 +3377,8 @@ void ImGui::RemoveContextHook(ImGuiContext* ctx, ImGuiID hook_id)
 
 // Call context hooks (used by e.g. test engine)
 // We assume a small number of hooks so all stored in same array
+#pragma warning (push)
+#pragma warning (disable: 26812)
 void ImGui::CallContextHooks(ImGuiContext* ctx, ImGuiContextHookType hook_type)
 {
     ImGuiContext& g = *ctx;
@@ -3384,6 +3386,7 @@ void ImGui::CallContextHooks(ImGuiContext* ctx, ImGuiContextHookType hook_type)
         if (g.Hooks[n].Type == hook_type)
             g.Hooks[n].Callback(&g, &g.Hooks[n]);
 }
+#pragma warning (pop)
 
 ImGuiIO& ImGui::GetIO()
 {
@@ -3581,6 +3584,9 @@ static bool IsWindowActiveAndVisible(ImGuiWindow* window)
     return (window->Active) && (!window->Hidden);
 }
 
+#pragma warning (push)
+#pragma warning (disable: 26812)
+#pragma warning (disable: 26451)
 static void ImGui::UpdateMouseInputs()
 {
     ImGuiContext& g = *GImGui;
@@ -3637,6 +3643,7 @@ static void ImGui::UpdateMouseInputs()
             g.NavDisableMouseHover = false;
     }
 }
+#pragma warning (pop)
 
 static void StartLockWheelingWindow(ImGuiWindow* window)
 {
@@ -4035,6 +4042,8 @@ void ImGui::NewFrame()
 }
 
 // [DEBUG] Item picker tool - start with DebugStartItemPicker() - useful to visually select an item and break into its call-stack.
+#pragma warning (push)
+#pragma warning (disable: 26812)
 void ImGui::UpdateDebugToolItemPicker()
 {
     ImGuiContext& g = *GImGui;
@@ -4058,6 +4067,7 @@ void ImGui::UpdateDebugToolItemPicker()
         ImGui::EndTooltip();
     }
 }
+#pragma warning (pop)
 
 void ImGui::Initialize(ImGuiContext* context)
 {
@@ -4486,6 +4496,8 @@ ImVec2 ImGui::CalcTextSize(const char* text, const char* text_end, bool hide_tex
 // FIXME: Note that we have an inconsequential lag here: OuterRectClipped is updated in Begin(), so windows moved programmatically
 // with SetWindowPos() and not SetNextWindowPos() will have that rectangle lagging by a frame at the time FindHoveredWindow() is
 // called, aka before the next Begin(). Moving window isn't affected.
+#pragma warning (push)
+#pragma warning(disable: 28182)
 static void FindHoveredWindow()
 {
     ImGuiContext& g = *GImGui;
@@ -4536,6 +4548,7 @@ static void FindHoveredWindow()
     g.HoveredRootWindow = g.HoveredWindow ? g.HoveredWindow->RootWindow : NULL;
     g.HoveredWindowUnderMovingWindow = hovered_window_ignoring_moving_window;
 }
+#pragma warning (pop)
 
 // Test if mouse cursor is hovering given rectangle
 // NB- Rectangle is clipped by our current clip setting
@@ -5278,6 +5291,8 @@ ImGuiID ImGui::GetWindowResizeID(ImGuiWindow* window, int n)
 
 // Handle resize for: Resize Grips, Borders, Gamepad
 // Return true when using auto-fit (double click on resize grip)
+#pragma warning (push)
+#pragma warning (disable: 26812)
 static bool ImGui::UpdateWindowManualResize(ImGuiWindow* window, const ImVec2& size_auto_fit, int* border_held, int resize_grip_count, ImU32 resize_grip_col[4], const ImRect& visibility_rect)
 {
     ImGuiContext& g = *GImGui;
@@ -5404,6 +5419,7 @@ static bool ImGui::UpdateWindowManualResize(ImGuiWindow* window, const ImVec2& s
     window->Size = window->SizeFull;
     return ret_auto_fit;
 }
+#pragma warning (pop)
 
 static inline void ClampWindowRect(ImGuiWindow* window, const ImRect& visibility_rect)
 {
@@ -5440,6 +5456,8 @@ static void ImGui::RenderWindowOuterBorders(ImGuiWindow* window)
 
 // Draw background and borders
 // Draw and handle scrollbars
+#pragma warning (push)
+#pragma warning (disable: 26812)
 void ImGui::RenderWindowDecorations(ImGuiWindow* window, const ImRect& title_bar_rect, bool title_bar_is_highlight, int resize_grip_count, const ImU32 resize_grip_col[4], float resize_grip_draw_size)
 {
     ImGuiContext& g = *GImGui;
@@ -5522,6 +5540,7 @@ void ImGui::RenderWindowDecorations(ImGuiWindow* window, const ImRect& title_bar
         RenderWindowOuterBorders(window);
     }
 }
+#pragma warning (pop)
 
 // Render title text, collapse button, close button
 void ImGui::RenderWindowTitleBarContents(ImGuiWindow* window, const ImRect& title_bar_rect, const char* name, bool* p_open)
@@ -6270,6 +6289,8 @@ bool ImGui::Begin(const char* name, bool* p_open, ImGuiWindowFlags flags)
     return !window->SkipItems;
 }
 
+#pragma warning (push)
+#pragma warning (disable: 26451)
 void ImGui::End()
 {
     ImGuiContext& g = *GImGui;
@@ -6303,7 +6324,10 @@ void ImGui::End()
     window->DC.StackSizesOnBegin.CompareWithCurrentState();
     SetCurrentWindow(g.CurrentWindowStack.empty() ? NULL : g.CurrentWindowStack.back());
 }
+#pragma warning (pop)
 
+#pragma warning (push)
+#pragma warning (disable: 26451)
 void ImGui::BringWindowToFocusFront(ImGuiWindow* window)
 {
     ImGuiContext& g = *GImGui;
@@ -6317,7 +6341,10 @@ void ImGui::BringWindowToFocusFront(ImGuiWindow* window)
             break;
         }
 }
+#pragma warning (pop)
 
+#pragma warning (push)
+#pragma warning (disable: 26451)
 void ImGui::BringWindowToDisplayFront(ImGuiWindow* window)
 {
     ImGuiContext& g = *GImGui;
@@ -6332,6 +6359,7 @@ void ImGui::BringWindowToDisplayFront(ImGuiWindow* window)
             break;
         }
 }
+#pragma warning (pop)
 
 void ImGui::BringWindowToDisplayBack(ImGuiWindow* window)
 {
@@ -8498,12 +8526,15 @@ void ImGui::SetFocusID(ImGuiID id, ImGuiWindow* window)
         g.NavDisableHighlight = true;
 }
 
+#pragma warning (push)
+#pragma warning (disable: 26812)
 ImGuiDir ImGetDirQuadrantFromDelta(float dx, float dy)
 {
     if (ImFabs(dx) > ImFabs(dy))
         return (dx > 0.0f) ? ImGuiDir_Right : ImGuiDir_Left;
     return (dy > 0.0f) ? ImGuiDir_Down : ImGuiDir_Up;
 }
+#pragma warning (pop)
 
 static float inline NavScoreItemDistInterval(float a0, float a1, float b0, float b1)
 {
@@ -11099,6 +11130,8 @@ void ImGui::ShowMetricsWindow(bool* p_open)
 }
 
 // [DEBUG] Display contents of Columns
+#pragma warning (push)
+#pragma warning (disable: 26451)
 void ImGui::DebugNodeColumns(ImGuiOldColumns* columns)
 {
     if (!TreeNode((void*)(uintptr_t)columns->ID, "Columns Id: 0x%08X, Count: %d, Flags: 0x%04X", columns->ID, columns->Count, columns->Flags))
@@ -11108,6 +11141,7 @@ void ImGui::DebugNodeColumns(ImGuiOldColumns* columns)
         BulletText("Column %02d: OffsetNorm %.3f (= %.1f px)", column_n, columns->Columns[column_n].OffsetNorm, GetColumnOffsetFromNorm(columns, columns->Columns[column_n].OffsetNorm));
     TreePop();
 }
+#pragma warning (pop)
 
 // [DEBUG] Display contents of ImDrawList
 void ImGui::DebugNodeDrawList(ImGuiWindow* window, const ImDrawList* draw_list, const char* label)
@@ -11301,6 +11335,8 @@ void ImGui::DebugNodeViewport(ImGuiViewportP* viewport)
     }
 }
 
+#pragma warning (push)
+#pragma warning (disable: 26812)
 void ImGui::DebugNodeWindow(ImGuiWindow* window, const char* label)
 {
     if (window == NULL)
@@ -11351,6 +11387,7 @@ void ImGui::DebugNodeWindow(ImGuiWindow* window, const char* label)
     DebugNodeStorage(&window->StateStorage, "Storage");
     TreePop();
 }
+#pragma warning (pop)
 
 void ImGui::DebugNodeWindowSettings(ImGuiWindowSettings* settings)
 {
