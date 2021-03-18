@@ -4,6 +4,8 @@
 #include "IComponent.h"
 #include "HealthComponent.h"
 
+#include "ServiceLocator.h"
+
 inline void Damage(fox::GameObject* object)
 {
 	fox::HealthComponent* health = object->GetComponent<fox::HealthComponent>();
@@ -14,4 +16,9 @@ inline void ResetHealth(fox::GameObject* object)
 {
 	fox::HealthComponent* health = object->GetComponent<fox::HealthComponent>();
 	if (health != nullptr) health->ResetHealth();
+}
+
+inline void PlayASoundTEST(fox::GameObject*)
+{
+	ServiceLocator::GetSoundSystem().Play(0, 100);
 }

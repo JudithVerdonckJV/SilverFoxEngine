@@ -4,12 +4,13 @@
 #include <chrono>
 #include <thread>
 #include <SDL.h>
+#include "../3rdParty/Simple-SDL2-Audio-master/src/audio.h"
+#include "../3rdParty/Simple-SDL2-Audio-master/src/audio.c"
 
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
 #include "Observer.h"
@@ -17,6 +18,7 @@
 #include "ObserverManager.h"
 
 #include "Actions.h"
+#include "ServiceLocator.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -111,6 +113,11 @@ void fox::SilverFoxEngine::LoadGame() const
 
 	sm.AddObjectToScene(scene1, player1);
 	sm.AddObjectToScene(scene1, player2);
+
+	//SOUND
+	initAudio();
+	ServiceLocator::RegisterSoundSystem(new Sdl_SoundSystem{});
+	static_cast<InputComponent*>(input1)->BindAction(fox::ControllerButton::ButtonA, fox::ButtonState::ButtonDown, PlayASoundTEST);
 }
 
 void fox::SilverFoxEngine::Cleanup()
@@ -169,7 +176,7 @@ void fox::SilverFoxEngine::Run()
 
 void fox::SilverFoxEngine::InitSDL()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
 	{
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
