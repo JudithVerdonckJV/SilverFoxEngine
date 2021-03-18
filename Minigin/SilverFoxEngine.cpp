@@ -3,9 +3,6 @@
 
 #include <chrono>
 #include <thread>
-#include <SDL.h>
-#include "../3rdParty/Simple-SDL2-Audio-master/src/audio.h"
-#include "../3rdParty/Simple-SDL2-Audio-master/src/audio.c"
 
 #include "InputManager.h"
 #include "SceneManager.h"
@@ -176,6 +173,7 @@ void fox::SilverFoxEngine::Run()
 
 void fox::SilverFoxEngine::InitSDL()
 {
+	_putenv("SDL_AUDIODRIVER=DirectSound");
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
 	{
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());

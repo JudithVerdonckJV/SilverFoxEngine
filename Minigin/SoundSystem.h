@@ -1,8 +1,6 @@
 #pragma once
 #include <iostream>
-//#include <SDL.h>
 #include "../3rdParty/Simple-SDL2-Audio-master/src/audio.h"
-//#include "../3rdParty/Simple-SDL2-Audio-master/src/audio.c"
 
 using namespace std;
 using sound_id = unsigned short;
@@ -21,7 +19,7 @@ public:
 	{
 		if (!m_bMute)
 		{
-			playSound("./Data/Sound/PageFlip.wav", 100); // doesnt work. Nice. Fucking library.
+			playSound("../Data/Sound/PageFlip.wav", SDL_MIX_MAXVOLUME);
 		}
 	}
 
