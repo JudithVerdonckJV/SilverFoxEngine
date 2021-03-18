@@ -1,2 +1,2 @@
 #include "MiniginPCH.h"
-#include "IComponent.h"
+#include "Observer.h"

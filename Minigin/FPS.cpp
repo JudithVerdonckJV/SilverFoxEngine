@@ -12,7 +12,6 @@ fox::FPS::FPS(const std::string& fontPath)
 	, m_Text{ "0.000" }
 	, m_Color{255, 255, 255, 255}
 {
-	m_Id = fox::IComponent::ComponentID::FPS;
 	SetFont(fontPath, 36);
 }
 

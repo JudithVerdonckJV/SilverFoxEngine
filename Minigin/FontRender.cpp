@@ -13,7 +13,6 @@ fox::FontRender::FontRender(const std::string& fontPath, const std::string& text
 	, m_pFont{ nullptr }
 	, m_Color{255, 255, 255, 255}
 {
-	m_Id = fox::IComponent::ComponentID::Font;
 	SetFont(fontPath, 36);
 }
 

@@ -7,7 +7,6 @@
 fox::TextureRender::TextureRender(const std::string& textPath)
 	: m_LocalPos{}
 {
-	m_Id = fox::IComponent::ComponentID::Texture;
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(textPath);
 }
 

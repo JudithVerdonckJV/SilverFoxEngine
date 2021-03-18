@@ -4,9 +4,13 @@
 #include "IComponent.h"
 
 #include "Transform.h"
-#include "TextureRender.h"
-#include "FontRender.h"
-#include "FPS.h"
+#include "TextComponent.h"
+#include "TextureComponent.h"
+#include "InputComponent.h"
+#include "FpsComponent.h"
+#include "HealthComponent.h"
+
+#include "Subject.h"
 
 namespace fox
 {
@@ -24,32 +28,27 @@ namespace fox
 		
 		void AddComponent(IComponent* const component);
 
+
+		Transform* GetTransform() const { return m_pTransform; };
+		FVector2 GetLocation() const { return m_pTransform->Position(); };
+
 		template <typename T>
-		T* GetComponent(IComponent::ComponentID id)
+		T* GetComponent()
 		{
-			if (id == m_pTransform->Id())
+			for (IComponent* bc : m_pComponents)
 			{
-				return m_pTransform;
+				if (dynamic_cast<T*>(bc))
+					return (T*)bc;
 			}
-
-			for (IComponent* comp : m_pComponents)
-			{
-				if (id == comp->Id())
-				{
-					return static_cast<T*>(comp);
-				}
-			}
-
-			throw "Component not found on gameobject!";
+			return nullptr;
 		}
 
-		GameObject(const GameObject& other) = delete;
-		GameObject(GameObject&& other) = delete;
-		GameObject& operator=(const GameObject& other) = delete;
-		GameObject& operator=(GameObject&& other) = delete;
+	public:
+		Subject* pSubject;
 
 	private:
 		std::vector<IComponent*> m_pComponents;
 		Transform* m_pTransform;
+
 	};
 }

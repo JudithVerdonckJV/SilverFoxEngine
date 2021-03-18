@@ -3,30 +3,24 @@
 
 namespace fox
 {
+	class GameObject;
 	class IComponent
 	{
 	public:
-		enum class ComponentID
-		{
-			Transform = 0,
-			Texture = 1,
-			Font = 2,
-			FPS = 3
-		};
-
-	public:
-		IComponent() = default;
+		IComponent(GameObject* owner)
+			:m_Owner{ owner }
+		{}
 		virtual ~IComponent() = default;
-
-		ComponentID Id() const;
 		
 #pragma warning (push)
 #pragma warning (disable: 4100)
+
 		virtual void Update(float deltaTime) {};
 		virtual void FixedUpdate(float tick) {};
 		virtual void LateUpdate(float deltaTime) {};
 
-		virtual void Render(const FVector2& position) const {};
+		virtual void Render() const {};
+
 #pragma warning (pop)
 
 		IComponent(const IComponent& other) = delete;
@@ -35,7 +29,7 @@ namespace fox
 		IComponent& operator=(IComponent&& other) = delete;
 
 	protected:
-		ComponentID m_Id{};
+		GameObject* m_Owner;
 	};
 }
 

@@ -1,42 +1,66 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
-#include <SDL.h>
+#include "InputComponent.h"
 
+fox::InputManager::InputManager()
+	: m_pRegisteredInputComponents{}
+	, m_InputState{}
+{
+}
+
+fox::InputManager::~InputManager()
+{
+}
+
+int fox::InputManager::RegisterInputComponent(InputComponent* inputComponent)
+{
+	m_pRegisteredInputComponents.push_back(inputComponent);
+	return int(m_pRegisteredInputComponents.size());
+}
 
 bool fox::InputManager::ProcessInput()
 {
-	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-	XInputGetState(0, &m_CurrentState);
+	
 
-	SDL_Event e;
-	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) {
-			return false;
-		}
-		if (e.type == SDL_KEYDOWN) {
-			
-		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
-		}
+	for (int player{}; player < m_pRegisteredInputComponents.size(); ++player)
+	{
+		
+		ZeroMemory(&m_InputState, sizeof(XINPUT_STATE));
+		XInputGetState(player, &m_InputState);
+		m_pRegisteredInputComponents[player]->ProcessInput();
 	}
-
-	return true;
+	return true; // TODO: EXIT
 }
 
 bool fox::InputManager::IsPressed(ControllerButton button) const
 {
-	switch (button)
-	{
-	case ControllerButton::ButtonA:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-	case ControllerButton::ButtonB:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-	case ControllerButton::ButtonX:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-	case ControllerButton::ButtonY:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-	default: return false;
-	}
+	return m_InputState.Gamepad.wButtons & WORD(button);
 }
 
+//float fox::InputManager::IsPressed(ControllerTrigger axis) const
+//{
+//	switch (axis)
+//	{
+//	case ControllerTrigger::LeftTrigger:
+//		return m_InputState.Gamepad.bLeftTrigger;
+//		break;
+//	case ControllerTrigger::RightTrigger:
+//		return m_InputState.Gamepad.bRightTrigger;
+//		break;
+//	}
+//	return 0.f;
+//}
+//
+//FVector2 fox::InputManager::IsPressed(ControllerStick stick) const
+//{
+//	switch (stick)
+//	{
+//	case ControllerStick::LeftThumb:
+//		return FVector2{ (float)m_InputState.Gamepad.sThumbLX, (float)m_InputState.Gamepad.sThumbLY };
+//		break;
+//	case ControllerStick::RightThumb:
+//		return FVector2{ (float)m_InputState.Gamepad.sThumbRX, (float)m_InputState.Gamepad.sThumbRY };
+//		break;
+//	}
+//	return { 0.f, 0.f };
+//}

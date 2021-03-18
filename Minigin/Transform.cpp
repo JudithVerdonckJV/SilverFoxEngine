@@ -2,11 +2,11 @@
 #include "Transform.h"
 
 fox::Transform::Transform()
-	: m_Position{}
+	: IComponent { nullptr }
+	, m_Position{}
 	, m_Rotation{}
 	, m_Scale{1.f, 1.f}
 {
-	m_Id = fox::IComponent::ComponentID::Transform;
 }
 
 

@@ -22,18 +22,15 @@
     <Filter Include="Imgui">
       <UniqueIdentifier>{b24f83aa-a367-462a-a03e-c04eab5809ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QBert">
+      <UniqueIdentifier>{fe03ccc0-43a8-42a0-b1fe-fae76c5041a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="TextureRender.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="FontRender.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
@@ -47,9 +44,6 @@
     </ClInclude>
     <ClInclude Include="SilverFoxEngine.h">
       <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Manager</Filter>
@@ -68,9 +62,6 @@
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="FPS.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imconfig.h">
       <Filter>Imgui</Filter>
@@ -99,6 +90,42 @@
     <ClInclude Include="utils.h">
       <Filter>other</Filter>
     </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ObserverManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FpsComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -116,20 +143,11 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="TextureRender.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="FontRender.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="IComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Manager</Filter>
@@ -145,9 +163,6 @@
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>SDLWrappers</Filter>
-    </ClCompile>
-    <ClCompile Include="FPS.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\Imgui_v1.81\imgui.cpp">
       <Filter>Imgui</Filter>
@@ -169,6 +184,39 @@
     </ClCompile>
     <ClCompile Include="..\3rdParty\Imgui_v1.81\imgui_widgets.cpp">
       <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ObserverManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

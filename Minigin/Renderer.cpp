@@ -45,12 +45,12 @@ void fox::Renderer::Render() const
 	
 	//if (*m_ShowDemo) ImGui::ShowDemoWindow(m_ShowDemo);
 
-	ImGui::Begin("Game modes:", m_ShowDemo, 0);
-	ImGui::BulletText("Choose a mode to begine playing:");
-	if (ImGui::Button("Singleplayer", { 100, 30 })) std::cout << "CLICKED\n";
-	ImGui::Button("Co-op", { 100, 30 });
-	ImGui::Button("Versus", { 100, 30 });
-	ImGui::End();
+	//ImGui::Begin("Game modes:", m_ShowDemo, 0);
+	//ImGui::BulletText("Choose a mode to begine playing:");
+	//if (ImGui::Button("Singleplayer", { 100, 30 })) std::cout << "CLICKED\n";
+	//ImGui::Button("Co-op", { 100, 30 });
+	//ImGui::Button("Versus", { 100, 30 });
+	//ImGui::End();
 
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());

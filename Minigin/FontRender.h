@@ -17,7 +17,7 @@ namespace fox
 	{
 	public:
 		FontRender() = default;
-		FontRender(const std::string & fontPath, const std::string& text);
+		FontRender(const std::string& fontPath, const std::string& text);
 		virtual ~FontRender();
 
 		virtual void Render(const FVector2& worldPos) const override;
