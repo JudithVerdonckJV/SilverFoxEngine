@@ -1,36 +1,39 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "IComponent.h"
-
-#include "Transform.h"
-#include "TextComponent.h"
-#include "TextureComponent.h"
-#include "InputComponent.h"
-#include "FpsComponent.h"
-#include "HealthComponent.h"
-
-#include "Subject.h"
+#include "utils.h"
 
 namespace fox
 {
+	class Transform;
+	class SubjectComponent;
+	class Scene;
+
 	class GameObject final
 	{
 	public:
-		GameObject();
+		GameObject(GameObject* owner);
+		GameObject(Scene* owner);
 		~GameObject();
-		
+
 		void Update(float deltaTime);
 		void FixedUpdate(float tick);
 		void LateUpdate(float deltaTime);
-		
+
 		void Render() const;
-		
-		void AddComponent(IComponent* const component);
 
-
+		void SetTransform(const FVector2& position, const FVector2& rotation, const FVector2& scale);
 		Transform* GetTransform() const { return m_pTransform; };
-		FVector2 GetLocation() const { return m_pTransform->Position(); };
+		FVector2 GetLocation() const;
+
+		const SubjectComponent* GetSubject() const { return m_pSubject; };
+
+		void SetTag(const std::string& tag) { m_Tag = tag; };
+		const std::string& GetTag() const { return m_Tag; };
+		GameObject* GetChildByTag(const std::string& tag) const;
+		GameObject* GetChildByIndex(size_t index) const;
 
 		template <typename T>
 		T* GetComponent()
@@ -43,12 +46,19 @@ namespace fox
 			return nullptr;
 		}
 
-	public:
-		Subject* pSubject;
-
 	private:
-		std::vector<IComponent*> m_pComponents;
-		Transform* m_pTransform;
+		friend class IComponent;
+		void AddComponent(IComponent* const component);
 
+		void AddChild(GameObject* const childObject);
+
+		GameObject* m_Owner;
+		std::vector<IComponent*> m_pComponents;
+		std::vector<GameObject*> m_pChildObjects;
+		
+		Transform* m_pTransform;
+		SubjectComponent* m_pSubject;
+
+		std::string m_Tag;
 	};
 }

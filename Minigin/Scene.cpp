@@ -1,10 +1,11 @@
 #include "MiniginPCH.h"
 #include "Scene.h"
-#include "GameObject.h"
+#include "IComponent.h"
 
 
 fox::Scene::Scene()
 {
+
 }
 
 fox::Scene::~Scene()

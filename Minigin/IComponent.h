@@ -1,15 +1,13 @@
 #pragma once
-#include "utils.h"
 
 namespace fox
 {
 	class GameObject;
+
 	class IComponent
 	{
 	public:
-		IComponent(GameObject* owner)
-			:m_Owner{ owner }
-		{}
+		IComponent(GameObject* owner);
 		virtual ~IComponent() = default;
 		
 #pragma warning (push)

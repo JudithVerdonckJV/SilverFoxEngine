@@ -6,9 +6,9 @@
 #include "GameObject.h"
 #include "Font.h"
 #include "Texture2D.h"
+#include "Renderer.h"
 
 #include "ResourceManager.h"
-#include "Renderer.h"
 
 fox::FpsComponent::FpsComponent(GameObject* owner)
 	: IComponent{ owner }

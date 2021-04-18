@@ -10,9 +10,17 @@ namespace fox
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
-		virtual ~SceneManager();
+		~SceneManager();
 		
-		void AddScene(const std::string& name);
+		template <typename T>
+		void AddScene(const std::string& name)
+		{
+			if (m_pScenesMap.size() == 0) m_ActiveScene = name;
+
+			Scene* scene{ new T{} };
+			scene->LoadScene();
+			m_pScenesMap.insert(std::pair<std::string, Scene*>{name, scene});
+		}
 
 		void Update(float deltaTime);
 		void FixedUpdate(float ticked);
@@ -21,7 +29,6 @@ namespace fox
 		void Render();
 
 		void SetActiveScene(const std::string& name);
-		void AddObjectToScene(const std::string& name, GameObject* newObject);
 
 	private:
 		friend class Singleton<SceneManager>;

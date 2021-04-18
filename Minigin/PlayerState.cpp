@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include <string>
+#include <functional>
 #include "PlayerState.h"
 
 using EventInfo = std::pair<const std::string, std::function<void(fox::GameObject*)>>;
@@ -12,20 +13,20 @@ fox::PlayerState::~PlayerState()
 {
 }
 
-void fox::PlayerState::OnNotify(fox::GameObject* pSubject, Event event)
+void fox::PlayerState::OnNotify(fox::GameObject* , int )
 {
-	switch (event)
-	{
-	case Event::HealthChange:
-		OnHealthChange(pSubject);
-	}
+	//switch (event)
+	//{
+	//case Event::HealthChange:
+	//	OnHealthChange(pSubject);
+	//}
 }
 
-void fox::PlayerState::OnHealthChange(fox::GameObject* pSubject)
+void fox::PlayerState::OnHealthChange(fox::GameObject* )
 {
-	float health = pSubject->GetComponent<HealthComponent>()->GetCurrentHealth();
-	TextComponent* text = pSubject->GetComponent<TextComponent>();
-	if (text != nullptr) text->SetText("Health is " + std::to_string((int)health));
+	//float health = pSubject->GetComponent<HealthComponent>()->GetCurrentHealth();
+	//TextComponent* text = pSubject->GetComponent<TextComponent>();
+	//if (text != nullptr) text->SetText("Health is " + std::to_string((int)health));
 }
 
 //#pragma warning (push)

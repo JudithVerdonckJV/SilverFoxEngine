@@ -4,15 +4,15 @@
 
 namespace fox
 {
-	class Observer;
+	class IObserver;
 
 	class ObserverManager final : public Singleton<ObserverManager>
 	{
 	public:
 		~ObserverManager();
-		void AddObserver(Observer* observer);
+		void AddObserver(IObserver* observer);
 
 	private:
-		std::vector<Observer*> m_Observers{};
+		std::vector<IObserver*> m_Observers{};
 	};
 }

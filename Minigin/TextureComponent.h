@@ -5,6 +5,7 @@ namespace fox
 {
     class GameObject;
     class Texture2D;
+
     class TextureComponent final : public IComponent
     {
     public:

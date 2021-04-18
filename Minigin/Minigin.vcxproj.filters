@@ -25,6 +25,9 @@
     <Filter Include="QBert">
       <UniqueIdentifier>{fe03ccc0-43a8-42a0-b1fe-fae76c5041a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{3bff3570-a113-45fb-9fb9-8b97c99f297b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
@@ -36,13 +39,7 @@
     <ClInclude Include="GameObject.h">
       <Filter>other</Filter>
     </ClInclude>
-    <ClInclude Include="MiniginPCH.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="SilverFoxEngine.h">
       <Filter>other</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
@@ -90,12 +87,6 @@
     <ClInclude Include="utils.h">
       <Filter>other</Filter>
     </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="Subject.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="Commands.h">
       <Filter>other</Filter>
     </ClInclude>
@@ -132,17 +123,26 @@
     <ClInclude Include="SoundSystem.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="SubjectComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniginPCH.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="SilverFoxEngine.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoScene.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSetup.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
-    <ClCompile Include="SilverFoxEngine.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniginPCH.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>other</Filter>
     </ClCompile>
@@ -191,12 +191,6 @@
     <ClCompile Include="..\3rdParty\Imgui_v1.81\imgui_widgets.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
-    <ClCompile Include="Subject.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
     <ClCompile Include="Commands.cpp">
       <Filter>other</Filter>
     </ClCompile>
@@ -229,6 +223,27 @@
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="IObserver.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniginPCH.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="SilverFoxEngine.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoScene.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSetup.cpp">
+      <Filter>QBert</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

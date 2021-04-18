@@ -1,33 +1,40 @@
 #pragma once
 #include "SceneManager.h"
+#include "GameObject.h"
 
 namespace fox
 {
 	class GameObject;
-	class Scene final
-	{
-		friend void SceneManager::AddScene(const std::string& name); // constructor is private; only manager can access it
+	class Scene 
+	{		
+		template <typename T>
+		friend void SceneManager::AddScene<T>(const std::string& name);
 	
 	public:
-		void AddObject(GameObject* const object);
-
+		virtual ~Scene();
+		
+		virtual void LoadScene() {};
+		
 		void Update(float deltaTime);
 		void FixedUpdate(float tick);
 		void LateUpdate(float deltaTime);
 
 		void Render() const;
 
-		~Scene();
+	protected:
+		
+		explicit Scene();
+	
+	private:
+		friend class GameObject;
+		void AddObject(GameObject* const object);
 
+		std::vector <GameObject*> m_Objects{};
+
+	public:
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
-
-	private: 
-		explicit Scene();
-
-		std::vector <GameObject*> m_Objects{};
 	};
-
 }

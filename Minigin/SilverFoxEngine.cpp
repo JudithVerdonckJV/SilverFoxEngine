@@ -6,16 +6,18 @@
 
 #include "InputManager.h"
 #include "SceneManager.h"
-#include "Renderer.h"
 #include "ResourceManager.h"
+#include "ServiceLocator.h"
+
+#include "Renderer.h"
+
 #include "GameObject.h"
 #include "Scene.h"
-#include "Observer.h"
-#include "PlayerState.h"
-#include "ObserverManager.h"
 
-#include "Actions.h"
-#include "ServiceLocator.h"
+#include "FpsComponent.h"
+#include "TextureComponent.h"
+
+#include "SceneSetup.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -29,92 +31,99 @@ void fox::SilverFoxEngine::Initialize()
 
 void fox::SilverFoxEngine::LoadGame() const
 {
+	SceneSetup sceneSetup{};
+	
 	//DEMO
-	GameObject* background{ new GameObject{} };
-	IComponent* backgroundTexture{ new TextureComponent{ background } };
-	static_cast<TextureComponent*>(backgroundTexture)->SetTexture("background.jpg");
-	background->AddComponent(backgroundTexture);
-
-	GameObject* DAE{ new GameObject };
-	DAE->GetComponent<Transform>()->SetPosition(216.f, 180.f);
-	IComponent* DAETexture{ new TextureComponent{ DAE } };
-	static_cast<TextureComponent*>(DAETexture)->SetTexture("logo.png");
-	DAE->AddComponent(DAETexture);
-
-	GameObject* text{ new GameObject{} };
-	text->GetComponent<Transform>()->SetPosition(80.f, 20.f);
-	IComponent* textFont{ new TextComponent{ text } };
-	static_cast<TextComponent*>(textFont)->SetText("Programming 4 Assignment");
-	static_cast<TextComponent*>(textFont)->SetSize(36);
-	text->AddComponent(textFont);
-
-	GameObject* fps{ new GameObject{} };
-	IComponent* fpsRender{ new FpsComponent{fps} };
-	static_cast<FpsComponent*>(fpsRender)->SetSize(24);
-	static_cast<FpsComponent*>(fpsRender)->SetColor(200, 200, 30, 255);
-	fps->AddComponent(fpsRender);
-
-	//QBERT OBSERVER ASSIGNMENT
-	Observer* playerState = new PlayerState{};
-	ObserverManager::GetInstance().AddObserver(playerState);
-
-	float playerHealth{ 2.f };
-
-	//player 1
-	GameObject* player1{ new GameObject{} };
-	player1->GetComponent<Transform>()->SetPosition(216.f, 280.f);
-	player1->pSubject->AddObserver(playerState);
-
-	IComponent* UIHealth1{ new TextComponent{player1} };
-	static_cast<TextComponent*>(UIHealth1)->SetSize(30);
-	static_cast<TextComponent*>(UIHealth1)->SetText("Health is " + to_string((int)playerHealth));
-	static_cast<TextComponent*>(UIHealth1)->SetColor(255, 20, 20, 255);
+	//GameObject* background{ new GameObject{} };
+	//IComponent* backgroundTexture{ new TextureComponent{ background } };
+	//static_cast<TextureComponent*>(backgroundTexture)->SetTexture("background.jpg");
+	//background->AddComponent(backgroundTexture);
 	
-	IComponent* health1{ new HealthComponent{player1, playerHealth} };
+	//SceneManager& sm{ SceneManager::GetInstance() };
+	//std::string scene1{ "Scene1" };
+	//sm.AddScene(scene1);
+	//
+	//for (int i{}; i < 10000; ++i)
+	//{
+		//GameObject* DAE{ new GameObject };
+		//IComponent* DAETexture{ new TextureComponent{ DAE } };
+		//static_cast<TextureComponent*>(DAETexture)->SetTexture("logo.png");
+		//DAE->AddComponent(DAETexture);
+		//sm.AddObjectToScene(scene1, DAE);
+	//}
 
-	IComponent* input1{ new InputComponent{player1} };
-	static_cast<InputComponent*>(input1)->BindAction(fox::ControllerButton::ButtonX, fox::ButtonState::ButtonDown, Damage);
-	static_cast<InputComponent*>(input1)->BindAction(fox::ControllerButton::ButtonY, fox::ButtonState::ButtonDown, ResetHealth);
-	
-	player1->AddComponent(input1);
-	player1->AddComponent(UIHealth1);
-	player1->AddComponent(health1);
 
-	//player 2
-	GameObject* player2{ new GameObject{} };
-	player2->GetComponent<Transform>()->SetPosition(216.f, 320.f);
-	player2->pSubject->AddObserver(playerState);
+	//GameObject* text{ new GameObject{} };
+	//text->GetComponent<Transform>()->SetPosition(80.f, 20.f);
+	//IComponent* textFont{ new TextComponent{ text } };
+	//static_cast<TextComponent*>(textFont)->SetText("Programming 4 Assignment");
+	//static_cast<TextComponent*>(textFont)->SetSize(36);
+	//text->AddComponent(textFont);
 
-	IComponent* UIHealth2{ new TextComponent{player2} };
-	static_cast<TextComponent*>(UIHealth2)->SetSize(30);
-	static_cast<TextComponent*>(UIHealth2)->SetText("Health is " + to_string((int)playerHealth));
-	static_cast<TextComponent*>(UIHealth2)->SetColor(255, 20, 20, 255);
+	//GameObject* fps{ new GameObject{} };
+	//IComponent* fpsRender{ new FpsComponent{fps} };
+	//static_cast<FpsComponent*>(fpsRender)->SetSize(24);
+	//static_cast<FpsComponent*>(fpsRender)->SetColor(200, 200, 30, 255);
+	//fps->AddComponent(fpsRender);
 
-	IComponent* health2{ new HealthComponent{player2, playerHealth} };
+	////QBERT OBSERVER ASSIGNMENT
+	//Observer* playerState = new PlayerState{};
+	//ObserverManager::GetInstance().AddObserver(playerState);
 
-	IComponent* input2{ new InputComponent{player2} };
-	static_cast<InputComponent*>(input2)->BindAction(fox::ControllerButton::ButtonX, fox::ButtonState::ButtonDown, Damage);
-	static_cast<InputComponent*>(input2)->BindAction(fox::ControllerButton::ButtonY, fox::ButtonState::ButtonDown, ResetHealth);
+	//float playerHealth{ 2.f };
 
-	player2->AddComponent(input2);
-	player2->AddComponent(UIHealth2);
-	player2->AddComponent(health2);
+	////player 1
+	//GameObject* player1{ new GameObject{} };
+	//player1->GetComponent<Transform>()->SetPosition(216.f, 280.f);
+	//player1->pSubject->AddObserver(playerState);
 
-	SceneManager& sm{ SceneManager::GetInstance() };
-	std::string scene1{ "Scene1" };
-	sm.AddScene(scene1);
-	sm.AddObjectToScene(scene1, background);
-	sm.AddObjectToScene(scene1, DAE);
-	sm.AddObjectToScene(scene1, text);
-	sm.AddObjectToScene(scene1, fps);
+	//IComponent* UIHealth1{ new TextComponent{player1} };
+	//static_cast<TextComponent*>(UIHealth1)->SetSize(30);
+	//static_cast<TextComponent*>(UIHealth1)->SetText("Health is " + to_string((int)playerHealth));
+	//static_cast<TextComponent*>(UIHealth1)->SetColor(255, 20, 20, 255);
+	//
+	//IComponent* health1{ new HealthComponent{player1, playerHealth} };
 
-	sm.AddObjectToScene(scene1, player1);
-	sm.AddObjectToScene(scene1, player2);
+	//IComponent* input1{ new InputComponent{player1} };
+	//static_cast<InputComponent*>(input1)->BindAction(fox::ControllerButton::ButtonX, fox::ButtonState::ButtonDown, Damage);
+	//static_cast<InputComponent*>(input1)->BindAction(fox::ControllerButton::ButtonY, fox::ButtonState::ButtonDown, ResetHealth);
+	//
+	//player1->AddComponent(input1);
+	//player1->AddComponent(UIHealth1);
+	//player1->AddComponent(health1);
 
-	//SOUND
-	initAudio();
-	ServiceLocator::RegisterSoundSystem(new Sdl_SoundSystem{});
-	static_cast<InputComponent*>(input1)->BindAction(fox::ControllerButton::ButtonA, fox::ButtonState::ButtonDown, PlayASoundTEST);
+	////player 2
+	//GameObject* player2{ new GameObject{} };
+	//player2->GetComponent<Transform>()->SetPosition(216.f, 320.f);
+	//player2->pSubject->AddObserver(playerState);
+
+	//IComponent* UIHealth2{ new TextComponent{player2} };
+	//static_cast<TextComponent*>(UIHealth2)->SetSize(30);
+	//static_cast<TextComponent*>(UIHealth2)->SetText("Health is " + to_string((int)playerHealth));
+	//static_cast<TextComponent*>(UIHealth2)->SetColor(255, 20, 20, 255);
+
+	//IComponent* health2{ new HealthComponent{player2, playerHealth} };
+
+	//IComponent* input2{ new InputComponent{player2} };
+	//static_cast<InputComponent*>(input2)->BindAction(fox::ControllerButton::ButtonX, fox::ButtonState::ButtonDown, Damage);
+	//static_cast<InputComponent*>(input2)->BindAction(fox::ControllerButton::ButtonY, fox::ButtonState::ButtonDown, ResetHealth);
+
+	//player2->AddComponent(input2);
+	//player2->AddComponent(UIHealth2);
+	//player2->AddComponent(health2);
+
+	//sm.AddObjectToScene(scene1, background);
+
+	//sm.AddObjectToScene(scene1, text);
+	//sm.AddObjectToScene(scene1, fps);
+
+	//sm.AddObjectToScene(scene1, player1);
+	//sm.AddObjectToScene(scene1, player2);
+
+	////SOUND
+	//ServiceLocator::RegisterSoundSystem(new Sdl_SoundSystem{});
+	//ServiceLocator::GetSoundSystem().AddSound("../Data/Sound/PageFlip.wav");
+	//static_cast<InputComponent*>(input1)->BindAction(fox::ControllerButton::ButtonA, fox::ButtonState::ButtonDown, PlayASoundTEST);
 }
 
 void fox::SilverFoxEngine::Cleanup()
@@ -132,6 +141,10 @@ void fox::SilverFoxEngine::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
+
+	//TODO: get this inside the soundsystem
+	std::thread soundThread([]() { while (true) { ServiceLocator::GetSoundSystem().Update(); } });
+	soundThread.detach();
 
 	{
 		Renderer& renderer{ Renderer::GetInstance() };

@@ -1,24 +1,31 @@
 #include "MiniginPCH.h"
 #include "Transform.h"
 
-fox::Transform::Transform()
-	: IComponent { nullptr }
-	, m_Position{}
+fox::Transform::Transform(GameObject* owner)
+	: IComponent { owner }
+	, m_Location{}
 	, m_Rotation{}
 	, m_Scale{1.f, 1.f}
 {
 }
 
-
-void fox::Transform::SetPosition(const float x, const float y)
+fox::Transform::Transform(const FVector2& location, const FVector2& rotation, const FVector2& scale)
+	:IComponent{ nullptr }
+	, m_Location{ location }
+	, m_Rotation{ rotation }
+	, m_Scale{ scale }
 {
-	m_Position.x = x;
-	m_Position.y = y;
 }
 
-void fox::Transform::SetPosition(const FVector2& position)
+void fox::Transform::SetLocation(const float x, const float y)
 {
-	m_Position = position;
+	m_Location.x = x;
+	m_Location.y = y;
+}
+
+void fox::Transform::SetLocation(const FVector2& position)
+{
+	m_Location = position;
 }
 
 void fox::Transform::SetRotation(float x, float y)

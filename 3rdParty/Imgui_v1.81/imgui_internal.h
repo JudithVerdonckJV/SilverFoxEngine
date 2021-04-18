@@ -1564,7 +1564,10 @@ struct ImGuiContext
         ActiveIdUsingKeyInputMask = 0x00;
         ActiveIdClickOffset = ImVec2(-1, -1);
         ActiveIdWindow = NULL;
+#pragma warning (push)
+#pragma warning (disable: 26812)
         ActiveIdSource = ImGuiInputSource_None;
+#pragma warning (pop)
         ActiveIdMouseButton = 0;
         ActiveIdPreviousFrame = 0;
         ActiveIdPreviousFrameIsAlive = false;
@@ -1580,7 +1583,10 @@ struct ImGuiContext
         NavInputSource = ImGuiInputSource_None;
         NavScoringRect = ImRect();
         NavScoringCount = 0;
+#pragma warning (push)
+#pragma warning (disable: 26812)
         NavLayer = ImGuiNavLayer_Main;
+#pragma warning (pop)
         NavIdTabCounter = INT_MAX;
         NavIdIsAlive = false;
         NavMousePosDirty = false;

@@ -47,7 +47,7 @@ Index of this file:
 #else
 #include <stdint.h>     // intptr_t
 #endif
-
+#define WIN32_LEAN_AND_MEAN
 //-------------------------------------------------------------------------
 // Warnings
 //-------------------------------------------------------------------------
@@ -1416,8 +1416,11 @@ void ImGui::Separator()
     if (window->SkipItems)
         return;
 
+#pragma warning (push)
+#pragma warning (disable: 26812)
     // Those flags should eventually be overridable by the user
     ImGuiSeparatorFlags flags = (window->DC.LayoutType == ImGuiLayoutType_Horizontal) ? ImGuiSeparatorFlags_Vertical : ImGuiSeparatorFlags_Horizontal;
+#pragma warning (pop)
     flags |= ImGuiSeparatorFlags_SpanAllColumns;
     SeparatorEx(flags);
 }
@@ -6194,9 +6197,15 @@ bool ImGui::ListBoxHeader(const char* label, int items_count, int height_in_item
 
 void ImGui::EndListBox()
 {
+    
+#if _DEBUG || DEBUG
     ImGuiContext& g = *GImGui;
     ImGuiWindow* window = g.CurrentWindow;
+    //window; 
+
     IM_ASSERT((window->Flags & ImGuiWindowFlags_ChildWindow) && "Mismatched BeginListBox/EndListBox calls. Did you test the return value of BeginListBox?");
+#endif // _DEBUG || DEBUG
+
 
     EndChildFrame();
     EndGroup(); // This is only required to be able to do IsItemXXX query on the whole ListBox including label
@@ -6265,7 +6274,8 @@ bool ImGui::ListBox(const char* label, int* current_item, bool (*items_getter)(v
 // - ImPlot https://github.com/epezent/implot
 // - others https://github.com/ocornut/imgui/wiki/Useful-Widgets
 //-------------------------------------------------------------------------
-
+#pragma warning (push)
+#pragma warning (disable: 26812)
 int ImGui::PlotEx(ImGuiPlotType plot_type, const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 frame_size)
 {
     ImGuiContext& g = *GImGui;
@@ -6383,6 +6393,7 @@ int ImGui::PlotEx(ImGuiPlotType plot_type, const char* label, float (*values_get
     // This is currently not exposed in the public API because we need a larger redesign of the whole thing, but in the short-term we are making it available in PlotEx().
     return idx_hovered;
 }
+#pragma warning (pop)
 
 struct ImGuiPlotArrayGetterData
 {

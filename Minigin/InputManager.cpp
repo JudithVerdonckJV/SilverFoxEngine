@@ -22,11 +22,11 @@ bool fox::InputManager::ProcessInput()
 {
 	
 
-	for (int player{}; player < m_pRegisteredInputComponents.size(); ++player)
+	for (size_t player{}; player < m_pRegisteredInputComponents.size(); ++player)
 	{
 		
 		ZeroMemory(&m_InputState, sizeof(XINPUT_STATE));
-		XInputGetState(player, &m_InputState);
+		XInputGetState((DWORD)player, &m_InputState);
 		m_pRegisteredInputComponents[player]->ProcessInput();
 	}
 	return true; // TODO: EXIT

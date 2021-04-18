@@ -20,5 +20,10 @@ inline void ResetHealth(fox::GameObject* object)
 
 inline void PlayASoundTEST(fox::GameObject*)
 {
-	ServiceLocator::GetSoundSystem().Play(0, 100);
+	ServiceLocator::GetSoundSystem().PlayEffect(0, 100);
+}
+
+inline void MoveRight(fox::GameObject*)
+{
+	std::cout << "MOVING\n";
 }

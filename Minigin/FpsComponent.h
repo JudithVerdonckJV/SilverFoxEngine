@@ -7,6 +7,7 @@ namespace fox
 	class GameObject;
 	class Font;
 	class Texture2D;
+
     class FpsComponent final : public IComponent
     {
 	public:

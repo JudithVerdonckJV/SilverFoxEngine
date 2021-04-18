@@ -1,8 +1,8 @@
 #pragma once
+#include "IComponent.h"
 #include <map>
 #include "InputManager.h"
 #include "Commands.h"
-#include "IComponent.h"
 
 namespace fox
 {
