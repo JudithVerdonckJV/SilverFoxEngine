@@ -60,6 +60,8 @@ void fox::TextComponent::SetSize(int size)
 void fox::TextComponent::CreateTexture()
 {
 	delete m_pFont;
+	//if (m_pTexture) delete m_pTexture;
+	
 	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontPath, m_Size);
 	if (m_pFont == nullptr) throw "Font not initialized";
 	

@@ -16,3 +16,12 @@ fox::Texture2D::Texture2D(SDL_Texture* texture)
 {
 	m_pTexture = texture;
 }
+
+FVector2 fox::Texture2D::GetDimensions() const
+{
+	int width{};
+	int height{};
+	SDL_QueryTexture(m_pTexture, nullptr, nullptr, &width, &height);
+
+	return FVector2{ (float)width, (float)height };
+}

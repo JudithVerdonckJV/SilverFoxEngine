@@ -27,10 +27,10 @@ void fox::Renderer::Init(SDL_Window * window)
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
 	}
 
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
-	ImGui_ImplOpenGL2_Init();
+	//IMGUI_CHECKVERSION();
+	//ImGui::CreateContext();
+	//ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
+	//ImGui_ImplOpenGL2_Init();
 }
 
 void fox::Renderer::Render() const
@@ -39,9 +39,9 @@ void fox::Renderer::Render() const
 
 	SceneManager::GetInstance().Render();
 
-	ImGui_ImplOpenGL2_NewFrame();
-	ImGui_ImplSDL2_NewFrame(m_pWindow);
-	ImGui::NewFrame();
+	//ImGui_ImplOpenGL2_NewFrame();
+	//ImGui_ImplSDL2_NewFrame(m_pWindow);
+	//ImGui::NewFrame();
 	
 	//if (*m_ShowDemo) ImGui::ShowDemoWindow(m_ShowDemo);
 
@@ -52,19 +52,17 @@ void fox::Renderer::Render() const
 	//ImGui::Button("Versus", { 100, 30 });
 	//ImGui::End();
 
-	ImGui::Render();
-	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+	//ImGui::Render();
+	//ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 	
 	SDL_RenderPresent(m_Renderer);
 }
 
 void fox::Renderer::Destroy()
 {
-	ImGui_ImplOpenGL2_Shutdown();
-	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
-	
-	delete m_ShowDemo;
+	//ImGui_ImplOpenGL2_Shutdown();
+	//ImGui_ImplSDL2_Shutdown();
+	//ImGui::DestroyContext();
 
 	if (m_Renderer != nullptr)
 	{

@@ -1,4 +1,5 @@
 #include "MiniginPCH.h"
+#include <SDL.h>
 #include "InputManager.h"
 #include "InputComponent.h"
 
@@ -20,7 +21,18 @@ int fox::InputManager::RegisterInputComponent(InputComponent* inputComponent)
 
 bool fox::InputManager::ProcessInput()
 {
-	
+	SDL_Event e{};
+	while (SDL_PollEvent(&e) > 0)
+	{
+		switch (e.type)
+		{
+		case SDL_QUIT:
+			return false;
+			break;
+		default:
+			break;
+		}
+	}
 
 	for (size_t player{}; player < m_pRegisteredInputComponents.size(); ++player)
 	{
@@ -29,7 +41,7 @@ bool fox::InputManager::ProcessInput()
 		XInputGetState((DWORD)player, &m_InputState);
 		m_pRegisteredInputComponents[player]->ProcessInput();
 	}
-	return true; // TODO: EXIT
+	return true;
 }
 
 bool fox::InputManager::IsPressed(ControllerButton button) const

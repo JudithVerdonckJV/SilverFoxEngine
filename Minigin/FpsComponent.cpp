@@ -57,6 +57,7 @@ void fox::FpsComponent::SetSize(int size)
 void fox::FpsComponent::CreateTexture()
 {
 	delete m_pFont;
+
 	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontPath, m_Size);
 	if (m_pFont == nullptr) throw "Font not initialized";
 

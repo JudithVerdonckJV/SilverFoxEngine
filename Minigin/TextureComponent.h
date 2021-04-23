@@ -1,5 +1,6 @@
 #pragma once
 #include "IComponent.h"
+#include "utils.h"
 
 namespace fox
 {
@@ -15,10 +16,12 @@ namespace fox
         virtual void Render() const override;
 
         void SetTexture(const std::string& path);
+        FVector2 GetDimensions() const;
+        float GetWidth() const;
+        float GetHeight() const;
 
     private:
         Texture2D* m_pTexture;
-
     };
 }
 

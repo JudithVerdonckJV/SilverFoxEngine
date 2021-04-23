@@ -24,7 +24,6 @@ namespace fox
 	private:
 		SDL_Renderer* m_Renderer{};
 		SDL_Window* m_pWindow{};
-		bool* m_ShowDemo{ new bool{true} };
 	};
 }
 

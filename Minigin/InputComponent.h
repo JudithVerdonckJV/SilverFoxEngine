@@ -12,7 +12,7 @@ namespace fox
 	{
 	public:
 		InputComponent(GameObject* owner);
-		~InputComponent() = default;
+		virtual ~InputComponent() = default;
 
 		void ProcessInput();
 

@@ -141,6 +141,9 @@
     <ClInclude Include="SceneSetup.h">
       <Filter>QBert</Filter>
     </ClInclude>
+    <ClInclude Include="PlayFieldComponent.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -243,6 +246,9 @@
       <Filter>QBert</Filter>
     </ClCompile>
     <ClCompile Include="SceneSetup.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayFieldComponent.cpp">
       <Filter>QBert</Filter>
     </ClCompile>
   </ItemGroup>
