@@ -11,7 +11,7 @@ fox::TextureComponent::TextureComponent(GameObject* owner)
 	: IComponent{ owner }
 	, m_pTexture{ nullptr }
 {
-	m_pTexture = ResourceManager::GetInstance().LoadTexture("logo.png");
+	m_pTexture = ResourceManager::GetInstance().LoadTexture("fox.png");
 }
 
 fox::TextureComponent::~TextureComponent()
@@ -28,4 +28,19 @@ void fox::TextureComponent::SetTexture(const std::string& texturePath)
 {
 	delete m_pTexture;
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(texturePath);
+}
+
+FVector2 fox::TextureComponent::GetDimensions() const
+{
+	return m_pTexture->GetDimensions();
+}
+
+float fox::TextureComponent::GetWidth() const
+{
+	return m_pTexture->GetDimensions().x;
+}
+
+float fox::TextureComponent::GetHeight() const
+{
+	return m_pTexture->GetDimensions().y;
 }

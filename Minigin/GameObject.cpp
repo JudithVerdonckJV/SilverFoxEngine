@@ -17,9 +17,7 @@ fox::GameObject::GameObject(GameObject* owner)
 {
 	if (owner != nullptr) owner->AddChild(this); //set owner to another object
 	
-	Transform* transform{ new Transform{this} };
-	AddComponent(transform);
-	m_pTransform = transform; // direct access, no casting needed
+	m_pTransform = new Transform{ this };
 }
 
 fox::GameObject::GameObject(Scene* owner)
@@ -30,11 +28,9 @@ fox::GameObject::GameObject(Scene* owner)
 	, m_pSubject{ nullptr }
 	, m_Tag{ "" }
 {
-	owner->AddObject(this); // set owner to a scene, aka register this objec tot the scene
+	owner->AddObject(this); // adding this to scene
 
-	Transform* transform{ new Transform{this} };
-	AddComponent(transform);
-	m_pTransform = transform; // direct access, no casting needed
+	m_pTransform = new Transform{ this };
 }
 
 fox::GameObject::~GameObject()

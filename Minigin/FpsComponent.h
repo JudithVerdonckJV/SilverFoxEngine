@@ -12,7 +12,7 @@ namespace fox
     {
 	public:
 		FpsComponent(GameObject* owner);
-		~FpsComponent();
+		virtual ~FpsComponent();
 
 		virtual void Render() const override;
 		virtual void Update(float deltaTime) override;
