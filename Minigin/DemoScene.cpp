@@ -22,15 +22,15 @@ void DemoScene::LoadScene()
 	GameObject* playFieldObject{ new GameObject{this} };
 	PlayFieldComponent* playfieldComponent{ new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt" } };
 
-	//PLAYER
+	//PLAYER - QBERT
 	GameObject* QBertObject{ new GameObject{this} };
 	new TextureComponent{QBertObject, "fox.png"};
 	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfieldComponent } };
 	InputComponent* QBertInput{ new InputComponent{QBertObject} };
 	QBertObject->SetUserComponent(gridMovement);
 
-	QBertInput->BindAction(ControllerButton::ArrowDown, ButtonState::ButtonDown, &MoveDownLeft);
-	QBertInput->BindAction(ControllerButton::ArrowUp, ButtonState::ButtonDown, &MoveUpRight);
-	QBertInput->BindAction(ControllerButton::ArrowLeft, ButtonState::ButtonDown, &MoveUpLeft);
-	QBertInput->BindAction(ControllerButton::ArrowRight, ButtonState::ButtonDown, &MoveDownRight);
+	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_DOWN, SDL_SCANCODE_S,  ButtonState::ButtonDown, &MoveDownLeft);
+	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_UP, SDL_SCANCODE_W,  ButtonState::ButtonDown, &MoveUpRight);
+	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_LEFT, SDL_SCANCODE_A, ButtonState::ButtonDown, &MoveUpLeft);
+	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_RIGHT, SDL_SCANCODE_D, ButtonState::ButtonDown, &MoveDownRight);
 }

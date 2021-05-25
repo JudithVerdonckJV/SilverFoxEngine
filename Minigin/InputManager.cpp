@@ -6,7 +6,8 @@
 
 fox::InputManager::InputManager()
 	: m_pRegisteredInputComponents{}
-	, m_InputState{}
+	, m_GamepadInputState{}
+	, m_KeyboardInputState{}
 {
 }
 
@@ -36,19 +37,29 @@ bool fox::InputManager::ProcessInput()
 		}
 	}
 
+	//gamepad
 	for (size_t player{}; player < m_pRegisteredInputComponents.size(); ++player)
 	{
-		
-		ZeroMemory(&m_InputState, sizeof(XINPUT_STATE));
-		XInputGetState((DWORD)player, &m_InputState);
+		ZeroMemory(&m_GamepadInputState, sizeof(XINPUT_STATE));
+		XInputGetState((DWORD)player, &m_GamepadInputState);
 		m_pRegisteredInputComponents[player]->ProcessInput();
 	}
+
+	//keyboard
+	m_KeyboardInputState = SDL_GetKeyboardState( nullptr );
+
 	return true;
 }
 
-bool fox::InputManager::IsPressed(ControllerButton button) const
+bool fox::InputManager::IsPressed(SHORT button) const
 {
-	return m_InputState.Gamepad.wButtons & WORD(button);
+	return m_GamepadInputState.Gamepad.wButtons & button;
+}
+
+bool fox::InputManager::IsPressed(int button) const
+{
+	const Uint8* pStates = SDL_GetKeyboardState(nullptr);
+	return pStates[button];
 }
 
 //float fox::InputManager::IsPressed(ControllerTrigger axis) const

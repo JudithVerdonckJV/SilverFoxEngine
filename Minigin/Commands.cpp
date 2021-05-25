@@ -24,25 +24,3 @@ void fox::ActionCommand::Execute(bool pressed)
 
 	m_LastState = pressed;
 }
-
-
-
-fox::TriggerCommand::TriggerCommand(std::function<void(float)> fp)
-	: m_fpTrigger{ fp }
-{
-}
-
-void fox::TriggerCommand::Execute(float amount)
-{
-	m_fpTrigger(amount);
-}
-
-fox::StickCommand::StickCommand(std::function<void(FVector2)> fp)
-	: m_fpStick{ fp }
-{
-}
-
-void fox::StickCommand::Execute(FVector2 vector)
-{
-	m_fpStick(vector);
-}
