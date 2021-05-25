@@ -9,6 +9,7 @@ namespace fox
 {
 	class Transform;
 	class SubjectComponent;
+	class MoveComponent;
 	class Scene;
 
 	class GameObject final
@@ -25,13 +26,16 @@ namespace fox
 		void Render() const;
 
 		void SetTransform(const FVector2& position, const FVector2& rotation, const FVector2& scale);
-		Transform* GetTransform() const { return m_pTransform; };
+		Transform* GetTransform() const;
+		void SetLocation(float x, float y);
+		void SetLocation(const FVector2& xy);
 		FVector2 GetLocation() const;
 
-		const SubjectComponent* GetSubject() const { return m_pSubject; };
+		const SubjectComponent* GetSubject() const;
 
-		void SetTag(const std::string& tag) { m_Tag = tag; };
-		const std::string& GetTag() const { return m_Tag; };
+		void SetTag(const std::string& tag);
+		const std::string& GetTag() const;
+
 		GameObject* GetChildByTag(const std::string& tag) const;
 		GameObject* GetChildByIndex(size_t index) const;
 
@@ -56,8 +60,10 @@ namespace fox
 		std::vector<IComponent*> m_pComponents;
 		std::vector<GameObject*> m_pChildObjects;
 		
+		//fast access
 		Transform* m_pTransform;
 		SubjectComponent* m_pSubject;
+		MoveComponent* m_pMoveComponent;
 
 		std::string m_Tag;
 	};

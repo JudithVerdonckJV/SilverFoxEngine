@@ -28,6 +28,9 @@
     <Filter Include="Base">
       <UniqueIdentifier>{3bff3570-a113-45fb-9fb9-8b97c99f297b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{20e416b6-5b36-4206-99b3-5ee30184c2cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
@@ -84,9 +87,6 @@
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imstb_truetype.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="utils.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="Commands.h">
       <Filter>other</Filter>
     </ClInclude>
@@ -142,6 +142,21 @@
       <Filter>QBert</Filter>
     </ClInclude>
     <ClInclude Include="PlayFieldComponent.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStatics.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GridMovementComponent.h">
       <Filter>QBert</Filter>
     </ClInclude>
   </ItemGroup>
@@ -249,6 +264,15 @@
       <Filter>QBert</Filter>
     </ClCompile>
     <ClCompile Include="PlayFieldComponent.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStatics.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GridMovementComponent.cpp">
       <Filter>QBert</Filter>
     </ClCompile>
   </ItemGroup>

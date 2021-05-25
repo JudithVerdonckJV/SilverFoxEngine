@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include <SDL.h>
+#include "GameStatics.h"
 #include "InputManager.h"
 #include "InputComponent.h"
 
@@ -16,6 +17,7 @@ fox::InputManager::~InputManager()
 int fox::InputManager::RegisterInputComponent(InputComponent* inputComponent)
 {
 	m_pRegisteredInputComponents.push_back(inputComponent);
+	GameStatics::m_Players.push_back(inputComponent->GetOwner());
 	return int(m_pRegisteredInputComponents.size());
 }
 

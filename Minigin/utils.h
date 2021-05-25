@@ -16,4 +16,18 @@ struct FVector2
 	float y;
 };
 
-static FVector2 WINDOW_SIZE{0.f, 0.f};
+struct IVector2
+{
+	IVector2()
+		: x{ 0 }
+		, y{ 0 }
+	{}
+
+	IVector2(const int x, const int y)
+		: x{ x }
+		, y{ y }
+	{}
+
+	int x;
+	int y;
+};

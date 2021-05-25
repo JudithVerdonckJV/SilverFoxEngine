@@ -3,12 +3,13 @@
 #include <fstream>
 #include <sstream>
 
+#include "GameStatics.h"
+
 #include "PlayFieldComponent.h"
 #include "GameObject.h"
 #include "TextureComponent.h"
 #include "Transform.h"
 
-//extern volatile FVector2 WINDOW_SIZE;
 using namespace fox;
 
 PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& assetPath)
@@ -24,6 +25,8 @@ PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& ass
 	
 	int tilesPerRow{ 1 };
 	int totalTiles{ 0 };
+	float xOffset{ GameStatics::WINDOW_SIZE.x / 2.f };
+	float yOffset{ 100.f };
 	FVector2 currentPosition{};
 	
 	while (totalTiles < m_TileNr)
@@ -33,11 +36,12 @@ PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& ass
 			GameObject* tile{ new GameObject{ m_Owner } };
 			TextureComponent* texture{ new TextureComponent{ tile } };
 			texture->SetTexture("SingleTile.png");
+			texture->SetPivot(0.5f, 0.5f);
 			currentPosition = m_RelativePositions[totalTiles];
 			currentPosition.x *= texture->GetWidth() / 2.f;
-			float test = WINDOW_SIZE.x;
-			currentPosition.x += test / 2.f;
+			currentPosition.x += xOffset;
 			currentPosition.y *= texture->GetHeight() / 1.5f;
+			currentPosition.y += yOffset;
 			tile->SetTransform(currentPosition, { 0, 0 }, { 1, 1 });
 			++totalTiles;
 		}
@@ -78,9 +82,4 @@ void PlayFieldComponent::ReadFile()
 			}
 		}
 	}
-
-	//for (const FVector2& pos : m_RelativePositions)
-	//{
-	//	std::cout << pos.x << ", " << pos.y << std::endl;
-	//}
 }

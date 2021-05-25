@@ -112,7 +112,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\SDL2_ttf\lib\x86;$(SolutionDir)3rdParty\SDL2_image\lib\x86;$(SolutionDir)3rdParty\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -137,7 +137,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R 
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\SDL2_ttf\lib\x64;$(SolutionDir)3rdParty\SDL2_image\lib\x64;$(SolutionDir)3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -166,7 +166,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\SDL2_ttf\lib\x86;$(SolutionDir)3rdParty\SDL2_image\lib\x86;$(SolutionDir)3rdParty\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -195,7 +195,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R 
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\SDL2_ttf\lib\x64;$(SolutionDir)3rdParty\SDL2_image\lib\x64;$(SolutionDir)3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -220,11 +220,15 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="Font.h" />
     <ClInclude Include="FpsComponent.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameStatics.h" />
+    <ClInclude Include="GridMovementComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IObserver.h" />
+    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="ObserverManager.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayFieldComponent.h" />
@@ -293,12 +297,15 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FpsComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameStatics.cpp" />
+    <ClCompile Include="GridMovementComponent.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IObserver.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="ObserverManager.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayFieldComponent.cpp" />

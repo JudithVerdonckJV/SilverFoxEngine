@@ -19,6 +19,8 @@ namespace fox
 
 		virtual void Render() const {};
 
+		GameObject* GetOwner() const;
+
 #pragma warning (pop)
 
 		IComponent(const IComponent& other) = delete;

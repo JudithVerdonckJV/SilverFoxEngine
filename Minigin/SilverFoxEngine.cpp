@@ -10,14 +10,12 @@
 #include "ServiceLocator.h"
 #include "Renderer.h"
 
-#include "utils.h"
+#include "GameStatics.h"
 
 #include "GameObject.h"
 #include "Scene.h"
 
 #include "SceneSetup.h"
-
-//extern volatile FVector2 WINDOW_SIZE;
 
 using namespace std;
 using namespace std::chrono;
@@ -49,9 +47,6 @@ void fox::SilverFoxEngine::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
-
-	//std::thread soundThread([]() { while (true) { ServiceLocator::GetSoundSystem().Update(); } });
-	//soundThread.detach();
 
 	{
 		Renderer& renderer{ Renderer::GetInstance() };
@@ -99,15 +94,15 @@ void fox::SilverFoxEngine::InitSDL()
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
-	WINDOW_SIZE.x = 640.f;
-	WINDOW_SIZE.y = 480.f;
+	GameStatics::WINDOW_SIZE.x = 640.f;
+	GameStatics::WINDOW_SIZE.y = 480.f;
 
 	m_Window = SDL_CreateWindow(
 		"SilverFoxEngine",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		(int)WINDOW_SIZE.x,
-		(int)WINDOW_SIZE.y,
+		(int)GameStatics::WINDOW_SIZE.x,
+		(int)GameStatics::WINDOW_SIZE.y,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_Window == nullptr)

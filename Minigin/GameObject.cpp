@@ -5,6 +5,7 @@
 
 #include "Transform.h"
 #include "SubjectComponent.h"
+#include "MoveComponent.h"
 #include "Scene.h"
 
 fox::GameObject::GameObject(GameObject* owner)
@@ -13,6 +14,7 @@ fox::GameObject::GameObject(GameObject* owner)
 	, m_pChildObjects{ }
 	, m_pTransform{ nullptr }
 	, m_pSubject{ nullptr }
+	, m_pMoveComponent{ nullptr }
 	, m_Tag{ "" }
 {
 	if (owner != nullptr) owner->AddChild(this); //set owner to another object
@@ -26,6 +28,7 @@ fox::GameObject::GameObject(Scene* owner)
 	, m_pChildObjects{ }
 	, m_pTransform{ nullptr }
 	, m_pSubject{ nullptr }
+	, m_pMoveComponent{ nullptr }
 	, m_Tag{ "" }
 {
 	owner->AddObject(this); // adding this to scene
@@ -105,22 +108,39 @@ void fox::GameObject::SetTransform(const FVector2& position, const FVector2& rot
 	m_pTransform->SetScale(scale);
 }
 
-void fox::GameObject::AddComponent(IComponent* const newComponent)
-{
-	if (dynamic_cast<SubjectComponent*>(newComponent)) m_pSubject = static_cast<SubjectComponent*>(newComponent);
-	
-	//TODO: only one component of each kind?
-	m_pComponents.push_back(newComponent);
+fox::Transform* fox::GameObject::GetTransform() const
+{ 
+	return m_pTransform;
 }
 
-void fox::GameObject::AddChild(GameObject* const childObject)
+void fox::GameObject::SetLocation(float x, float y)
 {
-	m_pChildObjects.push_back(childObject);
+	m_pTransform->SetLocation(x, y);
+}
+
+void fox::GameObject::SetLocation(const FVector2& xy)
+{
+	m_pTransform->SetLocation(xy);
 }
 
 FVector2 fox::GameObject::GetLocation() const
 { 
 	return m_pTransform->Location();
+}
+
+const fox::SubjectComponent* fox::GameObject::GetSubject() const
+{
+	return m_pSubject;
+}
+
+void fox::GameObject::SetTag(const std::string& tag)
+{
+	m_Tag = tag;
+}
+
+const std::string& fox::GameObject::GetTag() const
+{
+	return m_Tag;
 }
 
 fox::GameObject* fox::GameObject::GetChildByTag(const std::string& tag) const
@@ -138,4 +158,18 @@ fox::GameObject* fox::GameObject::GetChildByIndex(size_t index) const
 	if (index >= m_pChildObjects.size()) return nullptr;
 	
 	return m_pChildObjects[index];
+}
+
+void fox::GameObject::AddComponent(IComponent* const newComponent)
+{
+	if (dynamic_cast<SubjectComponent*>(newComponent)) m_pSubject = static_cast<SubjectComponent*>(newComponent);
+	if (dynamic_cast<MoveComponent*>(newComponent)) m_pMoveComponent = static_cast<MoveComponent*>(newComponent);
+
+	//TODO: only one component of each kind?
+	m_pComponents.push_back(newComponent);
+}
+
+void fox::GameObject::AddChild(GameObject* const childObject)
+{
+	m_pChildObjects.push_back(childObject);
 }

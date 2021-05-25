@@ -7,3 +7,8 @@ fox::IComponent::IComponent(GameObject* owner)
 {
 	owner->AddComponent(this);
 }
+
+fox::GameObject* fox::IComponent::GetOwner() const
+{
+	return m_Owner;
+}

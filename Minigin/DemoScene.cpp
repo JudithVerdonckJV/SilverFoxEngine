@@ -5,6 +5,7 @@
 #include "InputComponent.h"
 #include "Transform.h"
 #include "PlayFieldComponent.h"
+#include "MoveComponent.h"
 
 #include "Actions.h"
 
@@ -33,4 +34,8 @@ void DemoScene::LoadScene()
 	GameObject* PlayFieldObject{ new GameObject{this} };
 	new PlayFieldComponent{ PlayFieldObject, "../Data/LevelLayout.txt" };
 
+	GameObject* QBertObject{ new GameObject{this} };
+	new TextureComponent{QBertObject, "fox.png"};
+	new MoveComponent{ QBertObject };
+	//InputComponent* QBertInput{ new InputComponent{QBertObject} };
 }
