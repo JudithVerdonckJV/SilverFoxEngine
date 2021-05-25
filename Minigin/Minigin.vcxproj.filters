@@ -159,6 +159,9 @@
     <ClInclude Include="GridMovementComponent.h">
       <Filter>QBert</Filter>
     </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">

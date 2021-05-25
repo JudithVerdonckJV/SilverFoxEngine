@@ -12,9 +12,120 @@ struct FVector2
 		, y{ y }
 	{}
 
+	float Magnitude() const noexcept
+	{
+		return std::sqrt(x * x + y * y);
+	}
+
+	float MagnitudeSquared() const noexcept
+	{
+		return x * x + y * y;
+	}
+
+	void Normalize()
+	{
+		float length = Magnitude();
+
+#ifdef _DEBUG
+		if (length <= 0.f)
+		{
+			std::cout << "FVector2 Normalize: magnitude invalid, vector not normalized!\n";
+			return;
+		}
+#endif
+		*this /= length;
+	}
+
+	//FVector2 with FVector2
+	FVector2 operator+(const FVector2& other)
+	{
+		return FVector2{ x + other.x, y + other.y };
+	}
+
+	FVector2 operator+=(const FVector2& other)
+	{
+		return *this + other;
+	}
+
+	FVector2 operator-(const FVector2& other)
+	{
+		return *this + FVector2{-other.x, -other.y};
+	}
+
+	FVector2 operator-=(const FVector2& other)
+	{
+		return *this - other;
+	}
+
+	bool operator>(const FVector2& other)
+	{
+		return this->MagnitudeSquared() > other.MagnitudeSquared();
+	}
+
+	bool operator >=(const FVector2& other)
+	{
+		return *this > other;
+	}
+
+	bool operator<(FVector2& other)
+	{
+		return other > *this;
+	}
+
+	bool operator<=(FVector2& other)
+	{
+		return *this < other;
+	}
+
+	//FVector2 with float
+	FVector2 operator+(const float other)
+	{
+		return FVector2{ x + other, y + other };
+	}
+
+	FVector2 operator+=(const float other)
+	{
+		return *this + other;
+	}
+
+	FVector2 operator-(const float other)
+	{
+		return *this + (-other);
+	}
+
+	FVector2 operator-=(const float other)
+	{
+		return *this - other;
+	}
+
+	FVector2 operator/(const float other)
+	{
+		return FVector2{ x / other, y / other };
+	}
+
+	FVector2 operator/=(const float other)
+	{
+		return *this / other;
+	}
+
+	FVector2 operator*(const float other)
+	{
+		return FVector2{ x * other, y * other };
+	}
+
+	FVector2 operator*=(const float other)
+	{
+		return *this * other;
+	}
+
 	float x;
 	float y;
 };
+
+//FVector2 operator* (const float f, FVector2& v)
+//{
+//	return v * f;
+//}
 
 struct IVector2
 {

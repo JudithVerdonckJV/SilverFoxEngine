@@ -10,6 +10,9 @@ public:
 	PlayFieldComponent(fox::GameObject* owner, const std::string& assetPath);
 	virtual ~PlayFieldComponent() = default;
 
+	FVector2 GetTilePositionAtIndex(int index) const;
+	int GetTileNr() const;
+
 private:
 	std::string m_AssetPath;
 	std::vector<FVector2> m_RelativePositions;

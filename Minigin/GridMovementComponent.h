@@ -1,17 +1,10 @@
 #pragma once
 #include "IComponent.h"
 #include "utils.h"
+#include "Enums.h"
 
 class GameObject;
 class PlayFieldComponent;
-
-enum class EDirection
-{
-	DownRight = 0,
-	DownLeft = 1,
-	UpRight = 2,
-	UpLeft = 3,
-};
 
 class GridMovementComponent final : public fox::IComponent
 {
@@ -20,15 +13,21 @@ public:
 	~GridMovementComponent() = default;
 
 	void Move(EDirection direction);
+	EDirection GetDirection() const;
+	void SetSpeed(float speed);
 
 	virtual void Update(float deltaTime) override;
 
 private:
-	PlayFieldComponent* m_Playfield;
+	PlayFieldComponent* m_pPlayfield;
 	
-	IVector2 m_CurrentGridPosition;
-	IVector2 m_DesiredGridPosition;
-	//FVector2 m_CurrentWorldPosition; => owner transform component!
+	int m_CurrentRow;
+	int m_CurrentTileIndex;
+
+	FVector2 m_DesiredWorldPosition;
 
 	bool m_IsMoving;
+
+	float m_MoveSpeed;
+	EDirection m_LastDirection;
 };

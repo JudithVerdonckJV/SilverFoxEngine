@@ -83,3 +83,23 @@ void PlayFieldComponent::ReadFile()
 		}
 	}
 }
+
+FVector2 PlayFieldComponent::GetTilePositionAtIndex(int index) const
+{
+	fox::GameObject* tile{ m_Owner->GetChildByIndex(index) };
+
+#ifdef _DEBUG
+	if (tile == nullptr)
+	{
+		std::cout << "PlayfieldComponent, get tile position at index: index out of range.\n";
+		return {};
+	}
+#endif
+
+	return tile->GetLocation();
+}
+
+int PlayFieldComponent::GetTileNr() const
+{
+	return m_TileNr;
+}
