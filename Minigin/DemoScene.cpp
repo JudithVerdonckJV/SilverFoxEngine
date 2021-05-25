@@ -5,7 +5,7 @@
 #include "InputComponent.h"
 #include "Transform.h"
 #include "PlayFieldComponent.h"
-#include "MoveComponent.h"
+#include "GridMovementComponent.h"
 
 #include "Actions.h"
 
@@ -18,24 +18,19 @@ void DemoScene::LoadScene()
 	TextureComponent* backgroundTexture{ new TextureComponent{ background } };
 	backgroundTexture->SetTexture("background.jpg");
 
-	////LOGO
-	//GameObject* DAE{ new GameObject {background} };
-	//IComponent* DAETexture{ new TextureComponent{ DAE } };
-	//static_cast<TextureComponent*>(DAETexture)->SetTexture("logo.png");
+	//LEVEL
+	GameObject* playFieldObject{ new GameObject{this} };
+	PlayFieldComponent* playfieldComponent{ new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt" } };
 
-	////FOX
-	//GameObject* fox{ new GameObject {this} };
-	//fox->SetTransform({50.f, 50.f}, {0.f, 0.f}, {1.f, 1.f} );
-	//IComponent* foxTexture{ new TextureComponent{fox} };
-	//static_cast<TextureComponent*>(foxTexture)->SetTexture("fox.png");
-
-
-
-	GameObject* PlayFieldObject{ new GameObject{this} };
-	new PlayFieldComponent{ PlayFieldObject, "../Data/LevelLayout.txt" };
-
+	//PLAYER
 	GameObject* QBertObject{ new GameObject{this} };
 	new TextureComponent{QBertObject, "fox.png"};
-	new MoveComponent{ QBertObject };
-	//InputComponent* QBertInput{ new InputComponent{QBertObject} };
+	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfieldComponent } };
+	InputComponent* QBertInput{ new InputComponent{QBertObject} };
+	QBertObject->SetUserComponent(gridMovement);
+
+	QBertInput->BindAction(ControllerButton::ArrowDown, ButtonState::ButtonDown, &MoveDownLeft);
+	QBertInput->BindAction(ControllerButton::ArrowUp, ButtonState::ButtonDown, &MoveUpRight);
+	QBertInput->BindAction(ControllerButton::ArrowLeft, ButtonState::ButtonDown, &MoveUpLeft);
+	QBertInput->BindAction(ControllerButton::ArrowRight, ButtonState::ButtonDown, &MoveDownRight);
 }

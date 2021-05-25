@@ -8,49 +8,46 @@
 GridMovementComponent::GridMovementComponent(fox::GameObject* owner, PlayFieldComponent* playfield)
 	: IComponent{ owner }
 	, m_pPlayfield{ playfield }
-	, m_CurrentRow{}
-	, m_CurrentTileIndex{}
 	, m_DesiredWorldPosition{}
 	, m_IsMoving{ false }
-	, m_MoveSpeed{200.f}
+	, m_IsFalling{ false }
+	, m_MoveSpeed{100.f}
 	, m_LastDirection{ EDirection::DownRight }
 {
+	m_MoveDistance = playfield->GetTileDistance();
+	m_MoveDistance.x = std::abs(m_MoveDistance.x);
+	m_MoveDistance.y = std::abs(m_MoveDistance.y);
+
+	m_Owner->SetLocation(playfield->GetTilePositionAtIndex(0));
 }
 
 void GridMovementComponent::Move(EDirection direction)
 {
 	if (m_IsMoving) return;
 
-	int newIndex{};
-	int newRow{};
+	FVector2 destination{ m_Owner->GetLocation() };
 
-	//Calculate new index
-	switch (m_LastDirection)
+	switch (direction)
 	{
 	case EDirection::DownLeft:
-		newIndex = m_CurrentTileIndex + m_CurrentRow;
-		newRow = ++m_CurrentRow;
+		destination.x -= m_MoveDistance.x;
+		destination.y += m_MoveDistance.y;
 		break;
 	case EDirection::DownRight:
-		newIndex = m_CurrentTileIndex + m_CurrentRow + 1;
-		newRow = ++newRow;
+		destination += m_MoveDistance;
 		break;
 	case EDirection::UpLeft:
-		newIndex = m_CurrentTileIndex - m_CurrentRow - 1;
-		newRow = m_CurrentRow - (m_CurrentTileIndex - newIndex) % (1 + m_CurrentRow);
+		destination -= m_MoveDistance;
 		break;
 	case EDirection::UpRight:
-		newIndex = m_CurrentTileIndex - m_CurrentRow;
-		newRow = m_CurrentRow - (m_CurrentTileIndex - newIndex) % (1 + m_CurrentRow);
+		destination.x += m_MoveDistance.x;
+		destination.y -= m_MoveDistance.y;
 		break;
 	}
 
-	//TODO: falling off
-	if (newIndex < 0) return; //falling off up
-	if (newIndex >= m_pPlayfield->GetTileNr()) return; // falling off down
-	if (std::abs(m_CurrentTileIndex - newIndex) < m_CurrentRow) return; // falling off up left
+	if (!m_pPlayfield->IsInsideTile(destination)) m_IsFalling = true;
+	m_DesiredWorldPosition = destination;
 
-	m_DesiredWorldPosition = m_pPlayfield->GetTilePositionAtIndex(newIndex);
 	m_IsMoving = true;
 	m_LastDirection = direction;
 }
@@ -58,15 +55,26 @@ void GridMovementComponent::Move(EDirection direction)
 void GridMovementComponent::Update(float dt)
 {
 	if (!m_IsMoving) return;
-	
+
 	FVector2 newLocation = m_Owner->GetLocation();
 	FVector2 direction = m_DesiredWorldPosition - newLocation;
 	direction.Normalize();
-	newLocation += direction * m_MoveSpeed;
-	newLocation *= dt;
+	newLocation += direction * (m_MoveSpeed * dt);
 	m_Owner->SetLocation(newLocation);
 
-	if (EqualWithEpsilon(newLocation, m_DesiredWorldPosition, {0.1f, 0.1f})) m_IsMoving = false;
+	if (EqualWithEpsilon(newLocation, m_DesiredWorldPosition, { 0.7f, 0.7f }))
+	{
+		if (m_IsFalling)
+		{
+			m_Owner->SetLocation(m_pPlayfield->GetTilePositionAtIndex(0));
+			m_IsFalling = false;
+		}
+		else
+		{
+			m_Owner->SetLocation(m_DesiredWorldPosition);
+		}
+		m_IsMoving = false;
+	}
 }
 
 void GridMovementComponent::SetSpeed(float speed)

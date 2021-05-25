@@ -2,7 +2,12 @@
 #include "IComponent.h"
 #include "utils.h"
 
-class fox::GameObject;
+namespace fox
+{
+	class GameObject;
+	class TextureComponent;
+}
+
 
 class PlayFieldComponent final : public fox::IComponent
 {
@@ -12,10 +17,14 @@ public:
 
 	FVector2 GetTilePositionAtIndex(int index) const;
 	int GetTileNr() const;
+	FVector2 GetTileDistance() const;
+
+	bool IsInsideTile(FVector2& destinationLocation);
 
 private:
 	std::string m_AssetPath;
 	std::vector<FVector2> m_RelativePositions;
+	std::vector<fox::TextureComponent*> m_pTileTextures;
 	void ReadFile();
 
 	const int m_Cols;

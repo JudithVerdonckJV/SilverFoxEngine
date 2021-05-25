@@ -37,95 +37,102 @@ struct FVector2
 	}
 
 	//FVector2 with FVector2
-	FVector2 operator+(const FVector2& other)
+	FVector2 operator+(const FVector2& other) const
 	{
 		return FVector2{ x + other.x, y + other.y };
 	}
 
-	FVector2 operator+=(const FVector2& other)
+	FVector2& operator+=(const FVector2& other)
 	{
-		return *this + other;
+		this->x += other.x;
+		this->y += other.y;
+		return *this;
 	}
 
-	FVector2 operator-(const FVector2& other)
+	FVector2 operator-(const FVector2& other) const
 	{
 		return *this + FVector2{-other.x, -other.y};
 	}
 
-	FVector2 operator-=(const FVector2& other)
+	FVector2& operator-=(const FVector2& other)
 	{
-		return *this - other;
+		this->x -= other.x;
+		this->y -= other.y;
+		return *this;
 	}
 
-	bool operator>(const FVector2& other)
+	bool operator>(const FVector2& other) const
 	{
-		return this->MagnitudeSquared() > other.MagnitudeSquared();
+		return x > other.x && y > other.y;
 	}
 
-	bool operator >=(const FVector2& other)
+	bool operator>=(const FVector2& other) const
 	{
-		return *this > other;
+		return x >= other.x && y >= other.y;
 	}
 
-	bool operator<(FVector2& other)
+	bool operator<(FVector2& other) const
 	{
 		return other > *this;
 	}
 
-	bool operator<=(FVector2& other)
+	bool operator<=(FVector2& other) const
 	{
-		return *this < other;
+		return other >= *this;
 	}
 
-	//FVector2 with float
-	FVector2 operator+(const float other)
+	//FVector2 with floats
+	FVector2 operator+(const float other) const
 	{
 		return FVector2{ x + other, y + other };
 	}
 
-	FVector2 operator+=(const float other)
+	FVector2& operator+=(const float other)
 	{
-		return *this + other;
+		this->x += other;
+		this->y += other;
+		return *this;
 	}
 
-	FVector2 operator-(const float other)
+	FVector2 operator-(const float other) const
 	{
-		return *this + (-other);
+		return FVector2{ x - other, y - other };
 	}
 
-	FVector2 operator-=(const float other)
+	FVector2& operator-=(const float other)
 	{
-		return *this - other;
+		this->x -= other;
+		this->y -= other;
+		return *this;
 	}
 
-	FVector2 operator/(const float other)
+	FVector2 operator/(const float other) const
 	{
 		return FVector2{ x / other, y / other };
 	}
 
-	FVector2 operator/=(const float other)
+	FVector2& operator/=(const float other)
 	{
-		return *this / other;
+		this->x /= other;
+		this->y /= other;
+		return *this;
 	}
 
-	FVector2 operator*(const float other)
+	FVector2 operator*(const float other) const
 	{
 		return FVector2{ x * other, y * other };
 	}
 
-	FVector2 operator*=(const float other)
+	FVector2& operator*=(const float other)
 	{
-		return *this * other;
+		this->x *= other;
+		this->y *= other;
+		return *this;
 	}
 
 	float x;
 	float y;
 };
-
-//FVector2 operator* (const float f, FVector2& v)
-//{
-//	return v * f;
-//}
 
 struct IVector2
 {

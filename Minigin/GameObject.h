@@ -9,7 +9,7 @@ namespace fox
 {
 	class Transform;
 	class SubjectComponent;
-	class MoveComponent;
+	class InputComponent;
 	class Scene;
 
 	class GameObject final
@@ -32,6 +32,9 @@ namespace fox
 		FVector2 GetLocation() const;
 
 		const SubjectComponent* GetSubject() const;
+		IComponent* GetUserComponent() const;
+
+		void SetUserComponent(IComponent* component);
 
 		void SetTag(const std::string& tag);
 		const std::string& GetTag() const;
@@ -63,7 +66,8 @@ namespace fox
 		//fast access
 		Transform* m_pTransform;
 		SubjectComponent* m_pSubject;
-		MoveComponent* m_pMoveComponent;
+
+		IComponent* m_UserComponent;
 
 		std::string m_Tag;
 	};

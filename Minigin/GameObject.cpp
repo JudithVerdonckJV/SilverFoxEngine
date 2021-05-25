@@ -5,7 +5,7 @@
 
 #include "Transform.h"
 #include "SubjectComponent.h"
-#include "MoveComponent.h"
+#include "InputComponent.h"
 #include "Scene.h"
 
 fox::GameObject::GameObject(GameObject* owner)
@@ -14,7 +14,7 @@ fox::GameObject::GameObject(GameObject* owner)
 	, m_pChildObjects{ }
 	, m_pTransform{ nullptr }
 	, m_pSubject{ nullptr }
-	, m_pMoveComponent{ nullptr }
+	, m_UserComponent{}
 	, m_Tag{ "" }
 {
 	if (owner != nullptr) owner->AddChild(this); //set owner to another object
@@ -28,7 +28,7 @@ fox::GameObject::GameObject(Scene* owner)
 	, m_pChildObjects{ }
 	, m_pTransform{ nullptr }
 	, m_pSubject{ nullptr }
-	, m_pMoveComponent{ nullptr }
+	, m_UserComponent{}
 	, m_Tag{ "" }
 {
 	owner->AddObject(this); // adding this to scene
@@ -133,6 +133,16 @@ const fox::SubjectComponent* fox::GameObject::GetSubject() const
 	return m_pSubject;
 }
 
+fox::IComponent* fox::GameObject::GetUserComponent() const
+{
+	return m_UserComponent;
+}
+
+void fox::GameObject::SetUserComponent(IComponent* component)
+{
+	m_UserComponent = component;
+}
+
 void fox::GameObject::SetTag(const std::string& tag)
 {
 	m_Tag = tag;
@@ -163,7 +173,6 @@ fox::GameObject* fox::GameObject::GetChildByIndex(size_t index) const
 void fox::GameObject::AddComponent(IComponent* const newComponent)
 {
 	if (dynamic_cast<SubjectComponent*>(newComponent)) m_pSubject = static_cast<SubjectComponent*>(newComponent);
-	if (dynamic_cast<MoveComponent*>(newComponent)) m_pMoveComponent = static_cast<MoveComponent*>(newComponent);
 
 	//TODO: only one component of each kind?
 	m_pComponents.push_back(newComponent);

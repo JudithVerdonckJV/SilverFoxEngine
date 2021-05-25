@@ -16,6 +16,7 @@ PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& ass
 	:IComponent{ owner }
 	, m_AssetPath{ assetPath }
 	, m_RelativePositions{}
+	, m_pTileTextures{}
 	, m_TileNr{ }
 	, m_Cols{ 7 }
 	, m_TotalRows{ 7 }
@@ -35,6 +36,7 @@ PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& ass
 		{
 			GameObject* tile{ new GameObject{ m_Owner } };
 			TextureComponent* texture{ new TextureComponent{ tile } };
+			m_pTileTextures.push_back(texture);
 			texture->SetTexture("SingleTile.png");
 			texture->SetPivot(0.5f, 0.5f);
 			currentPosition = m_RelativePositions[totalTiles];
@@ -102,4 +104,31 @@ FVector2 PlayFieldComponent::GetTilePositionAtIndex(int index) const
 int PlayFieldComponent::GetTileNr() const
 {
 	return m_TileNr;
+}
+
+FVector2 PlayFieldComponent::GetTileDistance() const
+{
+	FVector2 location1{ m_Owner->GetChildByIndex(0)->GetLocation() };
+	FVector2 location2{ m_Owner->GetChildByIndex(1)->GetLocation() };
+
+	return location2 - location1;
+}
+
+bool PlayFieldComponent::IsInsideTile(FVector2& destinationLocation)
+{
+	for (int i{}; i < m_TileNr; ++i)
+	{
+		FVector2 tileLocation = m_Owner->GetChildByIndex(i)->GetLocation();
+		FVector2 tileUpperLeft{tileLocation.x - m_pTileTextures[i]->GetWidth() / 2.f, tileLocation.y + m_pTileTextures[i]->GetHeight() / 2.f };
+		FVector2 tileBottomRight{ tileLocation.x + m_pTileTextures[i]->GetWidth() / 2.f, tileLocation.y - m_pTileTextures[i]->GetHeight() / 2.f };
+
+		if (destinationLocation.x > tileUpperLeft.x && destinationLocation.x < tileBottomRight.x &&
+			destinationLocation.y < tileUpperLeft.y && destinationLocation.y > tileBottomRight.y)
+		{
+			destinationLocation = tileLocation;
+			return true;
+		}
+	}
+
+	return false;
 }

@@ -3,7 +3,11 @@
 #include "utils.h"
 #include "Enums.h"
 
-class GameObject;
+namespace fox
+{
+	class GameObject;
+}
+
 class PlayFieldComponent;
 
 class GridMovementComponent final : public fox::IComponent
@@ -16,18 +20,18 @@ public:
 	EDirection GetDirection() const;
 	void SetSpeed(float speed);
 
+
 	virtual void Update(float deltaTime) override;
 
 private:
 	PlayFieldComponent* m_pPlayfield;
-	
-	int m_CurrentRow;
-	int m_CurrentTileIndex;
 
 	FVector2 m_DesiredWorldPosition;
 
 	bool m_IsMoving;
+	bool m_IsFalling;
 
 	float m_MoveSpeed;
+	FVector2 m_MoveDistance;
 	EDirection m_LastDirection;
 };
