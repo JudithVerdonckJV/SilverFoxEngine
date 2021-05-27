@@ -162,6 +162,12 @@
     <ClInclude Include="Enums.h">
       <Filter>QBert</Filter>
     </ClInclude>
+    <ClInclude Include="TileData.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="QBert_Behavior.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -276,6 +282,12 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="GridMovementComponent.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="TileData.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="QBert_Behavior.cpp">
       <Filter>QBert</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,7 +7,6 @@
 fox::InputManager::InputManager()
 	: m_pRegisteredInputComponents{}
 	, m_GamepadInputState{}
-	, m_KeyboardInputState{}
 {
 }
 
@@ -45,9 +44,6 @@ bool fox::InputManager::ProcessInput()
 		m_pRegisteredInputComponents[player]->ProcessInput();
 	}
 
-	//keyboard
-	m_KeyboardInputState = SDL_GetKeyboardState( nullptr );
-
 	return true;
 }
 
@@ -61,31 +57,3 @@ bool fox::InputManager::IsPressed(int button) const
 	const Uint8* pStates = SDL_GetKeyboardState(nullptr);
 	return pStates[button];
 }
-
-//float fox::InputManager::IsPressed(ControllerTrigger axis) const
-//{
-//	switch (axis)
-//	{
-//	case ControllerTrigger::LeftTrigger:
-//		return m_InputState.Gamepad.bLeftTrigger;
-//		break;
-//	case ControllerTrigger::RightTrigger:
-//		return m_InputState.Gamepad.bRightTrigger;
-//		break;
-//	}
-//	return 0.f;
-//}
-//
-//FVector2 fox::InputManager::IsPressed(ControllerStick stick) const
-//{
-//	switch (stick)
-//	{
-//	case ControllerStick::LeftThumb:
-//		return FVector2{ (float)m_InputState.Gamepad.sThumbLX, (float)m_InputState.Gamepad.sThumbLY };
-//		break;
-//	case ControllerStick::RightThumb:
-//		return FVector2{ (float)m_InputState.Gamepad.sThumbRX, (float)m_InputState.Gamepad.sThumbRY };
-//		break;
-//	}
-//	return { 0.f, 0.f };
-//}

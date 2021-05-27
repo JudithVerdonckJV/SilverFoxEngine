@@ -20,16 +20,21 @@ public:
 	EDirection GetDirection() const;
 	void SetSpeed(float speed);
 
-
 	virtual void Update(float deltaTime) override;
+
+	void FlipTile();
+	void UnflipTile();
+	bool HasArrivedOnTile() const;
 
 private:
 	PlayFieldComponent* m_pPlayfield;
 
 	FVector2 m_DesiredWorldPosition;
+	int m_CurrentTileIndex;
 
 	bool m_IsMoving;
 	bool m_IsFalling;
+	bool m_ArrivedOnTile;
 
 	float m_MoveSpeed;
 	FVector2 m_MoveDistance;

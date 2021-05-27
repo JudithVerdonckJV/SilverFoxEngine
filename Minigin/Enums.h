@@ -6,3 +6,17 @@ enum class EDirection
 	UpRight = 2,
 	UpLeft = 3,
 };
+
+enum class ETileBehavior
+{
+	OneFlip = 0,
+	TwoFlips = 1,
+	CanUnflip = 2,
+};
+
+enum class ETileType
+{
+	Stage0 = 0,
+	Stage1 = 1,
+	Stage2 = 2,
+};

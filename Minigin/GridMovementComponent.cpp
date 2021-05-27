@@ -7,8 +7,10 @@
 
 GridMovementComponent::GridMovementComponent(fox::GameObject* owner, PlayFieldComponent* playfield)
 	: IComponent{ owner }
+	, m_ArrivedOnTile{}
 	, m_pPlayfield{ playfield }
 	, m_DesiredWorldPosition{}
+	, m_CurrentTileIndex{0}
 	, m_IsMoving{ false }
 	, m_IsFalling{ false }
 	, m_MoveSpeed{100.f}
@@ -45,7 +47,7 @@ void GridMovementComponent::Move(EDirection direction)
 		break;
 	}
 
-	if (!m_pPlayfield->IsInsideTile(destination)) m_IsFalling = true;
+	if (!m_pPlayfield->IsInsideTile(destination, m_CurrentTileIndex)) m_IsFalling = true;
 	m_DesiredWorldPosition = destination;
 
 	m_IsMoving = true;
@@ -72,9 +74,27 @@ void GridMovementComponent::Update(float dt)
 		else
 		{
 			m_Owner->SetLocation(m_DesiredWorldPosition);
+			m_ArrivedOnTile = true;
 		}
 		m_IsMoving = false;
 	}
+}
+
+void GridMovementComponent::FlipTile()
+{
+	m_pPlayfield->FlipTileIndex(m_CurrentTileIndex);
+	m_ArrivedOnTile = false;
+}
+
+void GridMovementComponent::UnflipTile()
+{
+	m_pPlayfield->UnflipTileIndex(m_CurrentTileIndex);
+	m_ArrivedOnTile = false;
+}
+
+bool GridMovementComponent::HasArrivedOnTile() const
+{
+	return m_ArrivedOnTile;
 }
 
 void GridMovementComponent::SetSpeed(float speed)

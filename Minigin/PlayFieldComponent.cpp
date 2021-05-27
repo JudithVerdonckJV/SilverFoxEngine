@@ -9,10 +9,11 @@
 #include "GameObject.h"
 #include "TextureComponent.h"
 #include "Transform.h"
+#include "TileData.h"
 
 using namespace fox;
 
-PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& assetPath)
+PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& assetPath, ETileBehavior tileBehavior)
 	:IComponent{ owner }
 	, m_AssetPath{ assetPath }
 	, m_RelativePositions{}
@@ -20,6 +21,10 @@ PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& ass
 	, m_TileNr{ }
 	, m_Cols{ 7 }
 	, m_TotalRows{ 7 }
+	, m_TileBehavior{ tileBehavior }
+	, m_Stage0Path{ "TileStage0.png" }
+	, m_Stage1Path{ "TileStage1.png" }
+	, m_Stage2Path{ "TileStage2.png" }
 {
 	ReadFile();
 	m_TileNr = (int)m_RelativePositions.size();
@@ -36,8 +41,12 @@ PlayFieldComponent::PlayFieldComponent(GameObject* owner, const std::string& ass
 		{
 			GameObject* tile{ new GameObject{ m_Owner } };
 			TextureComponent* texture{ new TextureComponent{ tile } };
+			TileData* tileData =  new TileData{ tile };
+
 			m_pTileTextures.push_back(texture);
-			texture->SetTexture("SingleTile.png");
+			m_pTileData.push_back(tileData);
+
+			texture->SetTexture(m_Stage0Path);
 			texture->SetPivot(0.5f, 0.5f);
 			currentPosition = m_RelativePositions[totalTiles];
 			currentPosition.x *= texture->GetWidth() / 2.f;
@@ -114,7 +123,7 @@ FVector2 PlayFieldComponent::GetTileDistance() const
 	return location2 - location1;
 }
 
-bool PlayFieldComponent::IsInsideTile(FVector2& destinationLocation)
+bool PlayFieldComponent::IsInsideTile(FVector2& destinationLocation, int& index)
 {
 	for (int i{}; i < m_TileNr; ++i)
 	{
@@ -126,9 +135,89 @@ bool PlayFieldComponent::IsInsideTile(FVector2& destinationLocation)
 			destinationLocation.y < tileUpperLeft.y && destinationLocation.y > tileBottomRight.y)
 		{
 			destinationLocation = tileLocation;
+			index = i;
 			return true;
 		}
 	}
 
 	return false;
+}
+
+void PlayFieldComponent::FlipTileIndex(int index)
+{
+	ETileType& type = m_pTileData[index]->Type;
+	bool& finalStage = m_pTileData[index]->IsInFinalStage;
+
+	switch (m_TileBehavior)
+	{
+	case ETileBehavior::OneFlip:
+		if (type == ETileType::Stage1) return;
+		type = ETileType::Stage1;
+		finalStage = true;
+		m_pTileTextures[index]->SetTexture(m_Stage1Path);
+		break;
+
+	case ETileBehavior::TwoFlips:
+		if (type == ETileType::Stage2) return;
+		else if (type == ETileType::Stage0)
+		{
+			type = ETileType::Stage1;
+			m_pTileTextures[index]->SetTexture(m_Stage1Path);
+		}
+		else if (type == ETileType::Stage1)
+		{
+			type = ETileType::Stage2;
+			finalStage = true;
+			m_pTileTextures[index]->SetTexture(m_Stage2Path);
+		}
+		break;
+
+	case ETileBehavior::CanUnflip:
+		if (type == ETileType::Stage0)
+		{
+			type = ETileType::Stage1;
+			finalStage = false;
+			m_pTileTextures[index]->SetTexture(m_Stage1Path);
+		}
+		else if (type == ETileType::Stage1)
+		{
+			type = ETileType::Stage0;
+			finalStage = true;
+			m_pTileTextures[index]->SetTexture(m_Stage0Path);
+		}
+		break;
+	}
+}
+
+void PlayFieldComponent::UnflipTileIndex(int index)
+{
+	ETileType& type = m_pTileData[index]->Type;
+	bool& finalStage = m_pTileData[index]->IsInFinalStage;
+
+	if (type == ETileType::Stage1)
+	{
+		type = ETileType::Stage0;
+		finalStage = false;
+		m_pTileTextures[index]->SetTexture(m_Stage0Path);
+	}
+	else if(type == ETileType::Stage2)
+	{
+		type = ETileType::Stage1;
+		finalStage = false;
+		m_pTileTextures[index]->SetTexture(m_Stage1Path);
+	}
+}
+
+void PlayFieldComponent::CheckForLevelEnd()
+{
+	for (TileData* data : m_pTileData)
+	{
+		if (!data->IsInFinalStage)
+		{
+			m_LevelFinished = false;
+			return;
+		}
+	}
+
+	m_LevelFinished = true;
 }

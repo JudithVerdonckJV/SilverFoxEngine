@@ -25,7 +25,6 @@ namespace fox
 
 	private:
 		XINPUT_STATE m_GamepadInputState;
-		const UINT8* m_KeyboardInputState;
 		std::vector<InputComponent*> m_pRegisteredInputComponents;
 		
 		friend class InputComponent;

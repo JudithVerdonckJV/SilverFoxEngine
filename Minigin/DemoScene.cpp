@@ -6,8 +6,10 @@
 #include "Transform.h"
 #include "PlayFieldComponent.h"
 #include "GridMovementComponent.h"
+#include "QBert_Behavior.h"
 
 #include "Actions.h"
+#include "Enums.h"
 
 using namespace fox;
 
@@ -20,7 +22,7 @@ void DemoScene::LoadScene()
 
 	//LEVEL
 	GameObject* playFieldObject{ new GameObject{this} };
-	PlayFieldComponent* playfieldComponent{ new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt" } };
+	PlayFieldComponent* playfieldComponent{ new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::OneFlip } };
 
 	//PLAYER - QBERT
 	GameObject* QBertObject{ new GameObject{this} };
@@ -28,6 +30,7 @@ void DemoScene::LoadScene()
 	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfieldComponent } };
 	InputComponent* QBertInput{ new InputComponent{QBertObject} };
 	QBertObject->SetUserComponent(gridMovement);
+	new QBert_Behavior{ QBertObject, gridMovement };
 
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_DOWN, SDL_SCANCODE_S,  ButtonState::ButtonDown, &MoveDownLeft);
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_UP, SDL_SCANCODE_W,  ButtonState::ButtonDown, &MoveUpRight);
