@@ -7,6 +7,7 @@
 #include "PlayFieldComponent.h"
 #include "GridMovementComponent.h"
 #include "QBert_Behavior.h"
+#include "Ugg_Behavior.h"
 
 #include "Actions.h"
 #include "Enums.h"
@@ -37,4 +38,10 @@ void DemoScene::LoadScene()
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_UP, SDL_SCANCODE_W,  ButtonState::ButtonDown, &MoveUpRight);
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_LEFT, SDL_SCANCODE_A, ButtonState::ButtonDown, &MoveUpLeft);
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_RIGHT, SDL_SCANCODE_D, ButtonState::ButtonDown, &MoveDownRight);
+
+	//UGG
+	GameObject* uggObject{ new GameObject{this} };
+	TextureComponent* uggTexture{ new TextureComponent{uggObject, "Ugg.png"} };
+	uggTexture->SetPivot(-0.2f, 0.f);	GridMovementComponent* uggGridMovement{ new GridMovementComponent{uggObject, playfieldComponent} };
+	new Ugg_Behavior{ uggObject, uggGridMovement };
 }

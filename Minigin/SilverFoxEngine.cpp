@@ -23,7 +23,8 @@ using namespace std::chrono;
 void fox::SilverFoxEngine::Initialize()
 {
 	m_msPerFrame = 1.f / 60.f * 1000.f;
-	
+	srand((unsigned int)time);
+
 	InitSDL();
 }
 

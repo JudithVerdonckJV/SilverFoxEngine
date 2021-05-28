@@ -31,6 +31,15 @@
     <Filter Include="Helpers">
       <UniqueIdentifier>{20e416b6-5b36-4206-99b3-5ee30184c2cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QBert\QBert">
+      <UniqueIdentifier>{95151d24-8777-44e7-a45d-91c0a0d6fe09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QBert\Grid">
+      <UniqueIdentifier>{4e698f4e-8efd-4d84-a1b5-7db017ad8cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QBert\Scenes">
+      <UniqueIdentifier>{7d0978b7-3171-4c56-950b-852b50b8c25a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
@@ -99,12 +108,6 @@
     <ClInclude Include="ObserverManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
     <ClInclude Include="HealthComponent.h">
       <Filter>QBert</Filter>
     </ClInclude>
@@ -135,15 +138,6 @@
     <ClInclude Include="SilverFoxEngine.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="DemoScene.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSetup.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayFieldComponent.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
     <ClInclude Include="MathHelper.h">
       <Filter>Helpers</Filter>
     </ClInclude>
@@ -156,16 +150,34 @@
     <ClInclude Include="MoveComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="GridMovementComponent.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
     <ClInclude Include="Enums.h">
       <Filter>QBert</Filter>
     </ClInclude>
-    <ClInclude Include="TileData.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
     <ClInclude Include="QBert_Behavior.h">
+      <Filter>QBert\QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>QBert\QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>QBert\QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="GridMovementComponent.h">
+      <Filter>QBert\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayFieldComponent.h">
+      <Filter>QBert\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="TileData.h">
+      <Filter>QBert\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSetup.h">
+      <Filter>QBert\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoScene.h">
+      <Filter>QBert\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ugg_Behavior.h">
       <Filter>QBert</Filter>
     </ClInclude>
   </ItemGroup>
@@ -230,9 +242,6 @@
     <ClCompile Include="ObserverManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>QBert</Filter>
-    </ClCompile>
     <ClCompile Include="HealthComponent.cpp">
       <Filter>QBert</Filter>
     </ClCompile>
@@ -266,28 +275,34 @@
     <ClCompile Include="SilverFoxEngine.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="DemoScene.cpp">
-      <Filter>QBert</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneSetup.cpp">
-      <Filter>QBert</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayFieldComponent.cpp">
-      <Filter>QBert</Filter>
-    </ClCompile>
     <ClCompile Include="GameStatics.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
     <ClCompile Include="MoveComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="QBert_Behavior.cpp">
+      <Filter>QBert\QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>QBert\QBert</Filter>
+    </ClCompile>
     <ClCompile Include="GridMovementComponent.cpp">
-      <Filter>QBert</Filter>
+      <Filter>QBert\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayFieldComponent.cpp">
+      <Filter>QBert\Grid</Filter>
     </ClCompile>
     <ClCompile Include="TileData.cpp">
-      <Filter>QBert</Filter>
+      <Filter>QBert\Grid</Filter>
     </ClCompile>
-    <ClCompile Include="QBert_Behavior.cpp">
+    <ClCompile Include="SceneSetup.cpp">
+      <Filter>QBert\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoScene.cpp">
+      <Filter>QBert\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ugg_Behavior.cpp">
       <Filter>QBert</Filter>
     </ClCompile>
   </ItemGroup>

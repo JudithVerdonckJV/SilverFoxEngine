@@ -5,6 +5,8 @@ enum class EDirection
 	DownLeft = 1,
 	UpRight = 2,
 	UpLeft = 3,
+	Left = 4,
+	Right = 5,
 };
 
 enum class ETileBehavior

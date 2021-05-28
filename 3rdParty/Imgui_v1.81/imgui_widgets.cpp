@@ -6200,6 +6200,7 @@ void ImGui::EndListBox()
     
 #if _DEBUG || DEBUG
     ImGuiContext& g = *GImGui;
+#pragma warning (suppress : 4189)
     ImGuiWindow* window = g.CurrentWindow;
     //window; 
 

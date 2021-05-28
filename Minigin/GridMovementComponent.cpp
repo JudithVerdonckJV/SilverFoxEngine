@@ -44,6 +44,12 @@ void GridMovementComponent::Move(EDirection direction)
 		destination.x += m_MoveDistance.x;
 		destination.y -= m_MoveDistance.y;
 		break;
+	case EDirection::Left:
+		destination.x -= m_MoveDistance.x * 2.f;
+		break;
+	case EDirection::Right:
+		destination.x += m_MoveDistance.x * 2.f;
+		break;
 	}
 
 	if (!m_pPlayfield->IsInsideTile(destination, m_CurrentTileIndex)) m_IsFalling = true;
@@ -67,7 +73,6 @@ void GridMovementComponent::Update(float dt)
 	{
 		if (m_IsFalling)
 		{
-			m_Owner->SetLocation(m_pPlayfield->GetTilePositionAtIndex(0));
 			m_IsFalling = false;
 			m_RespawnAfterFall = true;
 		}

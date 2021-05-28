@@ -42,6 +42,9 @@ namespace fox
 		GameObject* GetChildByTag(const std::string& tag) const;
 		GameObject* GetChildByIndex(size_t index) const;
 
+		void SetActive(bool active);
+		void SetVisibility(bool active);
+
 		template <typename T>
 		T* GetComponent()
 		{
@@ -70,5 +73,8 @@ namespace fox
 		IComponent* m_UserComponent;
 
 		std::string m_Tag;
+
+		bool m_IsActive;
+		bool m_IsVisible;
 	};
 }

@@ -10,6 +10,7 @@ QBert_Behavior::QBert_Behavior(fox::GameObject* owner, GridMovementComponent* gr
 	, m_CurrentTileIndex{}
 {
 	m_pGridMovement->SpawnOnTileIndex(0);
+	m_pGridMovement->SetSpeed(150.f);
 	m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 }
 

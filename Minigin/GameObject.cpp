@@ -51,6 +51,8 @@ fox::GameObject::~GameObject()
 
 void fox::GameObject::Update(float deltaTime)
 {
+	if (!m_IsActive) return;
+	
 	for (IComponent* comp : m_pComponents)
 	{
 		comp->Update(deltaTime);
@@ -64,6 +66,8 @@ void fox::GameObject::Update(float deltaTime)
 
 void fox::GameObject::FixedUpdate(float tick)
 {
+	if (!m_IsActive) return;
+
 	for (IComponent* comp : m_pComponents)
 	{
 		comp->FixedUpdate(tick);
@@ -77,6 +81,8 @@ void fox::GameObject::FixedUpdate(float tick)
 
 void fox::GameObject::LateUpdate(float deltaTime)
 {
+	if (!m_IsActive) return;
+	
 	for (IComponent* comp : m_pComponents)
 	{
 		comp->LateUpdate(deltaTime);
@@ -90,6 +96,8 @@ void fox::GameObject::LateUpdate(float deltaTime)
 
 void fox::GameObject::Render() const
 {
+	if (!m_IsVisible) return;
+	
 	for (IComponent* comp : m_pComponents)
 	{
 		comp->Render();
@@ -181,4 +189,14 @@ void fox::GameObject::AddComponent(IComponent* const newComponent)
 void fox::GameObject::AddChild(GameObject* const childObject)
 {
 	m_pChildObjects.push_back(childObject);
+}
+
+void fox::GameObject::SetActive(bool active)
+{
+	m_IsActive = active;
+}
+
+void fox::GameObject::SetVisibility(bool visible)
+{
+	m_IsVisible = visible;
 }
