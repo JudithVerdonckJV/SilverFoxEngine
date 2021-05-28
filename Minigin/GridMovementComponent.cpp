@@ -13,14 +13,13 @@ GridMovementComponent::GridMovementComponent(fox::GameObject* owner, PlayFieldCo
 	, m_CurrentTileIndex{0}
 	, m_IsMoving{ false }
 	, m_IsFalling{ false }
+	, m_RespawnAfterFall{ false }
 	, m_MoveSpeed{100.f}
 	, m_LastDirection{ EDirection::DownRight }
 {
 	m_MoveDistance = playfield->GetTileDistance();
 	m_MoveDistance.x = std::abs(m_MoveDistance.x);
 	m_MoveDistance.y = std::abs(m_MoveDistance.y);
-
-	m_Owner->SetLocation(playfield->GetTilePositionAtIndex(0));
 }
 
 void GridMovementComponent::Move(EDirection direction)
@@ -70,6 +69,7 @@ void GridMovementComponent::Update(float dt)
 		{
 			m_Owner->SetLocation(m_pPlayfield->GetTilePositionAtIndex(0));
 			m_IsFalling = false;
+			m_RespawnAfterFall = true;
 		}
 		else
 		{
@@ -78,6 +78,13 @@ void GridMovementComponent::Update(float dt)
 		}
 		m_IsMoving = false;
 	}
+}
+
+void GridMovementComponent::SpawnOnTileIndex(int index)
+{
+	m_Owner->SetLocation(m_pPlayfield->GetTilePositionAtIndex(index));
+	m_ArrivedOnTile = true;
+	m_RespawnAfterFall = false;
 }
 
 void GridMovementComponent::FlipTile()
@@ -105,4 +112,19 @@ void GridMovementComponent::SetSpeed(float speed)
 EDirection GridMovementComponent::GetDirection() const
 {
 	return m_LastDirection;
+}
+
+bool GridMovementComponent::IsMoving() const
+{
+	return m_IsMoving;
+}
+
+bool GridMovementComponent::RespawnAfterFall() const
+{
+	return m_RespawnAfterFall;
+}
+
+int GridMovementComponent::GetCurrentTileIndex() const
+{
+	return m_CurrentTileIndex;
 }

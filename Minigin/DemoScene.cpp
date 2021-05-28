@@ -26,7 +26,8 @@ void DemoScene::LoadScene()
 
 	//PLAYER - QBERT
 	GameObject* QBertObject{ new GameObject{this} };
-	new TextureComponent{QBertObject, "fox.png"};
+	TextureComponent* qbertTexture = new TextureComponent{QBertObject, "QBertDownLeft.png"};
+	qbertTexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfieldComponent } };
 	InputComponent* QBertInput{ new InputComponent{QBertObject} };
 	QBertObject->SetUserComponent(gridMovement);

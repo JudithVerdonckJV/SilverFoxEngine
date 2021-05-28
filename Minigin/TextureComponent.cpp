@@ -49,8 +49,8 @@ void fox::TextureComponent::SetTexture(const std::string& texturePath)
 
 void fox::TextureComponent::SetPivot(float x, float y)
 {
-	m_Pivot.x = Clamp(x, 0.f, 1.f);
-	m_Pivot.y = Clamp(y, 0.f, 1.f);	
+	m_Pivot.x = x;
+	m_Pivot.y = y;
 }
 
 void fox::TextureComponent::SetPivot(FVector2 xy)

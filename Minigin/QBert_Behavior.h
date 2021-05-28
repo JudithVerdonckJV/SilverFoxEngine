@@ -17,5 +17,6 @@ public:
 
 private:
 	GridMovementComponent* m_pGridMovement;
+	int m_CurrentTileIndex;
 };
 
