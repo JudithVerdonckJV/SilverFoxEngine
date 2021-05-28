@@ -69,7 +69,7 @@ void GridMovementComponent::Update(float dt)
 	newLocation += direction * (m_MoveSpeed * dt);
 	m_Owner->SetLocation(newLocation);
 
-	if (EqualWithEpsilon(newLocation, m_DesiredWorldPosition, { 0.7f, 0.7f }))
+	if (EqualWithEpsilon(newLocation, m_DesiredWorldPosition, { 0.8f, 0.8f }))
 	{
 		if (m_IsFalling)
 		{

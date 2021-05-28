@@ -8,6 +8,7 @@
 #include "GridMovementComponent.h"
 #include "QBert_Behavior.h"
 #include "Ugg_Behavior.h"
+#include "Wrongway_Behavior.h"
 
 #include "Actions.h"
 #include "Enums.h"
@@ -42,6 +43,14 @@ void DemoScene::LoadScene()
 	//UGG
 	GameObject* uggObject{ new GameObject{this} };
 	TextureComponent* uggTexture{ new TextureComponent{uggObject, "Ugg.png"} };
-	uggTexture->SetPivot(-0.2f, 0.f);	GridMovementComponent* uggGridMovement{ new GridMovementComponent{uggObject, playfieldComponent} };
+	uggTexture->SetPivot(-0.2f, 0.f);
+	GridMovementComponent* uggGridMovement{ new GridMovementComponent{uggObject, playfieldComponent} };
 	new Ugg_Behavior{ uggObject, uggGridMovement };
+
+	//WRONGWAY
+	GameObject* wrongwayObject{ new GameObject{this} };
+	TextureComponent* wrongwaytexture{ new TextureComponent{wrongwayObject, "Wrongway.png"} };
+	wrongwaytexture->SetPivot(1.2f, 0.f);
+	GridMovementComponent* wrongwayGridMovement{ new GridMovementComponent{wrongwayObject, playfieldComponent} };
+	new Wrongway_Behavior{ wrongwayObject, wrongwayGridMovement };
 }

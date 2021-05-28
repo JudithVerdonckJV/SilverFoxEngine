@@ -16,6 +16,8 @@ fox::GameObject::GameObject(GameObject* owner)
 	, m_pSubject{ nullptr }
 	, m_UserComponent{}
 	, m_Tag{ "" }
+	, m_IsActive{ true }
+	, m_IsVisible{ true }
 {
 	if (owner != nullptr) owner->AddChild(this); //set owner to another object
 	
@@ -30,6 +32,8 @@ fox::GameObject::GameObject(Scene* owner)
 	, m_pSubject{ nullptr }
 	, m_UserComponent{}
 	, m_Tag{ "" }
+	, m_IsActive{ true }
+	, m_IsVisible{ true }
 {
 	owner->AddObject(this); // adding this to scene
 
