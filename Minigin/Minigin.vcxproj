@@ -259,6 +259,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SlickAndSam_Behavior.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SubjectComponent.h" />
     <ClInclude Include="TextComponent.h" />
@@ -345,6 +346,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     </ClCompile>
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SlickAndSam_Behavior.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SubjectComponent.cpp" />
     <ClCompile Include="TextComponent.cpp" />

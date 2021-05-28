@@ -43,6 +43,9 @@
     <Filter Include="QBert\UggAndWrongway">
       <UniqueIdentifier>{ab271425-a0e1-402d-8560-d781e6c3b72c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QBert\SlickAndSam">
+      <UniqueIdentifier>{7868a786-6e9d-412c-8ef7-a4260bf1087a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
@@ -186,6 +189,9 @@
     <ClInclude Include="Wrongway_Behavior.h">
       <Filter>QBert\UggAndWrongway</Filter>
     </ClInclude>
+    <ClInclude Include="SlickAndSam_Behavior.h">
+      <Filter>QBert\SlickAndSam</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -313,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="Wrongway_Behavior.cpp">
       <Filter>QBert\UggAndWrongway</Filter>
+    </ClCompile>
+    <ClCompile Include="SlickAndSam_Behavior.cpp">
+      <Filter>QBert\SlickAndSam</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

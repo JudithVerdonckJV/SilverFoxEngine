@@ -7,11 +7,11 @@ namespace fox
 	class GameObject;
 }
 
-class Ugg_Behavior final : public fox::IComponent
+class SlickAndSam_Behavior : public fox::IComponent
 {
 public:
-	Ugg_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement);
-	~Ugg_Behavior() = default;
+	SlickAndSam_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement);
+	~SlickAndSam_Behavior() = default;
 
 	virtual void Update(float dt) override;
 

@@ -8,13 +8,11 @@
 Ugg_Behavior::Ugg_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement)
 	:IComponent{ owner }
 	, m_pGridMovement{ gridMovement }
-	, m_CurrentTileIndex{}
 	, m_MaxMovementWait{1.f}
 	, m_CurrentMovementWait{0.f}
 {
 	m_pGridMovement->SpawnOnTileIndex(27);
 	m_pGridMovement->SetSpeed(100.f);
-	m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 }
 
 void Ugg_Behavior::Update(float dt)
@@ -37,16 +35,11 @@ void Ugg_Behavior::Update(float dt)
 			{
 				m_pGridMovement->Move(EDirection::Left);
 			}
-
-			m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 		}
 	}
 	
-
-
 	if (m_pGridMovement->RespawnAfterFall())
 	{
 		m_pGridMovement->SpawnOnTileIndex(27);
-		m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 	}
 }
