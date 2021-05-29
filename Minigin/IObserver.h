@@ -9,6 +9,6 @@ namespace fox
 		IObserver() = default;
 		virtual ~IObserver() = default;
 
-		virtual void OnNotify(GameObject* pSubject, int event) = 0;
+		virtual void OnNotify(GameObject* pSubject, const std::string& event) = 0;
 	};
 }

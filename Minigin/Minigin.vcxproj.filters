@@ -192,6 +192,12 @@
     <ClInclude Include="SlickAndSam_Behavior.h">
       <Filter>QBert\SlickAndSam</Filter>
     </ClInclude>
+    <ClInclude Include="RectColliderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -322,6 +328,12 @@
     </ClCompile>
     <ClCompile Include="SlickAndSam_Behavior.cpp">
       <Filter>QBert\SlickAndSam</Filter>
+    </ClCompile>
+    <ClCompile Include="RectColliderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

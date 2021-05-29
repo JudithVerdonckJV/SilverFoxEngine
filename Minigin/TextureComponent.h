@@ -26,11 +26,13 @@ namespace fox
         float GetWidth() const;
         float GetHeight() const;
 
+        FVector2 GetWorldLocation() const;
+
     private:
         Texture2D* m_pTexture;
        
         FVector2 m_Pivot;
-        FVector2 m_RelativeLocation;
+        FVector2 m_WorldLocation;
     };
 }
 

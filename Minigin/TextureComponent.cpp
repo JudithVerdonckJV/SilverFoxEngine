@@ -30,15 +30,14 @@ fox::TextureComponent::~TextureComponent()
 
 void fox::TextureComponent::Render() const
 {
-	Renderer::GetInstance().RenderTexture(*m_pTexture, m_RelativeLocation.x, m_RelativeLocation.y);
+	Renderer::GetInstance().RenderTexture(*m_pTexture, m_WorldLocation.x, m_WorldLocation.y);
 }
 
 void fox::TextureComponent::Update(float)
 {
-	m_RelativeLocation = m_Owner->GetLocation();
-	m_RelativeLocation.x -= m_Pivot.x * GetWidth();
-	m_RelativeLocation.y -= m_Pivot.y * GetHeight();
-	//scaling?
+	m_WorldLocation = m_Owner->GetLocation();
+	m_WorldLocation.x -= m_Pivot.x * GetWidth();
+	m_WorldLocation.y -= m_Pivot.y * GetHeight();
 }
 
 void fox::TextureComponent::SetTexture(const std::string& texturePath)
@@ -71,4 +70,9 @@ float fox::TextureComponent::GetWidth() const
 float fox::TextureComponent::GetHeight() const
 {
 	return m_pTexture->GetDimensions().y;
+}
+
+FVector2 fox::TextureComponent::GetWorldLocation() const
+{
+	return m_WorldLocation;
 }

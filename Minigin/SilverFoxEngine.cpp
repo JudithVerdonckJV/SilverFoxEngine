@@ -22,7 +22,7 @@ using namespace std::chrono;
 
 void fox::SilverFoxEngine::Initialize()
 {
-	m_msPerFrame = 1.f / 60.f * 1000.f;
+	m_msPerFrame = 1.f / 60.f;
 	srand((unsigned int)time);
 
 	InitSDL();
@@ -69,7 +69,7 @@ void fox::SilverFoxEngine::Run()
 			sceneManager.Update(deltaTime);
 
 			lag += deltaTime;
-			while (lag >= m_msPerFrame * 1000.f)
+			while (lag >= m_msPerFrame /** 1000.f*/)
 			{
 				sceneManager.FixedUpdate(m_msPerFrame);
 				lag -= m_msPerFrame;

@@ -14,7 +14,7 @@ namespace fox
 
 		void AddObserver(IObserver* observer);
 		void RemoveObserver(IObserver* obsever);
-		void Notify(GameObject* gameObject, int eventName);
+		void Notify(GameObject* gameObject, const std::string& eventName);
 
 	private:
 		std::vector<IObserver*> m_pObservers{};

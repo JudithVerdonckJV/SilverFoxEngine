@@ -6,6 +6,7 @@
 #include "Transform.h"
 #include "PlayFieldComponent.h"
 #include "GridMovementComponent.h"
+#include "RectColliderComponent.h"
 
 #include "QBert_Behavior.h"
 #include "Ugg_Behavior.h"
@@ -36,6 +37,10 @@ void DemoScene::LoadScene()
 	InputComponent* QBertInput{ new InputComponent{QBertObject} };
 	QBertObject->SetUserComponent(gridMovement);
 	new QBert_Behavior{ QBertObject, gridMovement };
+	RectColliderComponent* qbertColl = new RectColliderComponent{ QBertObject};
+	qbertColl->SetDimensions({ 15.f, 15.f });
+	qbertColl->SetRelativePosition({ 7.5f, 35.f });
+	qbertColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
 
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_DOWN, SDL_SCANCODE_S,  ButtonState::ButtonDown, &MoveDownLeft);
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_UP, SDL_SCANCODE_W,  ButtonState::ButtonDown, &MoveUpRight);
@@ -48,6 +53,10 @@ void DemoScene::LoadScene()
 	uggTexture->SetPivot(-0.2f, 0.f);
 	GridMovementComponent* uggGridMovement{ new GridMovementComponent{uggObject, playfieldComponent} };
 	new Ugg_Behavior{ uggObject, uggGridMovement };
+	RectColliderComponent* uggColl = new RectColliderComponent{ uggObject };
+	uggColl->SetDimensions({ 15.f, 15.f });
+	uggColl->SetRelativePosition({ -10.f, -10.f });
+	uggColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
 
 	//WRONGWAY
 	GameObject* wrongwayObject{ new GameObject{this} };
@@ -55,6 +64,10 @@ void DemoScene::LoadScene()
 	wrongwaytexture->SetPivot(1.2f, 0.f);
 	GridMovementComponent* wrongwayGridMovement{ new GridMovementComponent{wrongwayObject, playfieldComponent} };
 	new Wrongway_Behavior{ wrongwayObject, wrongwayGridMovement };
+	RectColliderComponent* wrongwayColl = new RectColliderComponent{ wrongwayObject };
+	wrongwayColl->SetDimensions({ 15.f, 15.f });
+	wrongwayColl->SetRelativePosition({ 30.f, -10.f });
+	wrongwayColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
 
 	//SAM
 	GameObject* samObject{ new GameObject{this} };
@@ -62,6 +75,10 @@ void DemoScene::LoadScene()
 	samtexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* samGridMovement{ new GridMovementComponent{samObject, playfieldComponent} };
 	new SlickAndSam_Behavior{ samObject, samGridMovement };
+	RectColliderComponent* samColl = new RectColliderComponent{ samObject };
+	samColl->SetDimensions({ 15.f, 15.f });
+	samColl->SetRelativePosition({ 10.f, 35.f });
+	samColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
 
 	//SLICK
 	GameObject* slickObject{ new GameObject{this} };
@@ -69,4 +86,8 @@ void DemoScene::LoadScene()
 	slicktexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* slickGridMovement{ new GridMovementComponent{slickObject, playfieldComponent} };
 	new SlickAndSam_Behavior{ slickObject, slickGridMovement };
+	RectColliderComponent* slickColl = new RectColliderComponent{ slickObject };
+	slickColl->SetDimensions({ 15.f, 15.f });
+	slickColl->SetRelativePosition({ 10.f, 35.f });
+	slickColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
 }

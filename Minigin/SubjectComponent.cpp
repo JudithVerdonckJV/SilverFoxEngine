@@ -31,7 +31,7 @@ void fox::SubjectComponent::RemoveObserver(fox::IObserver* observer)
 	m_pObservers.erase(it);
 }
 
-void fox::SubjectComponent::Notify(fox::GameObject* gameObject, int eventName)
+void fox::SubjectComponent::Notify(fox::GameObject* gameObject, const std::string& eventName)
 {
 	for (fox::IObserver* observer : m_pObservers)
 	{

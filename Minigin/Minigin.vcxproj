@@ -231,6 +231,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imstb_truetype.h" />
     <ClInclude Include="Actions.h" />
+    <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="Enums.h" />
@@ -250,6 +251,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayFieldComponent.h" />
     <ClInclude Include="QBert_Behavior.h" />
+    <ClInclude Include="RectColliderComponent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetup.h" />
@@ -314,6 +316,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="Commands.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -332,6 +335,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayFieldComponent.cpp" />
     <ClCompile Include="QBert_Behavior.cpp" />
+    <ClCompile Include="RectColliderComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneSetup.cpp" />

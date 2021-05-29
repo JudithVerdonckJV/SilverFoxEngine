@@ -13,7 +13,7 @@ fox::PlayerState::~PlayerState()
 {
 }
 
-void fox::PlayerState::OnNotify(fox::GameObject* , int )
+void fox::PlayerState::OnNotify(fox::GameObject* , const std::string&)
 {
 	//switch (event)
 	//{
