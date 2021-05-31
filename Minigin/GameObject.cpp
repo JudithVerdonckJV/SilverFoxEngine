@@ -204,3 +204,13 @@ void fox::GameObject::SetVisibility(bool visible)
 {
 	m_IsVisible = visible;
 }
+
+bool fox::GameObject::IsActive() const
+{
+	return m_IsActive;
+}
+
+bool fox::GameObject::IsVisible() const
+{
+	return m_IsVisible;
+}

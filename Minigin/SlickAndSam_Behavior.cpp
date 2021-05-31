@@ -14,7 +14,7 @@ SlickAndSam_Behavior::SlickAndSam_Behavior(fox::GameObject* owner, GridMovementC
 	int spawnTile = std::rand() % 2 + 1;
 	m_pGridMovement->SpawnOnTileIndex(spawnTile);
 
-	m_pGridMovement->SetSpeed(150.f);
+	m_pGridMovement->SetSpeed(100.f);
 }
 
 void SlickAndSam_Behavior::Update(float dt)
@@ -28,6 +28,8 @@ void SlickAndSam_Behavior::Update(float dt)
 
 		if (m_pGridMovement->HasArrivedOnTile())
 		{
+			m_pGridMovement->UnflipTile();
+			
 			int direction = std::rand() % 2;
 			if (direction)
 			{

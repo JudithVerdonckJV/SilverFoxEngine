@@ -1,21 +1,27 @@
 #include "MiniginPCH.h"
 #include "GridMovementComponent.h"
 
-#include"GameObject.h"
+#include "GameObject.h"
 #include "MathHelper.h"
 #include "PlayFieldComponent.h"
+#include "TextureComponent.h"
+#include "DiscsComponent.h"
 
-GridMovementComponent::GridMovementComponent(fox::GameObject* owner, PlayFieldComponent* playfield)
+GridMovementComponent::GridMovementComponent(fox::GameObject* owner, PlayFieldComponent* playfield, DiscsComponent* discs)
 	: IComponent{ owner }
 	, m_ArrivedOnTile{}
 	, m_pPlayfield{ playfield }
+	, m_pDiscs{ discs }
 	, m_DesiredWorldPosition{}
 	, m_CurrentTileIndex{0}
 	, m_IsMoving{ false }
 	, m_IsFalling{ false }
 	, m_RespawnAfterFall{ false }
 	, m_MoveSpeed{100.f}
+	, m_MoveDistance{}
 	, m_LastDirection{ EDirection::DownRight }
+	, m_UsingDisc{ false }
+	, m_MovingToDisc{ false }
 {
 	m_MoveDistance = playfield->GetTileDistance();
 	m_MoveDistance.x = std::abs(m_MoveDistance.x);
@@ -52,11 +58,37 @@ void GridMovementComponent::Move(EDirection direction)
 		break;
 	}
 
-	if (!m_pPlayfield->IsInsideTile(destination, m_CurrentTileIndex)) m_IsFalling = true;
+	bool onGrid{ m_pPlayfield->IsInsideTile(destination, m_CurrentTileIndex) };
+	bool onDisc{ false };
+	if (m_pDiscs) onDisc = m_pDiscs->IsInsideDisc(destination);
+
+	if (!onGrid && !onDisc) m_IsFalling = true;
+	if (onDisc) m_MovingToDisc = true;
+
 	m_DesiredWorldPosition = destination;
 
 	m_IsMoving = true;
 	m_LastDirection = direction;
+}
+
+void GridMovementComponent::MoveToTop()
+{
+	m_IsMoving = true;
+	m_UsingDisc = true;
+	m_MovingToDisc = false;
+
+	m_DesiredWorldPosition = m_pPlayfield->GetTilePositionAtIndex(0);
+	m_DesiredWorldPosition.y -= m_pPlayfield->GetTileSize().y;
+}
+
+void GridMovementComponent::MoveToFirstTile()
+{
+	m_IsMoving = true;
+	m_UsingDisc = false;
+
+	m_pDiscs->DespawnActiveDisc();
+
+	m_DesiredWorldPosition = m_pPlayfield->GetTilePositionAtIndex(0);
 }
 
 void GridMovementComponent::Update(float dt)
@@ -68,9 +100,21 @@ void GridMovementComponent::Update(float dt)
 	direction.Normalize();
 	newLocation += direction * (m_MoveSpeed * dt);
 	m_Owner->SetLocation(newLocation);
+	if (m_UsingDisc) m_pDiscs->MoveActiveDisc(newLocation);
 
 	if (EqualWithEpsilon(newLocation, m_DesiredWorldPosition, { 0.8f, 0.8f }))
 	{
+		if (m_MovingToDisc)
+		{
+			MoveToTop();
+			return;
+		}
+		else if (m_UsingDisc)
+		{
+			MoveToFirstTile();
+			return;
+		}
+		
 		if (m_IsFalling)
 		{
 			m_IsFalling = false;
@@ -90,6 +134,8 @@ void GridMovementComponent::SpawnOnTileIndex(int index)
 	m_Owner->SetLocation(m_pPlayfield->GetTilePositionAtIndex(index));
 	m_ArrivedOnTile = true;
 	m_RespawnAfterFall = false;
+	m_IsMoving = false;
+	m_IsFalling = false;
 }
 
 void GridMovementComponent::FlipTile()

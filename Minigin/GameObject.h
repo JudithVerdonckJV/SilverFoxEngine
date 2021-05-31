@@ -44,6 +44,8 @@ namespace fox
 
 		void SetActive(bool active);
 		void SetVisibility(bool active);
+		bool IsActive() const;
+		bool IsVisible() const;
 
 		template <typename T>
 		T* GetComponent()

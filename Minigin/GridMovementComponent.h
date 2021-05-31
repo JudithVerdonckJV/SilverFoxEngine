@@ -6,17 +6,20 @@
 namespace fox
 {
 	class GameObject;
+	class TextureComponent;
 }
 
 class PlayFieldComponent;
+class DiscsComponent;
 
 class GridMovementComponent final : public fox::IComponent
 {
 public:
-	GridMovementComponent(fox::GameObject* owner, PlayFieldComponent* playfield);
+	GridMovementComponent(fox::GameObject* owner, PlayFieldComponent* playfield, DiscsComponent* discs);
 	~GridMovementComponent() = default;
 
 	void Move(EDirection direction);
+	void MoveToTop();
 	EDirection GetDirection() const;
 	void SetSpeed(float speed);
 
@@ -34,6 +37,7 @@ public:
 
 private:
 	PlayFieldComponent* m_pPlayfield;
+	DiscsComponent* m_pDiscs;
 
 	FVector2 m_DesiredWorldPosition;
 	int m_CurrentTileIndex;
@@ -47,4 +51,9 @@ private:
 	float m_MoveSpeed;
 	FVector2 m_MoveDistance;
 	EDirection m_LastDirection;
+
+	bool m_UsingDisc;
+	bool m_MovingToDisc;
+
+	void MoveToFirstTile();
 };

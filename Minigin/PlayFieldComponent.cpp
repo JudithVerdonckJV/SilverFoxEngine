@@ -123,6 +123,11 @@ FVector2 PlayFieldComponent::GetTileDistance() const
 	return location2 - location1;
 }
 
+FVector2 PlayFieldComponent::GetTileSize() const
+{
+	return m_pTileTextures[0]->GetDimensions();
+}
+
 bool PlayFieldComponent::IsInsideTile(FVector2& destinationLocation, int& index)
 {
 	for (int i{}; i < m_TileNr; ++i)

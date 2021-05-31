@@ -7,11 +7,13 @@
 #include "PlayFieldComponent.h"
 #include "GridMovementComponent.h"
 #include "RectColliderComponent.h"
+#include "DiscsComponent.h"
 
 #include "QBert_Behavior.h"
 #include "Ugg_Behavior.h"
 #include "Wrongway_Behavior.h"
 #include "SlickAndSam_Behavior.h"
+#include "Coily_Behavior.h"
 
 #include "Actions.h"
 #include "Enums.h"
@@ -29,11 +31,15 @@ void DemoScene::LoadScene()
 	GameObject* playFieldObject{ new GameObject{this} };
 	PlayFieldComponent* playfieldComponent{ new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::OneFlip } };
 
+	//DISCS
+	GameObject* discsObject{ new GameObject{this} };
+	DiscsComponent* discComponent{ new DiscsComponent{discsObject, "../Data/LevelLayout.txt", playfieldComponent} };
+
 	//PLAYER - QBERT
 	GameObject* QBertObject{ new GameObject{this} };
 	TextureComponent* qbertTexture = new TextureComponent{QBertObject, "QBertDownLeft.png"};
 	qbertTexture->SetPivot(0.5f, 1.3f);
-	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfieldComponent } };
+	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfieldComponent, discComponent } };
 	InputComponent* QBertInput{ new InputComponent{QBertObject} };
 	QBertObject->SetUserComponent(gridMovement);
 	new QBert_Behavior{ QBertObject, gridMovement };
@@ -51,7 +57,7 @@ void DemoScene::LoadScene()
 	GameObject* uggObject{ new GameObject{this} };
 	TextureComponent* uggTexture{ new TextureComponent{uggObject, "Ugg.png"} };
 	uggTexture->SetPivot(-0.2f, 0.f);
-	GridMovementComponent* uggGridMovement{ new GridMovementComponent{uggObject, playfieldComponent} };
+	GridMovementComponent* uggGridMovement{ new GridMovementComponent{uggObject, playfieldComponent, nullptr} };
 	new Ugg_Behavior{ uggObject, uggGridMovement };
 	RectColliderComponent* uggColl = new RectColliderComponent{ uggObject };
 	uggColl->SetDimensions({ 15.f, 15.f });
@@ -62,7 +68,7 @@ void DemoScene::LoadScene()
 	GameObject* wrongwayObject{ new GameObject{this} };
 	TextureComponent* wrongwaytexture{ new TextureComponent{wrongwayObject, "Wrongway.png"} };
 	wrongwaytexture->SetPivot(1.2f, 0.f);
-	GridMovementComponent* wrongwayGridMovement{ new GridMovementComponent{wrongwayObject, playfieldComponent} };
+	GridMovementComponent* wrongwayGridMovement{ new GridMovementComponent{wrongwayObject, playfieldComponent, nullptr} };
 	new Wrongway_Behavior{ wrongwayObject, wrongwayGridMovement };
 	RectColliderComponent* wrongwayColl = new RectColliderComponent{ wrongwayObject };
 	wrongwayColl->SetDimensions({ 15.f, 15.f });
@@ -73,7 +79,7 @@ void DemoScene::LoadScene()
 	GameObject* samObject{ new GameObject{this} };
 	TextureComponent* samtexture{ new TextureComponent{samObject, "Sam.png"} };
 	samtexture->SetPivot(0.5f, 1.3f);
-	GridMovementComponent* samGridMovement{ new GridMovementComponent{samObject, playfieldComponent} };
+	GridMovementComponent* samGridMovement{ new GridMovementComponent{samObject, playfieldComponent, nullptr} };
 	new SlickAndSam_Behavior{ samObject, samGridMovement };
 	RectColliderComponent* samColl = new RectColliderComponent{ samObject };
 	samColl->SetDimensions({ 15.f, 15.f });
@@ -84,10 +90,21 @@ void DemoScene::LoadScene()
 	GameObject* slickObject{ new GameObject{this} };
 	TextureComponent* slicktexture{ new TextureComponent{slickObject, "Slick.png"} };
 	slicktexture->SetPivot(0.5f, 1.3f);
-	GridMovementComponent* slickGridMovement{ new GridMovementComponent{slickObject, playfieldComponent} };
+	GridMovementComponent* slickGridMovement{ new GridMovementComponent{slickObject, playfieldComponent, nullptr} };
 	new SlickAndSam_Behavior{ slickObject, slickGridMovement };
 	RectColliderComponent* slickColl = new RectColliderComponent{ slickObject };
 	slickColl->SetDimensions({ 15.f, 15.f });
 	slickColl->SetRelativePosition({ 10.f, 35.f });
 	slickColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
+
+	//COILY
+	GameObject* coilyObject{ new GameObject{this} };
+	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily_Egg.png"} };
+	coilytexture->SetPivot(0.5f, 1.3f);
+	GridMovementComponent* coilyGridMovement{ new GridMovementComponent{coilyObject, playfieldComponent, nullptr} };
+	new Coily_Behavior{ coilyObject, coilyGridMovement };
+	RectColliderComponent* coilyColl = new RectColliderComponent{ coilyObject };
+	coilyColl->SetDimensions({ 15.f, 15.f });
+	coilyColl->SetRelativePosition({ 10.f, 35.f });
+	coilyColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
 }

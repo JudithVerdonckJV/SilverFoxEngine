@@ -21,6 +21,7 @@ public:
 	FVector2 GetTilePositionAtIndex(int index) const;
 	int GetTileNr() const;
 	FVector2 GetTileDistance() const;
+	FVector2 GetTileSize() const;
 
 	bool IsInsideTile(FVector2& destinationLocation, int& index);
 

@@ -46,6 +46,9 @@
     <Filter Include="QBert\SlickAndSam">
       <UniqueIdentifier>{7868a786-6e9d-412c-8ef7-a4260bf1087a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QBert\Coily">
+      <UniqueIdentifier>{95c4e63b-b253-48c6-9901-38ea1b7b28bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
@@ -198,6 +201,12 @@
     <ClInclude Include="ColliderManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Coily_Behavior.h">
+      <Filter>QBert\Coily</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscsComponent.h">
+      <Filter>QBert\Grid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -334,6 +343,12 @@
     </ClCompile>
     <ClCompile Include="ColliderManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Coily_Behavior.cpp">
+      <Filter>QBert\Coily</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscsComponent.cpp">
+      <Filter>QBert\Grid</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
