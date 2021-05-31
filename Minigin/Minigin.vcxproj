@@ -258,6 +258,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetup.h" />
+    <ClInclude Include="SceneSetupHelpers.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="SilverFoxEngine.h" />
     <ClInclude Include="MiniginPCH.h" />

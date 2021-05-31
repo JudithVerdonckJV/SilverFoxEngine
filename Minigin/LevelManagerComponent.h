@@ -38,4 +38,10 @@ private:
 
 	float m_CurrentSamTimer;
 	float m_MaxSamTimer;
+
+	float m_CurrentUggTimer;
+	float m_MaxUggTimer;
+
+	float m_CurrentWrongwayTimer;
+	float m_MaxWrongwayTimer;
 };

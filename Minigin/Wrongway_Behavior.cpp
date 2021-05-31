@@ -42,3 +42,18 @@ void Wrongway_Behavior::Update(float dt)
 		m_pGridMovement->SpawnOnTileIndex(21);
 	}
 }
+
+void Wrongway_Behavior::Spawn()
+{
+	m_Owner->SetActive(true);
+	m_Owner->SetVisibility(true);
+
+	m_CurrentMovementWait = 0.f;
+	m_pGridMovement->SpawnOnTileIndex(21);
+}
+
+void Wrongway_Behavior::Despawn()
+{
+	m_Owner->SetActive(false);
+	m_Owner->SetVisibility(false);
+}

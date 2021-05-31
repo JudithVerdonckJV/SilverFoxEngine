@@ -43,3 +43,18 @@ void Ugg_Behavior::Update(float dt)
 		m_pGridMovement->SpawnOnTileIndex(27);
 	}
 }
+
+void Ugg_Behavior::Spawn()
+{
+	m_Owner->SetActive(true);
+	m_Owner->SetVisibility(true);
+
+	m_CurrentMovementWait = 0.f;
+	m_pGridMovement->SpawnOnTileIndex(27);
+}
+
+void Ugg_Behavior::Despawn()
+{
+	m_Owner->SetActive(false);
+	m_Owner->SetVisibility(false);
+}

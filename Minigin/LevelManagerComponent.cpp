@@ -28,29 +28,44 @@ LevelManagerComponent::LevelManagerComponent(fox::GameObject* owner, PlayFieldCo
 
 	, m_CurrentSamTimer{ 0.f }
 	, m_MaxSamTimer{ 9.f }
+
+	, m_CurrentUggTimer{ 0.f }
+	, m_MaxUggTimer{ 1.f }
+
+	, m_CurrentWrongwayTimer{ 0.f }
+	, m_MaxWrongwayTimer{ 2.f }
 {
 	if (m_pCoily) m_pCoily->Despawn();
 	if (m_pSlick) m_pSlick->Despawn();
 	if (m_pSam) m_pSam->Despawn();
-	if (m_pUgg)
-	{
-		m_pUgg->GetOwner()->SetActive(false);
-		m_pUgg->GetOwner()->SetVisibility(false);
-	}
-	if (m_pWrongway)
-	{
-		m_pWrongway->GetOwner()->SetActive(false);
-		m_pWrongway->GetOwner()->SetVisibility(false);
-	}
+	if (m_pUgg) m_pUgg->Despawn();
+	if (m_pWrongway) m_pWrongway->Despawn();
 }
 
 void LevelManagerComponent::Update(float dt)
 {
+	if (m_pPlayfield->LevelFinished())
+	{
+		//go to next level ._.
+	}
+
+	if (m_pQBert->HasDied)
+	{
+		m_pQBert->HasDied = false;
+		if (m_pCoily) m_pCoily->Despawn();
+		if (m_pSlick) m_pSlick->Despawn();
+		if (m_pSam) m_pSam->Despawn();
+		if (m_pUgg) m_pUgg->Despawn();
+		if (m_pWrongway) m_pWrongway->Despawn();
+		return;
+	}
+	
 	if (m_pCoily && !m_pCoily->GetOwner()->IsActive())
 	{
 		m_CurrentCoilyTimer += dt;
 		if (m_CurrentCoilyTimer > m_MaxCoilyTimer)
 		{
+			m_CurrentCoilyTimer = 0.f;
 			m_pCoily->Spawn();
 		}
 	}
@@ -60,6 +75,7 @@ void LevelManagerComponent::Update(float dt)
 		m_CurrentSlickTimer += dt;
 		if (m_CurrentSlickTimer > m_MaxSlickTimer)
 		{
+			m_CurrentSlickTimer = 0.f;
 			m_pSlick->Spawn();
 		}
 	}
@@ -69,7 +85,28 @@ void LevelManagerComponent::Update(float dt)
 		m_CurrentSamTimer += dt;
 		if (m_CurrentSamTimer > m_MaxSamTimer)
 		{
+			m_CurrentSamTimer = 0.f;
 			m_pSam->Spawn();
+		}
+	}
+
+	if (m_pUgg && !m_pUgg->GetOwner()->IsActive())
+	{
+		m_CurrentUggTimer += dt;
+		if (m_CurrentUggTimer > m_MaxUggTimer)
+		{
+			m_CurrentUggTimer = 0.f;
+			m_pUgg->Spawn();
+		}
+	}
+
+	if (m_pWrongway && !m_pWrongway->GetOwner()->IsActive())
+	{
+		m_CurrentWrongwayTimer += dt;
+		if (m_CurrentWrongwayTimer > m_MaxWrongwayTimer)
+		{
+			m_CurrentWrongwayTimer = 0.f;
+			m_pWrongway->Spawn();
 		}
 	}
 }

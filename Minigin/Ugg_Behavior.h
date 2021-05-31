@@ -15,6 +15,9 @@ public:
 
 	virtual void Update(float dt) override;
 
+	void Spawn();
+	void Despawn();
+
 private:
 	GridMovementComponent* m_pGridMovement;
 

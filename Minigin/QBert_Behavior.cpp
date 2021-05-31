@@ -8,6 +8,8 @@ QBert_Behavior::QBert_Behavior(fox::GameObject* owner, GridMovementComponent* gr
 	:IComponent{ owner }
 	, m_pGridMovement{gridMovement}
 	, m_CurrentTileIndex{}
+
+	, HasDied{ false }
 {
 	m_pGridMovement->SpawnOnTileIndex(0);
 	m_pGridMovement->SetSpeed(150.f);
@@ -24,6 +26,7 @@ void QBert_Behavior::Update(float )
 
 	if (m_pGridMovement->RespawnAfterFall())
 	{
+		HasDied = true;
 		m_pGridMovement->SpawnOnTileIndex(0);
 		m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 	}

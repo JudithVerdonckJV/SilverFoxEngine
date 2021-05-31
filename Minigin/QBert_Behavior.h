@@ -15,6 +15,8 @@ public:
 
 	virtual void Update(float dt) override;
 
+	bool HasDied;
+
 private:
 	GridMovementComponent* m_pGridMovement;
 	int m_CurrentTileIndex;
