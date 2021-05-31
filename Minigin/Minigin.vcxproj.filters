@@ -207,6 +207,9 @@
     <ClInclude Include="DiscsComponent.h">
       <Filter>QBert\Grid</Filter>
     </ClInclude>
+    <ClInclude Include="LevelManagerComponent.h">
+      <Filter>QBert\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -349,6 +352,9 @@
     </ClCompile>
     <ClCompile Include="DiscsComponent.cpp">
       <Filter>QBert\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManagerComponent.cpp">
+      <Filter>QBert\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

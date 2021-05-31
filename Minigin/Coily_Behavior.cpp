@@ -82,3 +82,24 @@ void Coily_Behavior::Update(float dt)
 		}
 	}
 }
+
+void Coily_Behavior::Spawn()
+{
+	m_Owner->SetActive(true);
+	m_Owner->SetVisibility(true);
+
+	m_CurrentMovementWait = 0.f;
+	m_IsEgg = true;
+	m_Owner->GetComponent<fox::TextureComponent>()->SetTexture("Coily_Egg.png");
+
+	m_pGridMovement->SpawnOnTileIndex(0);
+}
+
+void Coily_Behavior::Despawn()
+{
+	m_Owner->SetActive(false);
+	m_Owner->SetVisibility(false);
+
+	m_IsEgg = false;
+	m_Owner->GetComponent<fox::TextureComponent>()->SetTexture("Coily_Snake.png");
+}

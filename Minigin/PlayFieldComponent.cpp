@@ -226,3 +226,8 @@ void PlayFieldComponent::CheckForLevelEnd()
 
 	m_LevelFinished = true;
 }
+
+bool PlayFieldComponent::LevelFinished() const
+{
+	return m_LevelFinished;
+}

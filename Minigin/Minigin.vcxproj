@@ -247,6 +247,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IObserver.h" />
+    <ClInclude Include="LevelManagerComponent.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="ObserverManager.h" />
@@ -333,6 +334,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IObserver.cpp" />
+    <ClCompile Include="LevelManagerComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="ObserverManager.cpp" />

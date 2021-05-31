@@ -29,6 +29,7 @@ public:
 	void UnflipTileIndex(int index);
 
 	void CheckForLevelEnd();
+	bool LevelFinished() const;
 
 private:
 	std::string m_AssetPath;

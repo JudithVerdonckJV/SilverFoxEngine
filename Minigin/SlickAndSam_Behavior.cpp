@@ -11,9 +11,6 @@ SlickAndSam_Behavior::SlickAndSam_Behavior(fox::GameObject* owner, GridMovementC
 	, m_MaxMovementWait{ 1.f }
 	, m_CurrentMovementWait{ 0.f }
 {
-	int spawnTile = std::rand() % 2 + 1;
-	m_pGridMovement->SpawnOnTileIndex(spawnTile);
-
 	m_pGridMovement->SetSpeed(100.f);
 }
 
@@ -47,4 +44,21 @@ void SlickAndSam_Behavior::Update(float dt)
 		int spawnTile = std::rand() % 2 + 1;
 		m_pGridMovement->SpawnOnTileIndex(spawnTile);
 	}
+}
+
+void SlickAndSam_Behavior::Spawn()
+{
+	m_Owner->SetActive(true);
+	m_Owner->SetVisibility(true);
+
+	m_CurrentMovementWait = 0.f;
+
+	int spawnTile = std::rand() % 2 + 1;
+	m_pGridMovement->SpawnOnTileIndex(spawnTile);
+}
+
+void SlickAndSam_Behavior::Despawn()
+{
+	m_Owner->SetActive(false);
+	m_Owner->SetVisibility(false);
 }

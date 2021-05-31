@@ -8,6 +8,7 @@
 #include "GridMovementComponent.h"
 #include "RectColliderComponent.h"
 #include "DiscsComponent.h"
+#include "LevelManagerComponent.h"
 
 #include "QBert_Behavior.h"
 #include "Ugg_Behavior.h"
@@ -42,7 +43,7 @@ void DemoScene::LoadScene()
 	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfieldComponent, discComponent } };
 	InputComponent* QBertInput{ new InputComponent{QBertObject} };
 	QBertObject->SetUserComponent(gridMovement);
-	new QBert_Behavior{ QBertObject, gridMovement };
+	QBert_Behavior* qbertBehavior = new QBert_Behavior{ QBertObject, gridMovement };
 	RectColliderComponent* qbertColl = new RectColliderComponent{ QBertObject};
 	qbertColl->SetDimensions({ 15.f, 15.f });
 	qbertColl->SetRelativePosition({ 7.5f, 35.f });
@@ -58,7 +59,7 @@ void DemoScene::LoadScene()
 	TextureComponent* uggTexture{ new TextureComponent{uggObject, "Ugg.png"} };
 	uggTexture->SetPivot(-0.2f, 0.f);
 	GridMovementComponent* uggGridMovement{ new GridMovementComponent{uggObject, playfieldComponent, nullptr} };
-	new Ugg_Behavior{ uggObject, uggGridMovement };
+	Ugg_Behavior* uggBehavior = new Ugg_Behavior{ uggObject, uggGridMovement };
 	RectColliderComponent* uggColl = new RectColliderComponent{ uggObject };
 	uggColl->SetDimensions({ 15.f, 15.f });
 	uggColl->SetRelativePosition({ -10.f, -10.f });
@@ -69,7 +70,7 @@ void DemoScene::LoadScene()
 	TextureComponent* wrongwaytexture{ new TextureComponent{wrongwayObject, "Wrongway.png"} };
 	wrongwaytexture->SetPivot(1.2f, 0.f);
 	GridMovementComponent* wrongwayGridMovement{ new GridMovementComponent{wrongwayObject, playfieldComponent, nullptr} };
-	new Wrongway_Behavior{ wrongwayObject, wrongwayGridMovement };
+	Wrongway_Behavior* wrongwayBehavior = new Wrongway_Behavior{ wrongwayObject, wrongwayGridMovement };
 	RectColliderComponent* wrongwayColl = new RectColliderComponent{ wrongwayObject };
 	wrongwayColl->SetDimensions({ 15.f, 15.f });
 	wrongwayColl->SetRelativePosition({ 30.f, -10.f });
@@ -80,7 +81,7 @@ void DemoScene::LoadScene()
 	TextureComponent* samtexture{ new TextureComponent{samObject, "Sam.png"} };
 	samtexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* samGridMovement{ new GridMovementComponent{samObject, playfieldComponent, nullptr} };
-	new SlickAndSam_Behavior{ samObject, samGridMovement };
+	SlickAndSam_Behavior* slickBehavior = new SlickAndSam_Behavior{ samObject, samGridMovement };
 	RectColliderComponent* samColl = new RectColliderComponent{ samObject };
 	samColl->SetDimensions({ 15.f, 15.f });
 	samColl->SetRelativePosition({ 10.f, 35.f });
@@ -91,7 +92,7 @@ void DemoScene::LoadScene()
 	TextureComponent* slicktexture{ new TextureComponent{slickObject, "Slick.png"} };
 	slicktexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* slickGridMovement{ new GridMovementComponent{slickObject, playfieldComponent, nullptr} };
-	new SlickAndSam_Behavior{ slickObject, slickGridMovement };
+	SlickAndSam_Behavior* samBehavior = new SlickAndSam_Behavior{ slickObject, slickGridMovement };
 	RectColliderComponent* slickColl = new RectColliderComponent{ slickObject };
 	slickColl->SetDimensions({ 15.f, 15.f });
 	slickColl->SetRelativePosition({ 10.f, 35.f });
@@ -102,9 +103,13 @@ void DemoScene::LoadScene()
 	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily_Egg.png"} };
 	coilytexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* coilyGridMovement{ new GridMovementComponent{coilyObject, playfieldComponent, nullptr} };
-	new Coily_Behavior{ coilyObject, coilyGridMovement };
+	Coily_Behavior* coilyBehavior = new Coily_Behavior{ coilyObject, coilyGridMovement };
 	RectColliderComponent* coilyColl = new RectColliderComponent{ coilyObject };
 	coilyColl->SetDimensions({ 15.f, 15.f });
 	coilyColl->SetRelativePosition({ 10.f, 35.f });
 	coilyColl->SetOverlapCallback([](GameObject*) {std::cout << "OVERLAP\n"; });
+
+	//LEVELMANAGER
+	GameObject* levelObject = new GameObject{ this };
+	new LevelManagerComponent{ levelObject, playfieldComponent, qbertBehavior, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
 }
