@@ -231,3 +231,15 @@ bool PlayFieldComponent::LevelFinished() const
 {
 	return m_LevelFinished;
 }
+
+void PlayFieldComponent::Reset()
+{
+	for (int i{}; i < m_TileNr; ++i)
+	{
+		m_pTileData[i]->Type = ETileType::Stage0;
+		m_pTileData[i]->IsInFinalStage = false;
+		m_pTileTextures[i]->SetTexture(m_Stage0Path);
+	}
+
+	m_LevelFinished = false;
+}

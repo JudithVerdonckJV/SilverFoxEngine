@@ -21,32 +21,40 @@ void fox::Scene::AddObject(GameObject* const object)
 	m_Objects.push_back(object);
 }
 
-void fox::Scene::Update(float deltaTime)
+void fox::Scene::RootUpdate(float deltaTime)
 {
+	Update(deltaTime);
+	
 	for(GameObject* const object : m_Objects)
 	{
 		object->Update(deltaTime);
 	}
 }
 
-void fox::Scene::FixedUpdate(float tick)
+void fox::Scene::RootFixedUpdate(float tick)
 {
+	FixedUpdate(tick);
+
 	for (GameObject* const object : m_Objects)
 	{
 		object->FixedUpdate(tick);
 	}
 }
 
-void fox::Scene::LateUpdate(float deltaTime)
+void fox::Scene::RootLateUpdate(float deltaTime)
 {
+	LateUpdate(deltaTime);
+	
 	for (GameObject* const object : m_Objects)
 	{
 		object->LateUpdate(deltaTime);
 	}
 }
 
-void fox::Scene::Render() const
+void fox::Scene::RootRender() const
 {
+	Render();
+	
 	for (const GameObject* const object : m_Objects)
 	{
 		object->Render();

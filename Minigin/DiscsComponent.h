@@ -21,7 +21,10 @@ public:
 	void DespawnActiveDisc();
 	void MoveActiveDisc(const FVector2& location);
 
+	void Reset();
+
 private:
 	int m_ActiveDisc;
 	std::vector<fox::TextureComponent*> m_pDiscTextures;
+	std::vector<FVector2> m_pDiscLocations;
 };

@@ -27,31 +27,44 @@ void DemoScene::LoadScene()
 
 	//LEVEL
 	GameObject* playFieldObject{ new GameObject{this} };
-	PlayFieldComponent* playfieldComponent{ new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::OneFlip } };
+	m_pPlayfield = new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::OneFlip };
 
 	//DISCS
 	GameObject* discsObject{ new GameObject{this} };
-	DiscsComponent* discComponent{ new DiscsComponent{discsObject, "../Data/LevelLayout.txt", playfieldComponent} };
+	m_pDiscs = new DiscsComponent{discsObject, "../Data/LevelLayout.txt", m_pPlayfield};
 
-	//PLAYER - QBERT
-	QBert_Behavior* qbertBehavior = CreateQbertObject(this, playfieldComponent, discComponent);
+	//PLAYER(S)
+	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
 
-	//UGG
-	Ugg_Behavior* uggBehavior = CreateUggObject(this, playfieldComponent);
+	//ENEMIES
+	Ugg_Behavior* uggBehavior = CreateUggObject(this, m_pPlayfield);
+	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, m_pPlayfield);
+	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield);
+	SlickAndSam_Behavior* samBehavior = CreateSlickObject(this, m_pPlayfield);
+	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield);
 
-	//WRONGWAY
-	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, playfieldComponent);
-
-	//SAM
-	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, playfieldComponent);
-
-	//SLICK
-	SlickAndSam_Behavior* samBehavior = CreateSlickObject(this, playfieldComponent);
-
-	//COILY
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, playfieldComponent);
-
-	//LEVELMANAGER
+	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
-	new LevelManagerComponent{ levelObject, playfieldComponent, qbertBehavior, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
+	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
+}
+
+void DemoScene::EnterScene()
+{
+	m_pLevelManager->DespawnAll();
+	m_pPlayfield->Reset();
+	m_pDiscs->Reset();
+}
+
+void DemoScene::Update(float )
+{
+	if (m_pQBert->HasDied)
+	{
+		m_pQBert->HasDied = false;
+		m_pLevelManager->DespawnAll();
+	}
+
+	if (m_pPlayfield->LevelFinished())
+	{
+		//open next level
+	}
 }

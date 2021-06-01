@@ -31,3 +31,8 @@ void QBert_Behavior::Update(float )
 		m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 	}
 }
+
+void QBert_Behavior::Reset()
+{
+	m_pGridMovement->SpawnOnTileIndex(0);
+}

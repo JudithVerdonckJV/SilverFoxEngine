@@ -6,8 +6,6 @@ namespace fox
 	class GameObject;
 }
 
-class PlayFieldComponent;
-class QBert_Behavior;
 class Coily_Behavior;
 class SlickAndSam_Behavior;
 class Ugg_Behavior;
@@ -16,14 +14,14 @@ class Wrongway_Behavior;
 class LevelManagerComponent final : public fox::IComponent
 {
 public:
-	LevelManagerComponent(fox::GameObject* owner, PlayFieldComponent* playfield, QBert_Behavior* qbert, Coily_Behavior* coily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway);
+	LevelManagerComponent(fox::GameObject* owner, Coily_Behavior* coily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway);
 	~LevelManagerComponent() = default;
 
 	virtual void Update(float dt) override;
 
+	void DespawnAll();
+
 private:
-	PlayFieldComponent* m_pPlayfield;
-	QBert_Behavior* m_pQBert;
 	Coily_Behavior* m_pCoily;
 	SlickAndSam_Behavior* m_pSlick;
 	SlickAndSam_Behavior* m_pSam;

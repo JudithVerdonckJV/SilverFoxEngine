@@ -14,12 +14,19 @@ namespace fox
 		virtual ~Scene();
 		
 		virtual void LoadScene() {};
-		
-		void Update(float deltaTime);
-		void FixedUpdate(float tick);
-		void LateUpdate(float deltaTime);
+		virtual void EnterScene() {};
+		virtual void ExitScene() {};
 
-		void Render() const;
+		virtual void Update(float ) {};
+		virtual void FixedUpdate(float ) {};
+		virtual void LateUpdate(float ) {};
+		virtual void Render() const {};
+		
+		void RootUpdate(float );
+		void RootFixedUpdate(float );
+		void RootLateUpdate(float );
+
+		void RootRender() const;
 
 	protected:
 		

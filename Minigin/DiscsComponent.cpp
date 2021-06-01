@@ -10,12 +10,15 @@ DiscsComponent::DiscsComponent(fox::GameObject* owner, const std::string& , Play
 	, m_pDiscTextures{}
 {
 	m_pDiscTextures.resize(2);
-	
+	m_pDiscLocations.resize(2);
+
 	FVector2 leftDiscLocation{playfield->GetTilePositionAtIndex(10)};
 	leftDiscLocation.x -= playfield->GetTileSize().x;
+	m_pDiscLocations[0] = leftDiscLocation;
 	
 	FVector2 rightDiscLocation{ playfield->GetTilePositionAtIndex(14) };
 	rightDiscLocation.x += playfield->GetTileSize().x;
+	m_pDiscLocations[1] = rightDiscLocation;
 
 	fox::GameObject* leftDiscObject{ new fox::GameObject{ m_Owner } };
 	leftDiscObject->SetLocation(leftDiscLocation);
@@ -61,4 +64,16 @@ void DiscsComponent::DespawnActiveDisc()
 void DiscsComponent::MoveActiveDisc(const FVector2& location)
 {
 	m_pDiscTextures[m_ActiveDisc]->GetOwner()->SetLocation(location);
+}
+
+void DiscsComponent::Reset()
+{
+	for (int i{}; i < 2; ++i)
+	{
+		m_pDiscTextures[i]->GetOwner()->SetLocation(m_pDiscLocations[i]);
+		m_pDiscTextures[i]->GetOwner()->SetActive(false);
+		m_pDiscTextures[i]->GetOwner()->SetVisibility(false);
+	}
+	
+	m_ActiveDisc = -1;
 }

@@ -31,6 +31,8 @@ public:
 	void CheckForLevelEnd();
 	bool LevelFinished() const;
 
+	void Reset();
+
 private:
 	std::string m_AssetPath;
 	std::vector<FVector2> m_RelativePositions;

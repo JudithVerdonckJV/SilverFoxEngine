@@ -9,11 +9,9 @@
 #include "Ugg_Behavior.h"
 #include "Wrongway_Behavior.h"
 
-LevelManagerComponent::LevelManagerComponent(fox::GameObject* owner, PlayFieldComponent* playfield,
-	QBert_Behavior* qbert, Coily_Behavior* coily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway)
+LevelManagerComponent::LevelManagerComponent(fox::GameObject* owner,
+	Coily_Behavior* coily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway)
 	: IComponent{ owner }
-	, m_pPlayfield{ playfield }
-	, m_pQBert{ qbert }
 	, m_pCoily{ coily }
 	, m_pSlick{ slick }
 	, m_pSam{ sam }
@@ -44,22 +42,6 @@ LevelManagerComponent::LevelManagerComponent(fox::GameObject* owner, PlayFieldCo
 
 void LevelManagerComponent::Update(float dt)
 {
-	if (m_pPlayfield->LevelFinished())
-	{
-		//go to next level ._.
-	}
-
-	if (m_pQBert->HasDied)
-	{
-		m_pQBert->HasDied = false;
-		if (m_pCoily) m_pCoily->Despawn();
-		if (m_pSlick) m_pSlick->Despawn();
-		if (m_pSam) m_pSam->Despawn();
-		if (m_pUgg) m_pUgg->Despawn();
-		if (m_pWrongway) m_pWrongway->Despawn();
-		return;
-	}
-	
 	if (m_pCoily && !m_pCoily->GetOwner()->IsActive())
 	{
 		m_CurrentCoilyTimer += dt;
@@ -109,4 +91,13 @@ void LevelManagerComponent::Update(float dt)
 			m_pWrongway->Spawn();
 		}
 	}
+}
+
+void LevelManagerComponent::DespawnAll()
+{
+	if (m_pCoily) m_pCoily->Despawn();
+	if (m_pSlick) m_pSlick->Despawn();
+	if (m_pSam) m_pSam->Despawn();
+	if (m_pUgg) m_pUgg->Despawn();
+	if (m_pWrongway) m_pWrongway->Despawn();
 }

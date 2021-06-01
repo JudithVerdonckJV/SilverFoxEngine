@@ -15,6 +15,8 @@ public:
 
 	virtual void Update(float dt) override;
 
+	void Reset();
+
 	bool HasDied;
 
 private:

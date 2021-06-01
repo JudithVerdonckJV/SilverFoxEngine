@@ -13,28 +13,32 @@ fox::SceneManager::~SceneManager()
 
 void fox::SceneManager::Update(float deltaTime)
 {
-	m_pScenesMap[m_ActiveScene]->Update(deltaTime);
+	m_pScenesMap[m_ActiveScene]->RootUpdate(deltaTime);
 }
 
 void fox::SceneManager::FixedUpdate(float tick)
 {
-	m_pScenesMap[m_ActiveScene]->FixedUpdate(tick);
+	m_pScenesMap[m_ActiveScene]->RootFixedUpdate(tick);
 }
 
 void fox::SceneManager::LateUpdate(float deltaTime)
 {
-	m_pScenesMap[m_ActiveScene]->LateUpdate(deltaTime);
+	m_pScenesMap[m_ActiveScene]->RootLateUpdate(deltaTime);
 }
 
 void fox::SceneManager::Render()
 {
-	m_pScenesMap[m_ActiveScene]->Render();
+	m_pScenesMap[m_ActiveScene]->RootRender();
 }
 
 void fox::SceneManager::SetActiveScene(const std::string& name)
 {
+	m_pScenesMap[m_ActiveScene]->ExitScene();
+	
 	const auto it{ m_pScenesMap.find(name) };
 
 	if (it != m_pScenesMap.end()) m_ActiveScene = name;
 	else throw "SceneManager, SetActiveScene: Scene does not exist!";
+
+	m_pScenesMap[m_ActiveScene]->EnterScene();
 }
