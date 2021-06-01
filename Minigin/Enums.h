@@ -22,3 +22,11 @@ enum class ETileType
 	Stage1 = 1,
 	Stage2 = 2,
 };
+
+enum class EObserverEvents
+{
+	CoilyDeath = 0,
+	SlickSamDeath = 1,
+	RemainingDisc = 2,
+	Colorchange = 3,
+};

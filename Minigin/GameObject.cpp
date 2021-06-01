@@ -13,7 +13,6 @@ fox::GameObject::GameObject(GameObject* owner)
 	, m_pComponents{ }
 	, m_pChildObjects{ }
 	, m_pTransform{ nullptr }
-	, m_pSubject{ nullptr }
 	, m_UserComponent{}
 	, m_Tag{ "" }
 	, m_IsActive{ true }
@@ -29,7 +28,6 @@ fox::GameObject::GameObject(Scene* owner)
 	, m_pComponents{ }
 	, m_pChildObjects{ }
 	, m_pTransform{ nullptr }
-	, m_pSubject{ nullptr }
 	, m_UserComponent{}
 	, m_Tag{ "" }
 	, m_IsActive{ true }
@@ -140,11 +138,6 @@ FVector2 fox::GameObject::GetLocation() const
 	return m_pTransform->Location();
 }
 
-const fox::SubjectComponent* fox::GameObject::GetSubject() const
-{
-	return m_pSubject;
-}
-
 fox::IComponent* fox::GameObject::GetUserComponent() const
 {
 	return m_UserComponent;
@@ -182,11 +175,8 @@ fox::GameObject* fox::GameObject::GetChildByIndex(size_t index) const
 	return m_pChildObjects[index];
 }
 
-void fox::GameObject::AddComponent(IComponent* const newComponent)
+void fox::GameObject::AddComponent(fox::IComponent* newComponent)
 {
-	if (dynamic_cast<SubjectComponent*>(newComponent)) m_pSubject = static_cast<SubjectComponent*>(newComponent);
-
-	//TODO: only one component of each kind?
 	m_pComponents.push_back(newComponent);
 }
 

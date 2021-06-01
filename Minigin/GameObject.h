@@ -31,7 +31,7 @@ namespace fox
 		void SetLocation(const FVector2& xy);
 		FVector2 GetLocation() const;
 
-		const SubjectComponent* GetSubject() const;
+		//SubjectComponent* GetSubject() const;
 		IComponent* GetUserComponent() const;
 
 		void SetUserComponent(IComponent* component);
@@ -60,7 +60,7 @@ namespace fox
 
 	private:
 		friend class IComponent;
-		void AddComponent(IComponent* const component);
+		void AddComponent(IComponent* component);
 
 		void AddChild(GameObject* const childObject);
 
@@ -70,7 +70,7 @@ namespace fox
 		
 		//fast access
 		Transform* m_pTransform;
-		SubjectComponent* m_pSubject;
+		//SubjectComponent* m_pSubject;
 
 		IComponent* m_UserComponent;
 

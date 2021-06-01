@@ -10,9 +10,11 @@ namespace fox
 	{
 	public:
 		~ObserverManager();
-		void AddObserver(IObserver* observer);
 
 	private:
+		friend class IObserver;
+		void AddObserver(IObserver* observer);
+
 		std::vector<IObserver*> m_Observers{};
 	};
 }

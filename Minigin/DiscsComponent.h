@@ -23,6 +23,8 @@ public:
 
 	void Reset();
 
+	void ScoreRemainingDiscNr() const;
+
 private:
 	int m_ActiveDisc;
 	std::vector<fox::TextureComponent*> m_pDiscTextures;

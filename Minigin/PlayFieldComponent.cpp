@@ -10,6 +10,9 @@
 #include "TextureComponent.h"
 #include "Transform.h"
 #include "TileData.h"
+#include "SubjectComponent.h"
+
+#include "Enums.h"
 
 using namespace fox;
 
@@ -192,6 +195,8 @@ void PlayFieldComponent::FlipTileIndex(int index)
 		}
 		break;
 	}
+
+	m_Owner->GetComponent<fox::SubjectComponent>()->Notify(m_Owner, (int)EObserverEvents::Colorchange);
 }
 
 void PlayFieldComponent::UnflipTileIndex(int index)

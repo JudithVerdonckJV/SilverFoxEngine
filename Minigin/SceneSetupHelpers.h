@@ -15,8 +15,10 @@
 #include "PlayFieldComponent.h"
 #include "DiscsComponent.h"
 #include "RectColliderComponent.h"
+#include "SubjectComponent.h"
 
 #include "Actions.h"
+#include "ScoreObserver.h"
 
 using namespace fox;
 
@@ -72,7 +74,7 @@ inline Wrongway_Behavior* CreateWrongwayObject(Scene* scene, PlayFieldComponent*
 	return wrongwayBehavior;
 }
 
-inline SlickAndSam_Behavior* CreateSlickObject(Scene* scene, PlayFieldComponent* playfield)
+inline SlickAndSam_Behavior* CreateSlickObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
 	GameObject* samObject{ new GameObject{scene} };
 	TextureComponent* samtexture{ new TextureComponent{samObject, "Sam.png"} };
@@ -84,10 +86,13 @@ inline SlickAndSam_Behavior* CreateSlickObject(Scene* scene, PlayFieldComponent*
 	samColl->SetRelativePosition({ 10.f, 35.f });
 	samColl->SetOverlapCallback([](GameObject*) { });
 
+	SubjectComponent* subject{ new SubjectComponent{samObject} };
+	subject->AddObserver(scoreObserver);
+
 	return slickBehavior;
 }
 
-inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* playfield)
+inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
 	GameObject* slickObject{ new GameObject{scene} };
 	TextureComponent* slicktexture{ new TextureComponent{slickObject, "Slick.png"} };
@@ -99,10 +104,13 @@ inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* p
 	slickColl->SetRelativePosition({ 10.f, 35.f });
 	slickColl->SetOverlapCallback([](GameObject*) { });
 
+	SubjectComponent* subject{ new SubjectComponent{slickObject} };
+	subject->AddObserver(scoreObserver);
+
 	return samBehavior;
 }
 
-inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playfield)
+inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
 	GameObject* coilyObject{ new GameObject{scene} };
 	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily_Egg.png"} };
@@ -113,6 +121,9 @@ inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playf
 	coilyColl->SetDimensions({ 15.f, 15.f });
 	coilyColl->SetRelativePosition({ 10.f, 35.f });
 	coilyColl->SetOverlapCallback([](GameObject*) { });
+
+	SubjectComponent* subject{ new SubjectComponent{coilyObject} };
+	subject->AddObserver(scoreObserver);
 
 	return coilyBehavior;
 }

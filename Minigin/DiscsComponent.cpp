@@ -3,6 +3,9 @@
 #include "GameObject.h"
 #include "TextureComponent.h"
 #include "PlayFieldComponent.h"
+#include "SubjectComponent.h"
+
+#include "Enums.h"
 
 DiscsComponent::DiscsComponent(fox::GameObject* owner, const std::string& , PlayFieldComponent* playfield)
 	: IComponent{ owner }
@@ -76,4 +79,15 @@ void DiscsComponent::Reset()
 	}
 	
 	m_ActiveDisc = -1;
+}
+
+void DiscsComponent::ScoreRemainingDiscNr() const
+{
+	for (int i{}; i < 2; ++i)
+	{
+		if (m_pDiscTextures[i]->GetOwner()->IsActive())
+		{
+			m_Owner->GetComponent<fox::SubjectComponent>()->Notify(m_Owner, (int)EObserverEvents::RemainingDisc);
+		}
+	}
 }

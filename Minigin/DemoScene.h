@@ -6,6 +6,8 @@ class DiscsComponent;
 class QBert_Behavior;
 class LevelManagerComponent;
 
+class QBertGameInstance;
+
 class DemoScene final : public fox::Scene
 {
 public:
@@ -21,4 +23,6 @@ private:
 	DiscsComponent* m_pDiscs;
 	QBert_Behavior* m_pQBert;
 	LevelManagerComponent* m_pLevelManager;
+
+	QBertGameInstance* m_pGameInstance;
 };

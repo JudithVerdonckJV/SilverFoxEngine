@@ -4,7 +4,10 @@
 #include "GameObject.h"
 #include "GridMovementComponent.h"
 #include "TextureComponent.h"
+#include "SubjectComponent.h"
 #include "GameStatics.h"
+
+#include "Enums.h"
 
 Coily_Behavior::Coily_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement)
 	: IComponent{ owner }
@@ -92,6 +95,7 @@ void Coily_Behavior::Update(float dt)
 		if (m_pGridMovement->RespawnAfterFall())
 		{
 			Spawn();
+			m_Owner->GetComponent<fox::SubjectComponent>()->Notify(m_Owner, (int)EObserverEvents::CoilyDeath);
 		}
 	}
 }

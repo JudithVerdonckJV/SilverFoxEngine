@@ -10,11 +10,11 @@ namespace fox
 	{
 	public:
 		SubjectComponent(GameObject* owner);
-		virtual ~SubjectComponent();
+		virtual ~SubjectComponent() = default;
 
 		void AddObserver(IObserver* observer);
 		void RemoveObserver(IObserver* obsever);
-		void Notify(GameObject* gameObject, const std::string& eventName);
+		void Notify(GameObject* gameObject, int eventName);
 
 	private:
 		std::vector<IObserver*> m_pObservers{};
