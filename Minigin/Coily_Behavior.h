@@ -2,6 +2,7 @@
 #include "IComponent.h"
 
 class GridMovementComponent;
+enum class EDirection;
 
 namespace fox
 {
@@ -21,9 +22,11 @@ public:
 
 private:
 	GridMovementComponent* m_pGridMovement;
+	EDirection m_NextDirection;
 
 	float m_MaxMovementWait;
 	float m_CurrentMovementWait;
 
 	bool m_IsEgg;
+	bool m_CalculatedNextDirection;
 };
