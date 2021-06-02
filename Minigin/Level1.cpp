@@ -1,5 +1,5 @@
 #include "MiniginPCH.h"
-#include "DemoScene.h"
+#include "Level1.h"
 
 #include "Transform.h"
 #include "PlayFieldComponent.h"
@@ -21,11 +21,11 @@
 
 using namespace fox;
 
-void DemoScene::LoadScene()
-{		
+void Level1::LoadScene()
+{
 	m_pGameInstance = &QBertGameInstance::GetInstance();
 	ScoreObserver* scoreObserver{ new ScoreObserver{} };
-	
+
 	//BACKGROUND
 	GameObject* background{ new GameObject{this} };
 	TextureComponent* backgroundTexture{ new TextureComponent{ background } };
@@ -39,24 +39,19 @@ void DemoScene::LoadScene()
 
 	//DISCS
 	GameObject* discsObject{ new GameObject{this} };
-	m_pDiscs = new DiscsComponent{discsObject, "../Data/LevelLayout.txt", m_pPlayfield};
+	m_pDiscs = new DiscsComponent{ discsObject, "../Data/LevelLayout.txt", m_pPlayfield };
 	SubjectComponent* discSubject{ new SubjectComponent{discsObject} };
 	discSubject->AddObserver(scoreObserver);
-
 
 	//PLAYER(S)
 	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
 
 	//ENEMIES
-	Ugg_Behavior* uggBehavior = CreateUggObject(this, m_pPlayfield);
-	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, m_pPlayfield);
-	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
-	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
 	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
-	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
+	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, nullptr, nullptr, nullptr, nullptr };
 
 	//UI
 	GameObject* uiObject{ new GameObject{this} };
@@ -71,14 +66,14 @@ void DemoScene::LoadScene()
 	m_pGameInstance->SetUI(ui);
 }
 
-void DemoScene::EnterScene()
+void Level1::EnterScene()
 {
 	m_pLevelManager->DespawnAll();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
 }
 
-void DemoScene::Update(float )
+void Level1::Update(float)
 {
 	if (m_pQBert->HasDied)
 	{

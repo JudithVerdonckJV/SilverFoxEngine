@@ -49,6 +49,9 @@
     <Filter Include="QBert\Coily">
       <UniqueIdentifier>{95c4e63b-b253-48c6-9901-38ea1b7b28bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QBert\Scenes\Levels">
+      <UniqueIdentifier>{833f070a-eb49-440b-9ae8-34d283f4b9c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
@@ -213,6 +216,12 @@
     <ClInclude Include="ScoreObserver.h">
       <Filter>QBert\QBert</Filter>
     </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>QBert\Scenes\Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -358,6 +367,12 @@
     </ClCompile>
     <ClCompile Include="ScoreObserver.cpp">
       <Filter>QBert\QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>QBert\Scenes\Levels</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

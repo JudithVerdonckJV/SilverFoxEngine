@@ -30,3 +30,10 @@ enum class EObserverEvents
 	RemainingDisc = 2,
 	Colorchange = 3,
 };
+
+enum class EGameModes
+{
+	Single = 0,
+	Versus = 1,
+	Coop = 2,
+};

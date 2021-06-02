@@ -25,7 +25,7 @@ using namespace fox;
 inline QBert_Behavior* CreateQbertObject(Scene* scene, PlayFieldComponent* playfield, DiscsComponent* discs)
 {
 	GameObject* QBertObject{ new GameObject{ scene } };
-	TextureComponent* qbertTexture = new TextureComponent{ QBertObject, "QBertDownLeft.png" };
+	TextureComponent* qbertTexture = new TextureComponent{ QBertObject, "QBert/QBertDownLeft_Idle.png" };
 	qbertTexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfield, discs } };
 	InputComponent* QBertInput{ new InputComponent{QBertObject} };
@@ -77,10 +77,10 @@ inline Wrongway_Behavior* CreateWrongwayObject(Scene* scene, PlayFieldComponent*
 inline SlickAndSam_Behavior* CreateSlickObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
 	GameObject* samObject{ new GameObject{scene} };
-	TextureComponent* samtexture{ new TextureComponent{samObject, "Sam.png"} };
+	TextureComponent* samtexture{ new TextureComponent{samObject, "SlickAndSam/SlickLeft_Idle.png"} };
 	samtexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* samGridMovement{ new GridMovementComponent{samObject, playfield, nullptr} };
-	SlickAndSam_Behavior* slickBehavior = new SlickAndSam_Behavior{ samObject, samGridMovement };
+	SlickAndSam_Behavior* slickBehavior = new SlickAndSam_Behavior{ samObject, samGridMovement, false };
 	RectColliderComponent* samColl = new RectColliderComponent{ samObject };
 	samColl->SetDimensions({ 15.f, 15.f });
 	samColl->SetRelativePosition({ 10.f, 35.f });
@@ -95,10 +95,10 @@ inline SlickAndSam_Behavior* CreateSlickObject(Scene* scene, PlayFieldComponent*
 inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
 	GameObject* slickObject{ new GameObject{scene} };
-	TextureComponent* slicktexture{ new TextureComponent{slickObject, "Slick.png"} };
+	TextureComponent* slicktexture{ new TextureComponent{slickObject, "SlickAndSam/SamLeft_Idle.png"} };
 	slicktexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* slickGridMovement{ new GridMovementComponent{slickObject, playfield, nullptr} };
-	SlickAndSam_Behavior* samBehavior = new SlickAndSam_Behavior{ slickObject, slickGridMovement };
+	SlickAndSam_Behavior* samBehavior = new SlickAndSam_Behavior{ slickObject, slickGridMovement, true };
 	RectColliderComponent* slickColl = new RectColliderComponent{ slickObject };
 	slickColl->SetDimensions({ 15.f, 15.f });
 	slickColl->SetRelativePosition({ 10.f, 35.f });
@@ -113,7 +113,7 @@ inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* p
 inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
 	GameObject* coilyObject{ new GameObject{scene} };
-	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily_Egg.png"} };
+	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily/CoilyEgg_Idle.png"} };
 	coilytexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* coilyGridMovement{ new GridMovementComponent{coilyObject, playfield, nullptr} };
 	Coily_Behavior* coilyBehavior = new Coily_Behavior{ coilyObject, coilyGridMovement };

@@ -7,6 +7,7 @@ enum class EDirection;
 namespace fox
 {
 	class GameObject;
+	class TextureComponent;
 }
 
 class Coily_Behavior : public fox::IComponent
@@ -23,10 +24,15 @@ public:
 private:
 	GridMovementComponent* m_pGridMovement;
 	EDirection m_NextDirection;
+	fox::TextureComponent* m_pTexture;
 
 	float m_MaxMovementWait;
 	float m_CurrentMovementWait;
 
 	bool m_IsEgg;
 	bool m_CalculatedNextDirection;
+
+	bool m_SetToIdle;
+	void SetIdleTexture();
+	void SetJumpingTexture();
 };

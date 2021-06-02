@@ -246,6 +246,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IObserver.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="LevelManagerComponent.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MoveComponent.h" />
@@ -274,6 +275,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="TileData.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Ugg_Behavior.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Wrongway_Behavior.h" />
   </ItemGroup>
@@ -334,6 +336,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IObserver.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="LevelManagerComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
@@ -366,6 +369,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClCompile Include="TileData.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Ugg_Behavior.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Wrongway_Behavior.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

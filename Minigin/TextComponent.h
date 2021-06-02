@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include "IComponent.h"
 
+#include "utils.h"
+
 namespace fox
 {
 	class GameObject;
@@ -11,9 +13,10 @@ namespace fox
 	class TextComponent final : public IComponent
 	{
 	public:
-		TextComponent(GameObject* owner);
+		TextComponent(GameObject* owner, FVector2 position);
 		virtual ~TextComponent();
 
+		virtual void Update(float dt) override;
 		virtual void Render() const override;
 
 		void SetFont(const std::string& fontPath);
@@ -28,6 +31,9 @@ namespace fox
 		Texture2D* m_pTexture;
 		SDL_Color m_Color;
 		std::string m_Text;
+		
+		FVector2 m_RelativeLocation;
+		FVector2 m_WorldLocation;
 
 		void CreateTexture();
 	};

@@ -13,7 +13,6 @@ fox::TextureComponent::TextureComponent(GameObject* owner)
 	: IComponent{ owner }
 	, m_pTexture{ nullptr }
 {
-	m_pTexture = ResourceManager::GetInstance().LoadTexture("fox.png");
 }
 
 fox::TextureComponent::TextureComponent(GameObject* owner, const std::string& path)

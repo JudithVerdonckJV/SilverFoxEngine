@@ -32,5 +32,5 @@ void ScoreObserver::OnNotify(fox::GameObject* , int event)
 		break;
 	}
 
-	m_pGameInstance->Score += scoreIncrease;
+	m_pGameInstance->ChangeScore(scoreIncrease);
 }

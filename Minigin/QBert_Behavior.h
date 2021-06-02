@@ -5,6 +5,7 @@
 namespace fox
 {
 	class GameObject;
+	class TextureComponent;
 }
 
 class QBert_Behavior final : public fox::IComponent
@@ -21,6 +22,9 @@ public:
 
 private:
 	GridMovementComponent* m_pGridMovement;
+	fox::TextureComponent* m_pQBertTexture;
 	int m_CurrentTileIndex;
+
+	void SetIdleTexture();
 };
 

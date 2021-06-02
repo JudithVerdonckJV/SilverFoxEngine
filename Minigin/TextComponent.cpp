@@ -10,7 +10,7 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 
-fox::TextComponent::TextComponent(GameObject* owner)
+fox::TextComponent::TextComponent(GameObject* owner, FVector2 position)
 	:IComponent{ owner }
 	, m_pFont{ nullptr }
 	, m_FontPath{ "Lingua.otf" }
@@ -18,6 +18,8 @@ fox::TextComponent::TextComponent(GameObject* owner)
 	, m_pTexture{ nullptr }
 	, m_Color{ 255, 255, 255, 255 }
 	, m_Text{ "Lorem Ipsum" }
+	, m_WorldLocation{}
+	, m_RelativeLocation{ position }
 {
 	CreateTexture();
 }
@@ -28,9 +30,15 @@ fox::TextComponent::~TextComponent()
 	delete m_pFont;
 }
 
+void fox::TextComponent::Update(float)
+{
+	m_WorldLocation = m_Owner->GetLocation();
+	m_WorldLocation -= m_RelativeLocation;
+}
+
 void fox::TextComponent::Render() const
 {
-	Renderer::GetInstance().RenderTexture(*m_pTexture, m_Owner->GetLocation().x, m_Owner->GetLocation().y );
+	Renderer::GetInstance().RenderTexture(*m_pTexture, m_WorldLocation.x, m_WorldLocation.y );
 }
 
 void fox::TextComponent::SetFont(const std::string& fontPath)
