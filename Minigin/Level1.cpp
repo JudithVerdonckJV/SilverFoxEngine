@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "Level1.h"
 
+#include "GameStatics.h"
 #include "SceneManager.h"
 
 #include "Transform.h"
@@ -38,6 +39,7 @@ void Level1::LoadScene()
 
 	//PLAYER(S)
 	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
+	GameStatics::AddPlayer(m_pQBert->GetOwner());
 
 	//ENEMIES
 	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);

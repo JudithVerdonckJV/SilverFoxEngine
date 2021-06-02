@@ -9,10 +9,10 @@ namespace fox
 	{
 	public:
 		static FVector2 WINDOW_SIZE;
+		static void AddPlayer(GameObject* player);
 		static GameObject* GetPlayerObject(size_t index);
 
 	private:
-		friend class InputManager;
 		static std::vector<GameObject*> m_Players;
 	};
 }
