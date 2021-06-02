@@ -47,13 +47,13 @@ void fox::SilverFoxEngine::Run()
 
 	ResourceManager::GetInstance().Init("../Data/");
 
+	Renderer& renderer{ Renderer::GetInstance() };
+	SceneManager& sceneManager{ SceneManager::GetInstance() };
+	InputManager& input{ InputManager::GetInstance() };
+
 	LoadGame();
 
 	{
-		Renderer& renderer{ Renderer::GetInstance() };
-		SceneManager& sceneManager { SceneManager::GetInstance() };
-		InputManager& input { InputManager::GetInstance()};
-
 		bool doContinue { true };
 		auto lastTime{ high_resolution_clock::now() };
 		float lag{ 0.0f };
@@ -69,7 +69,7 @@ void fox::SilverFoxEngine::Run()
 			sceneManager.Update(deltaTime);
 
 			lag += deltaTime;
-			while (lag >= m_msPerFrame /** 1000.f*/)
+			while (lag >= m_msPerFrame)
 			{
 				sceneManager.FixedUpdate(m_msPerFrame);
 				lag -= m_msPerFrame;

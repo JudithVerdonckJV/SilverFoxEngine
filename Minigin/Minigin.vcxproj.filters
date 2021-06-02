@@ -219,7 +219,13 @@
     <ClInclude Include="UI.h">
       <Filter>QBert</Filter>
     </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>QBert\Scenes\Levels</Filter>
+    </ClInclude>
     <ClInclude Include="Level1.h">
+      <Filter>QBert\Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2.h">
       <Filter>QBert\Scenes\Levels</Filter>
     </ClInclude>
   </ItemGroup>
@@ -372,6 +378,12 @@
       <Filter>QBert</Filter>
     </ClCompile>
     <ClCompile Include="Level1.cpp">
+      <Filter>QBert\Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>QBert\Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Level3.cpp">
       <Filter>QBert\Scenes\Levels</Filter>
     </ClCompile>
   </ItemGroup>

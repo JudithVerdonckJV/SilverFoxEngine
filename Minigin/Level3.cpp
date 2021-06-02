@@ -1,5 +1,5 @@
 #include "MiniginPCH.h"
-#include "Level1.h"
+#include "Level3.h"
 
 #include "SceneManager.h"
 
@@ -14,7 +14,7 @@
 
 using namespace fox;
 
-void Level1::LoadScene()
+void Level3::LoadScene()
 {
 	m_pGameInstance = &QBertGameInstance::GetInstance();
 	ScoreObserver* scoreObserver{ new ScoreObserver{} };
@@ -40,25 +40,31 @@ void Level1::LoadScene()
 	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
 
 	//ENEMIES
+	Ugg_Behavior* uggBehavior = CreateUggObject(this, m_pPlayfield);
+	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, m_pPlayfield);
+	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
+	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
 	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
-	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, nullptr, nullptr, nullptr, nullptr };
+	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
 
 	//UI
 	UI* ui = CreateUIObject(this);
 	m_pGameInstance->SetUI(ui);
+
+	m_pGameInstance->SetUI(ui);
 }
 
-void Level1::EnterScene()
+void Level3::EnterScene()
 {
 	m_pLevelManager->DespawnAll();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
 }
 
-void Level1::Update(float)
+void Level3::Update(float)
 {
 	if (m_pQBert->HasDied)
 	{
@@ -75,6 +81,6 @@ void Level1::Update(float)
 	if (m_pPlayfield->LevelFinished())
 	{
 		m_pDiscs->ScoreRemainingDiscNr();
-		SceneManager::GetInstance().SetActiveScene("Level2");
+		SceneManager::GetInstance().SetActiveScene("Level1");
 	}
 }

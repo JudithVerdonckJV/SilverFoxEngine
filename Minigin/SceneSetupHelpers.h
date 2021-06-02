@@ -16,6 +16,8 @@
 #include "DiscsComponent.h"
 #include "RectColliderComponent.h"
 #include "SubjectComponent.h"
+#include "TextComponent.h"
+#include "UI.h"
 
 #include "Actions.h"
 #include "ScoreObserver.h"
@@ -126,4 +128,18 @@ inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playf
 	subject->AddObserver(scoreObserver);
 
 	return coilyBehavior;
+}
+
+inline UI* CreateUIObject(Scene* scene)
+{
+	GameObject* uiObject{ new GameObject{scene} };
+	TextComponent* scoreText{ new TextComponent{uiObject, {0.f, -5.f}} };
+	scoreText->SetText("Score: ");
+	TextComponent* healthText{ new TextComponent{uiObject, {0.f, -30.f}} };
+	healthText->SetText("Health: ");
+	TextComponent* scoreNr{ new TextComponent{uiObject, {-90.f, -5.f}} };
+	TextComponent* healthNr{ new TextComponent{uiObject, {-90.f, -30.f}} };
+	UI* ui{ new UI{uiObject, scoreNr, healthNr} };
+
+	return ui;
 }

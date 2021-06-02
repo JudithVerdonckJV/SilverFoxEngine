@@ -95,6 +95,6 @@ void DemoScene::Update(float )
 	if (m_pPlayfield->LevelFinished())
 	{
 		m_pDiscs->ScoreRemainingDiscNr();
-		//open next level
+		SceneManager::GetInstance().SetActiveScene("Level1");
 	}
 }

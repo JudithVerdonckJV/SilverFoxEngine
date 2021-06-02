@@ -1,20 +1,24 @@
 #include "MiniginPCH.h"
-#include "Level1.h"
-
-#include "SceneManager.h"
+#include "Level2.h"
 
 #include "Transform.h"
+#include "PlayFieldComponent.h"
+#include "DiscsComponent.h"
 #include "LevelManagerComponent.h"
+#include "UI.h"
+
+#include "QBert_Behavior.h"
+#include "Coily_Behavior.h"
+#include "SlickAndSam_Behavior.h"
 
 #include "Actions.h"
 #include "Enums.h"
-
 #include "SceneSetupHelpers.h"
 #include "QBertGameInstance.h"
 
 using namespace fox;
 
-void Level1::LoadScene()
+void Level2::LoadScene()
 {
 	m_pGameInstance = &QBertGameInstance::GetInstance();
 	ScoreObserver* scoreObserver{ new ScoreObserver{} };
@@ -36,29 +40,32 @@ void Level1::LoadScene()
 	SubjectComponent* discSubject{ new SubjectComponent{discsObject} };
 	discSubject->AddObserver(scoreObserver);
 
+
 	//PLAYER(S)
 	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
 
 	//ENEMIES
+	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
+	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
 	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
-	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, nullptr, nullptr, nullptr, nullptr };
+	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, nullptr, nullptr };
 
 	//UI
 	UI* ui = CreateUIObject(this);
 	m_pGameInstance->SetUI(ui);
 }
 
-void Level1::EnterScene()
+void Level2::EnterScene()
 {
 	m_pLevelManager->DespawnAll();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
 }
 
-void Level1::Update(float)
+void Level2::Update(float)
 {
 	if (m_pQBert->HasDied)
 	{
@@ -75,6 +82,6 @@ void Level1::Update(float)
 	if (m_pPlayfield->LevelFinished())
 	{
 		m_pDiscs->ScoreRemainingDiscNr();
-		SceneManager::GetInstance().SetActiveScene("Level2");
+		//open next level
 	}
 }
