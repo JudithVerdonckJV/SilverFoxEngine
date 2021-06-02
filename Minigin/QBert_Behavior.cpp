@@ -9,14 +9,12 @@ QBert_Behavior::QBert_Behavior(fox::GameObject* owner, GridMovementComponent* gr
 	:IComponent{ owner }
 	, m_pGridMovement{gridMovement}
 	, m_pQBertTexture{}
-	, m_CurrentTileIndex{}
 
 	, HasDied{ false }
 {
 	m_pGridMovement->SpawnOnTileIndex(0);
 	m_pGridMovement->SetSpeed(150.f);
 	m_pQBertTexture = m_Owner->GetComponent<fox::TextureComponent>();
-	m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 }
 
 void QBert_Behavior::Update(float )
@@ -24,7 +22,6 @@ void QBert_Behavior::Update(float )
 	if (m_pGridMovement->HasArrivedOnTile())
 	{
 		m_pGridMovement->FlipTile();
-		m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 
 		SetIdleTexture();
 	}
@@ -33,7 +30,6 @@ void QBert_Behavior::Update(float )
 	{
 		HasDied = true;
 		m_pGridMovement->SpawnOnTileIndex(0);
-		m_CurrentTileIndex = m_pGridMovement->GetCurrentTileIndex();
 	}
 }
 

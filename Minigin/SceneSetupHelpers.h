@@ -112,13 +112,13 @@ inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* p
 	return samBehavior;
 }
 
-inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
+inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver, GameObject* qbert)
 {
 	GameObject* coilyObject{ new GameObject{scene} };
 	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily/CoilyEgg_Idle.png"} };
 	coilytexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* coilyGridMovement{ new GridMovementComponent{coilyObject, playfield, nullptr} };
-	Coily_Behavior* coilyBehavior = new Coily_Behavior{ coilyObject, coilyGridMovement };
+	Coily_Behavior* coilyBehavior = new Coily_Behavior{ coilyObject, coilyGridMovement, qbert };
 	RectColliderComponent* coilyColl = new RectColliderComponent{ coilyObject };
 	coilyColl->SetDimensions({ 15.f, 15.f });
 	coilyColl->SetRelativePosition({ 10.f, 35.f });

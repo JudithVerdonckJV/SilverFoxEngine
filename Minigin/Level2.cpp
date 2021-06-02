@@ -1,18 +1,14 @@
 #include "MiniginPCH.h"
 #include "Level2.h"
 
-#include "Transform.h"
-#include "PlayFieldComponent.h"
-#include "DiscsComponent.h"
-#include "LevelManagerComponent.h"
-#include "UI.h"
+#include "SceneManager.h"
 
-#include "QBert_Behavior.h"
-#include "Coily_Behavior.h"
-#include "SlickAndSam_Behavior.h"
+#include "Transform.h"
+#include "LevelManagerComponent.h"
 
 #include "Actions.h"
 #include "Enums.h"
+
 #include "SceneSetupHelpers.h"
 #include "QBertGameInstance.h"
 
@@ -30,7 +26,7 @@ void Level2::LoadScene()
 
 	//LEVEL
 	GameObject* playFieldObject{ new GameObject{this} };
-	m_pPlayfield = new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::OneFlip };
+	m_pPlayfield = new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::TwoFlips };
 	SubjectComponent* playfieldSubject{ new SubjectComponent{playFieldObject} };
 	playfieldSubject->AddObserver(scoreObserver);
 
@@ -47,22 +43,24 @@ void Level2::LoadScene()
 	//ENEMIES
 	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
 	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);
+	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
 	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, nullptr, nullptr };
 
 	//UI
-	UI* ui = CreateUIObject(this);
-	m_pGameInstance->SetUI(ui);
+	m_pUI = CreateUIObject(this);
+
 }
 
 void Level2::EnterScene()
 {
 	m_pLevelManager->DespawnAll();
+	m_pQBert->Reset();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
+	m_pGameInstance->SetUI(m_pUI);
 }
 
 void Level2::Update(float)
@@ -82,6 +80,6 @@ void Level2::Update(float)
 	if (m_pPlayfield->LevelFinished())
 	{
 		m_pDiscs->ScoreRemainingDiscNr();
-		//open next level
+		SceneManager::GetInstance().SetActiveScene("Level3");
 	}
 }

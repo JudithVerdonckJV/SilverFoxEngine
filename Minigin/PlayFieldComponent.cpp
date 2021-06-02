@@ -196,6 +196,8 @@ void PlayFieldComponent::FlipTileIndex(int index)
 		break;
 	}
 
+	CheckForLevelEnd();
+
 	m_Owner->GetComponent<fox::SubjectComponent>()->Notify(m_Owner, (int)EObserverEvents::Colorchange);
 }
 

@@ -13,7 +13,7 @@ namespace fox
 class Coily_Behavior : public fox::IComponent
 {
 public:
-	Coily_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement);
+	Coily_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement, fox::GameObject* qbertObject);
 	~Coily_Behavior() = default;
 
 	virtual void Update(float dt) override;
@@ -25,6 +25,8 @@ private:
 	GridMovementComponent* m_pGridMovement;
 	EDirection m_NextDirection;
 	fox::TextureComponent* m_pTexture;
+
+	fox::GameObject* m_pQBert;
 
 	float m_MaxMovementWait;
 	float m_CurrentMovementWait;

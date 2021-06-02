@@ -5,6 +5,7 @@ class PlayFieldComponent;
 class DiscsComponent;
 class QBert_Behavior;
 class LevelManagerComponent;
+class UI;
 
 class QBertGameInstance;
 
@@ -23,6 +24,7 @@ private:
 	DiscsComponent* m_pDiscs;
 	QBert_Behavior* m_pQBert;
 	LevelManagerComponent* m_pLevelManager;
+	UI* m_pUI;
 
 	QBertGameInstance* m_pGameInstance;
 };

@@ -136,6 +136,7 @@ void GridMovementComponent::SpawnOnTileIndex(int index)
 	m_RespawnAfterFall = false;
 	m_IsMoving = false;
 	m_IsFalling = false;
+	m_CurrentTileIndex = index;
 }
 
 void GridMovementComponent::FlipTile()

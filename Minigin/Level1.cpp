@@ -39,18 +39,16 @@ void Level1::LoadScene()
 
 	//PLAYER(S)
 	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
-	GameStatics::AddPlayer(m_pQBert->GetOwner());
 
 	//ENEMIES
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);
+	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
 	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, nullptr, nullptr, nullptr, nullptr };
 
 	//UI
-	UI* ui = CreateUIObject(this);
-	m_pGameInstance->SetUI(ui);
+	m_pUI = CreateUIObject(this);
 }
 
 void Level1::EnterScene()
@@ -58,6 +56,8 @@ void Level1::EnterScene()
 	m_pLevelManager->DespawnAll();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
+	m_pQBert->Reset();
+	m_pGameInstance->SetUI(m_pUI);
 }
 
 void Level1::Update(float)

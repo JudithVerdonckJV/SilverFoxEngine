@@ -26,7 +26,7 @@ void Level3::LoadScene()
 
 	//LEVEL
 	GameObject* playFieldObject{ new GameObject{this} };
-	m_pPlayfield = new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::OneFlip };
+	m_pPlayfield = new PlayFieldComponent{ playFieldObject, "../Data/LevelLayout.txt", ETileBehavior::CanUnflip };
 	SubjectComponent* playfieldSubject{ new SubjectComponent{playFieldObject} };
 	playfieldSubject->AddObserver(scoreObserver);
 
@@ -44,24 +44,23 @@ void Level3::LoadScene()
 	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, m_pPlayfield);
 	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
 	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);
+	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
 	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
 
 	//UI
-	UI* ui = CreateUIObject(this);
-	m_pGameInstance->SetUI(ui);
-
-	m_pGameInstance->SetUI(ui);
+	m_pUI = CreateUIObject(this);
 }
 
 void Level3::EnterScene()
 {
 	m_pLevelManager->DespawnAll();
+	m_pQBert->Reset();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
+	m_pGameInstance->SetUI(m_pUI);
 }
 
 void Level3::Update(float)

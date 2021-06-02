@@ -9,7 +9,7 @@
 
 #include "Enums.h"
 
-Coily_Behavior::Coily_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement)
+Coily_Behavior::Coily_Behavior(fox::GameObject* owner, GridMovementComponent* gridMovement, fox::GameObject* qbertObject)
 	: IComponent{ owner }
 	, m_pGridMovement{ gridMovement }
 	, m_CurrentMovementWait{}
@@ -18,6 +18,8 @@ Coily_Behavior::Coily_Behavior(fox::GameObject* owner, GridMovementComponent* gr
 	, m_NextDirection{ EDirection::UpLeft}
 	, m_CalculatedNextDirection{ false }
 	, m_SetToIdle{ true }
+
+	, m_pQBert{ qbertObject }
 {
 	m_pGridMovement->SpawnOnTileIndex(0);
 	m_pGridMovement->SetSpeed(150.f);
@@ -72,7 +74,7 @@ void Coily_Behavior::Update(float dt)
 			{
 				m_CalculatedNextDirection = true;
 				
-				FVector2 playerPos{ fox::GameStatics::GetPlayerObject(0)->GetLocation() };
+				FVector2 playerPos{ m_pQBert->GetLocation() };
 				FVector2 coilyPos{ m_Owner->GetLocation() };
 
 				FVector2 direction{ playerPos - coilyPos };

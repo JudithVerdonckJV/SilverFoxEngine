@@ -74,8 +74,8 @@ void DiscsComponent::Reset()
 	for (int i{}; i < 2; ++i)
 	{
 		m_pDiscTextures[i]->GetOwner()->SetLocation(m_pDiscLocations[i]);
-		m_pDiscTextures[i]->GetOwner()->SetActive(false);
-		m_pDiscTextures[i]->GetOwner()->SetVisibility(false);
+		m_pDiscTextures[i]->GetOwner()->SetActive(true);
+		m_pDiscTextures[i]->GetOwner()->SetVisibility(true);
 	}
 	
 	m_ActiveDisc = -1;

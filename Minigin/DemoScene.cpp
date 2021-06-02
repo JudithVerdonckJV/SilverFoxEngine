@@ -1,21 +1,14 @@
 #include "MiniginPCH.h"
 #include "DemoScene.h"
 
-#include "Transform.h"
-#include "PlayFieldComponent.h"
-#include "DiscsComponent.h"
-#include "LevelManagerComponent.h"
-#include "TextComponent.h"
-#include "UI.h"
+#include "SceneManager.h"
 
-#include "QBert_Behavior.h"
-#include "Ugg_Behavior.h"
-#include "Wrongway_Behavior.h"
-#include "SlickAndSam_Behavior.h"
-#include "Coily_Behavior.h"
+#include "Transform.h"
+#include "LevelManagerComponent.h"
 
 #include "Actions.h"
 #include "Enums.h"
+
 #include "SceneSetupHelpers.h"
 #include "QBertGameInstance.h"
 
@@ -52,7 +45,7 @@ void DemoScene::LoadScene()
 	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, m_pPlayfield);
 	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
 	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver);
+	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
