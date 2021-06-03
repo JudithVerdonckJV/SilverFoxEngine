@@ -36,7 +36,13 @@ inline QBert_Behavior* CreateQbertObject(Scene* scene, PlayFieldComponent* playf
 	RectColliderComponent* qbertColl = new RectColliderComponent{ QBertObject };
 	qbertColl->SetDimensions({ 15.f, 15.f });
 	qbertColl->SetRelativePosition({ 7.5f, 35.f });
-	qbertColl->SetOverlapCallback([](GameObject*) { });
+	qbertColl->SetOverlapCallback([qbertBehavior](GameObject* other)
+		{
+			if (other->GetComponent<Coily_Behavior>() || other->GetComponent<Ugg_Behavior>() || other->GetComponent<Wrongway_Behavior>())
+			{
+				qbertBehavior->Die();
+			}
+		});
 
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_DOWN, SDL_SCANCODE_S, ButtonState::ButtonDown, &MoveDownLeft);
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_UP, SDL_SCANCODE_W, ButtonState::ButtonDown, &MoveUpRight);
@@ -78,17 +84,25 @@ inline Wrongway_Behavior* CreateWrongwayObject(Scene* scene, PlayFieldComponent*
 
 inline SlickAndSam_Behavior* CreateSlickObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
-	GameObject* samObject{ new GameObject{scene} };
-	TextureComponent* samtexture{ new TextureComponent{samObject, "SlickAndSam/SlickLeft_Idle.png"} };
-	samtexture->SetPivot(0.5f, 1.3f);
-	GridMovementComponent* samGridMovement{ new GridMovementComponent{samObject, playfield, nullptr} };
-	SlickAndSam_Behavior* slickBehavior = new SlickAndSam_Behavior{ samObject, samGridMovement, false };
-	RectColliderComponent* samColl = new RectColliderComponent{ samObject };
-	samColl->SetDimensions({ 15.f, 15.f });
-	samColl->SetRelativePosition({ 10.f, 35.f });
-	samColl->SetOverlapCallback([](GameObject*) { });
+	GameObject* slickObject{ new GameObject{scene} };
+	TextureComponent* slicktexture{ new TextureComponent{slickObject, "SlickAndSam/SlickLeft_Idle.png"} };
+	slicktexture->SetPivot(0.5f, 1.3f);
+	GridMovementComponent* slickGridMovement{ new GridMovementComponent{slickObject, playfield, nullptr} };
+	SlickAndSam_Behavior* slickBehavior = new SlickAndSam_Behavior{ slickObject, slickGridMovement, false };
+	RectColliderComponent* slickColl = new RectColliderComponent{ slickObject };
+	slickColl->SetDimensions({ 15.f, 15.f });
+	slickColl->SetRelativePosition({ 10.f, 35.f });
+	slickColl->SetOverlapCallback([slickBehavior](GameObject* other)
+		{
+			if (other->GetComponent<QBert_Behavior>())
+			{
+				slickBehavior->Despawn();
+				slickBehavior->GetOwner()->GetComponent<fox::SubjectComponent>()->Notify(slickBehavior->GetOwner(), (int)EObserverEvents::SlickSamDeath);
+			}
+		});
+	slickColl->DrawDebug(true);
 
-	SubjectComponent* subject{ new SubjectComponent{samObject} };
+	SubjectComponent* subject{ new SubjectComponent{slickObject} };
 	subject->AddObserver(scoreObserver);
 
 	return slickBehavior;
@@ -96,17 +110,24 @@ inline SlickAndSam_Behavior* CreateSlickObject(Scene* scene, PlayFieldComponent*
 
 inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver)
 {
-	GameObject* slickObject{ new GameObject{scene} };
-	TextureComponent* slicktexture{ new TextureComponent{slickObject, "SlickAndSam/SamLeft_Idle.png"} };
-	slicktexture->SetPivot(0.5f, 1.3f);
-	GridMovementComponent* slickGridMovement{ new GridMovementComponent{slickObject, playfield, nullptr} };
-	SlickAndSam_Behavior* samBehavior = new SlickAndSam_Behavior{ slickObject, slickGridMovement, true };
-	RectColliderComponent* slickColl = new RectColliderComponent{ slickObject };
-	slickColl->SetDimensions({ 15.f, 15.f });
-	slickColl->SetRelativePosition({ 10.f, 35.f });
-	slickColl->SetOverlapCallback([](GameObject*) { });
+	GameObject* samObject{ new GameObject{scene} };
+	TextureComponent* samtexture{ new TextureComponent{samObject, "SlickAndSam/SamLeft_Idle.png"} };
+	samtexture->SetPivot(0.5f, 1.3f);
+	GridMovementComponent* samGridMovement{ new GridMovementComponent{samObject, playfield, nullptr} };
+	SlickAndSam_Behavior* samBehavior = new SlickAndSam_Behavior{ samObject, samGridMovement, true };
+	RectColliderComponent* samColl = new RectColliderComponent{ samObject };
+	samColl->SetDimensions({ 15.f, 15.f });
+	samColl->SetRelativePosition({ 10.f, 35.f });
+	samColl->SetOverlapCallback([samBehavior](GameObject* other)
+	{
+		if (other->GetComponent<QBert_Behavior>())
+		{
+			samBehavior->Despawn();
+			samBehavior->GetOwner()->GetComponent<fox::SubjectComponent>()->Notify(samBehavior->GetOwner(), (int)EObserverEvents::SlickSamDeath);
+		}
+	});
 
-	SubjectComponent* subject{ new SubjectComponent{slickObject} };
+	SubjectComponent* subject{ new SubjectComponent{samObject} };
 	subject->AddObserver(scoreObserver);
 
 	return samBehavior;

@@ -21,6 +21,28 @@ void fox::Scene::AddObject(GameObject* const object)
 	m_Objects.push_back(object);
 }
 
+void fox::Scene::RootEnterScene()
+{
+	for (fox::GameObject* object : m_Objects)
+	{
+		object->SetActive(true);
+		object->SetVisibility(true);
+	}
+	
+	EnterScene();
+}
+
+void fox::Scene::RootExitScene()
+{
+	for (fox::GameObject* object : m_Objects)
+	{
+		object->SetActive(false);
+		object->SetVisibility(false);
+	}
+
+	ExitScene();
+}
+
 void fox::Scene::RootUpdate(float deltaTime)
 {
 	Update(deltaTime);

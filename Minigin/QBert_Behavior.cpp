@@ -28,8 +28,7 @@ void QBert_Behavior::Update(float )
 
 	if (m_pGridMovement->RespawnAfterFall())
 	{
-		HasDied = true;
-		m_pGridMovement->SpawnOnTileIndex(0);
+		Die();
 	}
 }
 
@@ -57,4 +56,10 @@ void QBert_Behavior::SetIdleTexture()
 		m_pQBertTexture->SetTexture("QBert/QBertUpRight_Idle.png");
 		break;
 	}
+}
+
+void QBert_Behavior::Die()
+{
+	Reset();
+	HasDied = true;
 }

@@ -16,13 +16,12 @@ RectColliderComponent::RectColliderComponent(GameObject* owner, FVector2 positio
 	, m_Dimensions{ widhtHeight }
 	, m_Id{}
 {
-	ColliderManager::GetInstance().RegisterColliderComponent(this);
+	m_Id = ColliderManager::GetInstance().RegisterColliderComponent(this);
 }
 
 RectColliderComponent::RectColliderComponent(GameObject* owner, FVector2 position, float width, float height)
 	: RectColliderComponent{owner, position, {width, height}}
 {
-
 }
 
 RectColliderComponent::RectColliderComponent(GameObject* owner, float x, float y, float width, float height)

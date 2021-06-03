@@ -21,6 +21,9 @@ namespace fox
 		virtual void FixedUpdate(float ) {};
 		virtual void LateUpdate(float ) {};
 		virtual void Render() const {};
+
+		void RootEnterScene();
+		void RootExitScene();
 		
 		void RootUpdate(float );
 		void RootFixedUpdate(float );

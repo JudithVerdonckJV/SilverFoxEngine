@@ -19,7 +19,7 @@ public:
 		SceneManager::GetInstance().AddScene<Level2>("Level2");
 		SceneManager::GetInstance().AddScene<Level3>("Level3");
 
-		SceneManager::GetInstance().SetActiveScene("Level1");
+		SceneManager::GetInstance().SetActiveScene("Level2");
 	};
 
 	~SceneSetup() = default;

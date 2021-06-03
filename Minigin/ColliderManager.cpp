@@ -1,6 +1,8 @@
 #include "MiniginPCH.h"
 #include "ColliderManager.h"
 
+#include "GameObject.h"
+
 #include "RectColliderComponent.h"
 
 using namespace fox;
@@ -13,7 +15,7 @@ ColliderManager::ColliderManager()
 int ColliderManager::RegisterColliderComponent(RectColliderComponent* collider)
 {
 	m_pColliders.push_back(collider);
-	return (int)m_pColliders.size();
+	return (int)m_pColliders.size() - 1;
 }
 
 void ColliderManager::TriggerOverlapEventsFromComponent(int id)
@@ -21,6 +23,7 @@ void ColliderManager::TriggerOverlapEventsFromComponent(int id)
 	for (int i{}; i < (int)m_pColliders.size(); ++i)
 	{
 		if (i == id) continue;
+		if (!m_pColliders[i]->GetOwner()->IsActive()) continue;
 
 		if (IsOverlapping(id, i) || IsOverlapping(i, id))
 		{

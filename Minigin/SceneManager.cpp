@@ -33,12 +33,12 @@ void fox::SceneManager::Render()
 
 void fox::SceneManager::SetActiveScene(const std::string& name)
 {
-	m_pScenesMap[m_ActiveScene]->ExitScene();
+	m_pScenesMap[m_ActiveScene]->RootExitScene();
 	
 	const auto it{ m_pScenesMap.find(name) };
 
 	if (it != m_pScenesMap.end()) m_ActiveScene = name;
 	else throw "SceneManager, SetActiveScene: Scene does not exist!";
 
-	m_pScenesMap[m_ActiveScene]->EnterScene();
+	m_pScenesMap[m_ActiveScene]->RootEnterScene();
 }
