@@ -37,3 +37,9 @@ void QBertGameInstance::SetUI(UI* ui)
 	m_pUI->UpdateHealth(m_Health);
 	m_pUI->UpdateScore(m_Score);
 }
+
+void QBertGameInstance::Reset()
+{
+	m_Score = 0;
+	m_Health = 3;
+}

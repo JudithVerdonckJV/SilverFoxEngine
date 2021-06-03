@@ -52,6 +52,12 @@
     <Filter Include="QBert\Scenes\Levels">
       <UniqueIdentifier>{833f070a-eb49-440b-9ae8-34d283f4b9c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QBert\Scenes\LevelChange">
+      <UniqueIdentifier>{0f95a88c-fd56-4b69-9ce5-3e624ad940dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QBert\Scenes\Menus">
+      <UniqueIdentifier>{a043277c-111b-4296-96c5-c2b30be55a47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h">
@@ -228,6 +234,24 @@
     <ClInclude Include="Level2.h">
       <Filter>QBert\Scenes\Levels</Filter>
     </ClInclude>
+    <ClInclude Include="LevelChange1.h">
+      <Filter>QBert\Scenes\LevelChange</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelChange2.h">
+      <Filter>QBert\Scenes\LevelChange</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelChange0.h">
+      <Filter>QBert\Scenes\LevelChange</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>QBert\Scenes\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonComponent.h">
+      <Filter>QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreMenu.h">
+      <Filter>QBert\Scenes\Menus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -385,6 +409,24 @@
     </ClCompile>
     <ClCompile Include="Level3.cpp">
       <Filter>QBert\Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChange1.cpp">
+      <Filter>QBert\Scenes\LevelChange</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChange2.cpp">
+      <Filter>QBert\Scenes\LevelChange</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChange0.cpp">
+      <Filter>QBert\Scenes\LevelChange</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>QBert\Scenes\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonComponent.cpp">
+      <Filter>QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreMenu.cpp">
+      <Filter>QBert\Scenes\Menus</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

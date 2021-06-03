@@ -100,4 +100,10 @@ void LevelManagerComponent::DespawnAll()
 	if (m_pSam) m_pSam->Despawn();
 	if (m_pUgg) m_pUgg->Despawn();
 	if (m_pWrongway) m_pWrongway->Despawn();
+
+	m_CurrentCoilyTimer = 0.f;
+	m_CurrentSlickTimer = 0.f;
+	m_CurrentSamTimer = 0.f;
+	m_CurrentUggTimer = 0.f;
+	m_CurrentWrongwayTimer = 0.f;
 }

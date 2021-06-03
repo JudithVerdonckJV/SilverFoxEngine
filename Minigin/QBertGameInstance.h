@@ -17,6 +17,10 @@ public:
 
 	void SetUI(UI* ui);
 
+	void Reset();
+
+	EGameModes GameMode;
+
 private:
 	friend class fox::Singleton<QBertGameInstance>;
 	QBertGameInstance();

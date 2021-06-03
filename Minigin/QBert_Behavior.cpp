@@ -35,6 +35,7 @@ void QBert_Behavior::Update(float )
 void QBert_Behavior::Reset()
 {
 	m_pGridMovement->SpawnOnTileIndex(0);
+	HasDied = false;
 }
 
 void QBert_Behavior::SetIdleTexture()

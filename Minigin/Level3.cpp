@@ -73,13 +73,13 @@ void Level3::Update(float)
 		m_pGameInstance->ChangeHealth(-1);
 		if (m_pGameInstance->GetHealth() < 0)
 		{
-			//open main menu
+			SceneManager::GetInstance().SetActiveScene("ScoreMenu");
 		}
 	}
 
 	if (m_pPlayfield->LevelFinished())
 	{
 		m_pDiscs->ScoreRemainingDiscNr();
-		SceneManager::GetInstance().SetActiveScene("Level1");
+		SceneManager::GetInstance().SetActiveScene("ScoreMenu");
 	}
 }
