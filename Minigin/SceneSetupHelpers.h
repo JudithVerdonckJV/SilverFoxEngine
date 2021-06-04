@@ -24,7 +24,7 @@
 
 using namespace fox;
 
-inline QBert_Behavior* CreateQbertObject(Scene* scene, PlayFieldComponent* playfield, DiscsComponent* discs)
+inline QBert_Behavior* CreateQbert1Object(Scene* scene, PlayFieldComponent* playfield, DiscsComponent* discs)
 {
 	GameObject* QBertObject{ new GameObject{ scene } };
 	TextureComponent* qbertTexture = new TextureComponent{ QBertObject, "QBert/QBertDownLeft_Idle.png" };
@@ -48,6 +48,34 @@ inline QBert_Behavior* CreateQbertObject(Scene* scene, PlayFieldComponent* playf
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_UP, SDL_SCANCODE_W, ButtonState::ButtonDown, &MoveUpRight);
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_LEFT, SDL_SCANCODE_A, ButtonState::ButtonDown, &MoveUpLeft);
 	QBertInput->BindAction(XINPUT_GAMEPAD_DPAD_RIGHT, SDL_SCANCODE_D, ButtonState::ButtonDown, &MoveDownRight);
+
+	return qbertBehavior;
+}
+
+inline QBert_Behavior* CreateQbert2Object(Scene* scene, PlayFieldComponent* playfield, DiscsComponent* discs)
+{
+	GameObject* QBertObject{ new GameObject{ scene } };
+	TextureComponent* qbertTexture = new TextureComponent{ QBertObject, "QBert/QBertDownLeft_Idle.png" };
+	qbertTexture->SetPivot(0.5f, 1.3f);
+	GridMovementComponent* gridMovement{ new GridMovementComponent{ QBertObject, playfield, discs } };
+	InputComponent* QBertInput{ new InputComponent{QBertObject} };
+	QBertObject->SetUserComponent(gridMovement);
+	QBert_Behavior* qbertBehavior = new QBert_Behavior{ QBertObject, gridMovement };
+	RectColliderComponent* qbertColl = new RectColliderComponent{ QBertObject };
+	qbertColl->SetDimensions({ 15.f, 15.f });
+	qbertColl->SetRelativePosition({ 7.5f, 35.f });
+	qbertColl->SetOverlapCallback([qbertBehavior](GameObject* other)
+		{
+			if (other->GetComponent<Coily_Behavior>() || other->GetComponent<Ugg_Behavior>() || other->GetComponent<Wrongway_Behavior>())
+			{
+				qbertBehavior->Die();
+			}
+		});
+
+	QBertInput->BindAction(XINPUT_GAMEPAD_A, SDL_SCANCODE_DOWN, ButtonState::ButtonDown, &MoveDownLeft);
+	QBertInput->BindAction(XINPUT_GAMEPAD_Y, SDL_SCANCODE_UP, ButtonState::ButtonDown, &MoveUpRight);
+	QBertInput->BindAction(XINPUT_GAMEPAD_X, SDL_SCANCODE_LEFT, ButtonState::ButtonDown, &MoveUpLeft);
+	QBertInput->BindAction(XINPUT_GAMEPAD_B, SDL_SCANCODE_RIGHT, ButtonState::ButtonDown, &MoveDownRight);
 
 	return qbertBehavior;
 }
@@ -133,13 +161,13 @@ inline SlickAndSam_Behavior* CreateSamObject(Scene* scene, PlayFieldComponent* p
 	return samBehavior;
 }
 
-inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver, GameObject* qbert)
+inline Coily_Behavior* CreateAICoilyObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver, GameObject* qbert)
 {
 	GameObject* coilyObject{ new GameObject{scene} };
 	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily/CoilyEgg_Idle.png"} };
 	coilytexture->SetPivot(0.5f, 1.3f);
 	GridMovementComponent* coilyGridMovement{ new GridMovementComponent{coilyObject, playfield, nullptr} };
-	Coily_Behavior* coilyBehavior = new Coily_Behavior{ coilyObject, coilyGridMovement, qbert };
+	Coily_Behavior* coilyBehavior = new Coily_Behavior{ coilyObject, coilyGridMovement, qbert, false };
 	RectColliderComponent* coilyColl = new RectColliderComponent{ coilyObject };
 	coilyColl->SetDimensions({ 15.f, 15.f });
 	coilyColl->SetRelativePosition({ 10.f, 35.f });
@@ -147,6 +175,32 @@ inline Coily_Behavior* CreateCoilyObject(Scene* scene, PlayFieldComponent* playf
 
 	SubjectComponent* subject{ new SubjectComponent{coilyObject} };
 	subject->AddObserver(scoreObserver);
+
+	return coilyBehavior;
+}
+
+inline Coily_Behavior* CreatePlayerCoilyObject(Scene* scene, PlayFieldComponent* playfield, ScoreObserver* scoreObserver, GameObject* qbert)
+{
+	GameObject* coilyObject{ new GameObject{scene} };
+	TextureComponent* coilytexture{ new TextureComponent{coilyObject, "Coily/CoilyEgg_Idle.png"} };
+	coilytexture->SetPivot(0.5f, 1.3f);
+	GridMovementComponent* coilyGridMovement{ new GridMovementComponent{coilyObject, playfield, nullptr} };
+	coilyGridMovement->SetSpeed(100.f);
+	coilyObject->SetUserComponent(coilyGridMovement);
+	InputComponent* coilyInput{ new InputComponent{coilyObject} };
+	Coily_Behavior* coilyBehavior = new Coily_Behavior{ coilyObject, coilyGridMovement, qbert, true };
+	RectColliderComponent* coilyColl = new RectColliderComponent{ coilyObject };
+	coilyColl->SetDimensions({ 15.f, 15.f });
+	coilyColl->SetRelativePosition({ 10.f, 35.f });
+	coilyColl->SetOverlapCallback([](GameObject*) {});
+
+	SubjectComponent* subject{ new SubjectComponent{coilyObject} };
+	subject->AddObserver(scoreObserver);
+
+	coilyInput->BindAction(XINPUT_GAMEPAD_A, SDL_SCANCODE_DOWN, ButtonState::ButtonDown, &MoveDownLeft);
+	coilyInput->BindAction(XINPUT_GAMEPAD_Y, SDL_SCANCODE_UP, ButtonState::ButtonDown, &MoveUpRight);
+	coilyInput->BindAction(XINPUT_GAMEPAD_X, SDL_SCANCODE_LEFT, ButtonState::ButtonDown, &MoveUpLeft);
+	coilyInput->BindAction(XINPUT_GAMEPAD_B, SDL_SCANCODE_RIGHT, ButtonState::ButtonDown, &MoveDownRight);
 
 	return coilyBehavior;
 }

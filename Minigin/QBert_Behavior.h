@@ -19,6 +19,9 @@ public:
 	void Reset();
 	void Die();
 
+	void ChangeTexture(EDirection direction);
+	void SetSpawnIndex(int index);
+
 	bool HasDied;
 
 private:
@@ -26,6 +29,7 @@ private:
 	fox::TextureComponent* m_pQBertTexture;
 	int m_CurrentTileIndex;
 
+	int m_SpawnIndex;
 	void SetIdleTexture();
 };
 

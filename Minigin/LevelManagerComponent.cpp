@@ -10,9 +10,10 @@
 #include "Wrongway_Behavior.h"
 
 LevelManagerComponent::LevelManagerComponent(fox::GameObject* owner,
-	Coily_Behavior* coily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway)
+	Coily_Behavior* AICoily, Coily_Behavior* playerCoily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway)
 	: IComponent{ owner }
-	, m_pCoily{ coily }
+	, m_pAICoily{ AICoily }
+	, m_pPlayerCoily{ playerCoily }
 	, m_pSlick{ slick }
 	, m_pSam{ sam }
 	, m_pUgg{ ugg }
@@ -33,7 +34,8 @@ LevelManagerComponent::LevelManagerComponent(fox::GameObject* owner,
 	, m_CurrentWrongwayTimer{ 0.f }
 	, m_MaxWrongwayTimer{ 2.f }
 {
-	if (m_pCoily) m_pCoily->Despawn();
+	if (m_pAICoily) m_pAICoily->Despawn();
+	if (m_pPlayerCoily) m_pPlayerCoily->Despawn();
 	if (m_pSlick) m_pSlick->Despawn();
 	if (m_pSam) m_pSam->Despawn();
 	if (m_pUgg) m_pUgg->Despawn();
@@ -42,13 +44,23 @@ LevelManagerComponent::LevelManagerComponent(fox::GameObject* owner,
 
 void LevelManagerComponent::Update(float dt)
 {
-	if (m_pCoily && !m_pCoily->GetOwner()->IsActive())
+	if (!m_IsCoilyPlayer && m_pAICoily && !m_pAICoily->GetOwner()->IsActive())
 	{
 		m_CurrentCoilyTimer += dt;
 		if (m_CurrentCoilyTimer > m_MaxCoilyTimer)
 		{
 			m_CurrentCoilyTimer = 0.f;
-			m_pCoily->Spawn();
+			m_pAICoily->Spawn();
+		}
+	}
+
+	if (m_IsCoilyPlayer && m_pPlayerCoily && !m_pPlayerCoily->GetOwner()->IsActive())
+	{
+		m_CurrentCoilyTimer += dt;
+		if (m_CurrentCoilyTimer > m_MaxCoilyTimer)
+		{
+			m_CurrentCoilyTimer = 0.f;
+			m_pPlayerCoily->Spawn();
 		}
 	}
 
@@ -95,7 +107,8 @@ void LevelManagerComponent::Update(float dt)
 
 void LevelManagerComponent::DespawnAll()
 {
-	if (m_pCoily) m_pCoily->Despawn();
+	if (m_pAICoily) m_pAICoily->Despawn();
+	if (m_pPlayerCoily) m_pPlayerCoily->Despawn();
 	if (m_pSlick) m_pSlick->Despawn();
 	if (m_pSam) m_pSam->Despawn();
 	if (m_pUgg) m_pUgg->Despawn();
@@ -106,4 +119,9 @@ void LevelManagerComponent::DespawnAll()
 	m_CurrentSamTimer = 0.f;
 	m_CurrentUggTimer = 0.f;
 	m_CurrentWrongwayTimer = 0.f;
+}
+
+void LevelManagerComponent::CoilyIsPlayer(bool isPlayer)
+{
+	m_IsCoilyPlayer = isPlayer;
 }

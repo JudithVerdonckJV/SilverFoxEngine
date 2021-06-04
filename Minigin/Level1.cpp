@@ -37,15 +37,17 @@ void Level1::LoadScene()
 	SubjectComponent* discSubject{ new SubjectComponent{discsObject} };
 	discSubject->AddObserver(scoreObserver);
 
-	//PLAYER(S)
-	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
+	//PLAYERS
+	m_pQBert1 = CreateQbert1Object(this, m_pPlayfield, m_pDiscs);
+	m_pQBert2 = CreateQbert2Object(this, m_pPlayfield, m_pDiscs);
+	m_PlayerCoily = CreatePlayerCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert1->GetOwner());
 
 	//ENEMIES
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
+	m_AICoily = CreateAICoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert1->GetOwner());
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
-	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, nullptr, nullptr, nullptr, nullptr };
+	m_pLevelManager = new LevelManagerComponent{ levelObject, m_AICoily, m_PlayerCoily, nullptr, nullptr, nullptr, nullptr };
 
 	//UI
 	m_pUI = CreateUIObject(this);
@@ -56,15 +58,40 @@ void Level1::EnterScene()
 	m_pLevelManager->DespawnAll();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
-	m_pQBert->Reset();
 	m_pGameInstance->SetUI(m_pUI);
+
+	EGameModes mode = m_pGameInstance->GameMode;
+
+	switch (mode)
+	{
+	case EGameModes::Single:
+		m_pQBert2->GetOwner()->SetActive(false);
+		m_pQBert2->GetOwner()->SetVisibility(false);
+		m_pQBert1->SetSpawnIndex(0);
+		m_pLevelManager->CoilyIsPlayer(false);
+		break;
+	case EGameModes::Versus:
+		m_pQBert2->GetOwner()->SetActive(false);
+		m_pQBert2->GetOwner()->SetVisibility(false);
+		m_pLevelManager->CoilyIsPlayer(true);
+		break;
+	case EGameModes::Coop:
+		m_PlayerCoily->GetOwner()->SetActive(false);
+		m_PlayerCoily->GetOwner()->SetVisibility(false);
+		m_pQBert1->SetSpawnIndex(21);
+		m_pQBert2->SetSpawnIndex(27);		
+		break;
+	}
+
+	m_pQBert1->Reset();
+	m_pQBert2->Reset();
 }
 
 void Level1::Update(float)
 {
-	if (m_pQBert->HasDied)
+	if (m_pQBert1->HasDied)
 	{
-		m_pQBert->HasDied = false;
+		m_pQBert1->HasDied = false;
 		m_pLevelManager->DespawnAll();
 
 		m_pGameInstance->ChangeHealth(-1);

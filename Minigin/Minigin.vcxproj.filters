@@ -171,9 +171,6 @@
     <ClInclude Include="QBert_Behavior.h">
       <Filter>QBert\QBert</Filter>
     </ClInclude>
-    <ClInclude Include="Actions.h">
-      <Filter>QBert\QBert</Filter>
-    </ClInclude>
     <ClInclude Include="GridMovementComponent.h">
       <Filter>QBert\Grid</Filter>
     </ClInclude>
@@ -251,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="ScoreMenu.h">
       <Filter>QBert\Scenes\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>QBert</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

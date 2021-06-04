@@ -4,6 +4,7 @@
 class PlayFieldComponent;
 class DiscsComponent;
 class QBert_Behavior;
+class Coily_Behavior;
 class LevelManagerComponent;
 class UI;
 
@@ -22,7 +23,10 @@ public:
 private:
 	PlayFieldComponent* m_pPlayfield;
 	DiscsComponent* m_pDiscs;
-	QBert_Behavior* m_pQBert;
+	QBert_Behavior* m_pQBert1;
+	QBert_Behavior* m_pQBert2;
+	Coily_Behavior* m_AICoily;
+	Coily_Behavior* m_PlayerCoily;
 	LevelManagerComponent* m_pLevelManager;
 	UI* m_pUI;
 

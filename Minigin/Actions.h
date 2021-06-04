@@ -3,7 +3,9 @@
 
 #include "IComponent.h"
 #include "GridMovementComponent.h"
-#include "TextureComponent.h"
+
+#include "QBert_Behavior.h"
+#include "Coily_Behavior.h"
 
 #include "ServiceLocator.h"
 
@@ -16,7 +18,11 @@ inline void MoveDownLeft(fox::GameObject* owner)
 {
 	if (!static_cast<GridMovementComponent*>(owner->GetUserComponent())->IsMoving())
 	{
-		owner->GetComponent<fox::TextureComponent>()->SetTexture("QBert/QBertDownLeft_Jump.png");
+		QBert_Behavior* qbert = owner->GetComponent<QBert_Behavior>();
+		if (qbert) qbert->ChangeTexture(EDirection::DownLeft);
+		Coily_Behavior* coily = owner->GetComponent<Coily_Behavior>();
+		if (coily && coily->IsEgg()) return;
+		if (coily) coily->ChangeTexture(EDirection::DownLeft);
 	}
 	static_cast<GridMovementComponent*>(owner->GetUserComponent())->Move(EDirection::DownLeft);
 }
@@ -25,7 +31,11 @@ inline void MoveUpLeft(fox::GameObject* owner)
 {
 	if (!static_cast<GridMovementComponent*>(owner->GetUserComponent())->IsMoving())
 	{
-		owner->GetComponent<fox::TextureComponent>()->SetTexture("QBert/QBertUpLeft_Jump.png");
+		QBert_Behavior* qbert = owner->GetComponent<QBert_Behavior>();
+		if (qbert) qbert->ChangeTexture(EDirection::UpLeft);
+		Coily_Behavior* coily = owner->GetComponent<Coily_Behavior>();
+		if (coily && coily->IsEgg()) return;
+		if (coily) coily->ChangeTexture(EDirection::UpLeft);
 	}
 	static_cast<GridMovementComponent*>(owner->GetUserComponent())->Move(EDirection::UpLeft);
 }
@@ -34,7 +44,11 @@ inline void MoveDownRight(fox::GameObject* owner)
 {
 	if (!static_cast<GridMovementComponent*>(owner->GetUserComponent())->IsMoving())
 	{
-		owner->GetComponent<fox::TextureComponent>()->SetTexture("QBert/QBertDownRight_Jump.png");
+		QBert_Behavior* qbert = owner->GetComponent<QBert_Behavior>();
+		if (qbert) qbert->ChangeTexture(EDirection::DownRight);
+		Coily_Behavior* coily = owner->GetComponent<Coily_Behavior>();
+		if (coily && coily->IsEgg()) return;
+		if (coily) coily->ChangeTexture(EDirection::DownRight);
 	}
 	static_cast<GridMovementComponent*>(owner->GetUserComponent())->Move(EDirection::DownRight);
 }
@@ -43,7 +57,11 @@ inline void MoveUpRight(fox::GameObject* owner)
 {
 	if (!static_cast<GridMovementComponent*>(owner->GetUserComponent())->IsMoving())
 	{
-		owner->GetComponent<fox::TextureComponent>()->SetTexture("QBert/QBertUpRight_Jump.png");
+		QBert_Behavior* qbert = owner->GetComponent<QBert_Behavior>();
+		if (qbert) qbert->ChangeTexture(EDirection::UpRight);
+		Coily_Behavior* coily = owner->GetComponent<Coily_Behavior>();
+		if (coily && coily->IsEgg()) return;
+		if (coily) coily->ChangeTexture(EDirection::UpRight);
 	}
 	static_cast<GridMovementComponent*>(owner->GetUserComponent())->Move(EDirection::UpRight);
 }

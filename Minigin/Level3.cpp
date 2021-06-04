@@ -37,18 +37,20 @@ void Level3::LoadScene()
 	discSubject->AddObserver(scoreObserver);
 
 	//PLAYER(S)
-	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
+	m_pQBert1 = CreateQbert1Object(this, m_pPlayfield, m_pDiscs);
+	m_pQBert2 = CreateQbert2Object(this, m_pPlayfield, m_pDiscs);
+	m_PlayerCoily = CreatePlayerCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert1->GetOwner());
 
 	//ENEMIES
 	Ugg_Behavior* uggBehavior = CreateUggObject(this, m_pPlayfield);
 	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, m_pPlayfield);
 	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
 	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
+	m_AICoily = CreateAICoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert1->GetOwner());
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
-	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
+	m_pLevelManager = new LevelManagerComponent{ levelObject, m_AICoily, m_PlayerCoily, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
 
 	//UI
 	m_pUI = CreateUIObject(this);
@@ -57,17 +59,42 @@ void Level3::LoadScene()
 void Level3::EnterScene()
 {
 	m_pLevelManager->DespawnAll();
-	m_pQBert->Reset();
 	m_pPlayfield->Reset();
 	m_pDiscs->Reset();
 	m_pGameInstance->SetUI(m_pUI);
+
+	EGameModes mode = m_pGameInstance->GameMode;
+
+	switch (mode)
+	{
+	case EGameModes::Single:
+		m_pQBert2->GetOwner()->SetActive(false);
+		m_pQBert2->GetOwner()->SetVisibility(false);
+		m_pQBert1->SetSpawnIndex(0);
+		m_pLevelManager->CoilyIsPlayer(false);
+		break;
+	case EGameModes::Versus:
+		m_pQBert2->GetOwner()->SetActive(false);
+		m_pQBert2->GetOwner()->SetVisibility(false);
+		m_pLevelManager->CoilyIsPlayer(true);
+		break;
+	case EGameModes::Coop:
+		m_PlayerCoily->GetOwner()->SetActive(false);
+		m_PlayerCoily->GetOwner()->SetVisibility(false);
+		m_pQBert1->SetSpawnIndex(21);
+		m_pQBert2->SetSpawnIndex(27);
+		break;
+	}
+
+	m_pQBert1->Reset();
+	m_pQBert2->Reset();
 }
 
 void Level3::Update(float)
 {
-	if (m_pQBert->HasDied)
+	if (m_pQBert1->HasDied)
 	{
-		m_pQBert->HasDied = false;
+		m_pQBert1->HasDied = false;
 		m_pLevelManager->DespawnAll();
 
 		m_pGameInstance->ChangeHealth(-1);

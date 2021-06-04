@@ -14,15 +14,18 @@ class Wrongway_Behavior;
 class LevelManagerComponent final : public fox::IComponent
 {
 public:
-	LevelManagerComponent(fox::GameObject* owner, Coily_Behavior* coily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway);
+	LevelManagerComponent(fox::GameObject* owner, Coily_Behavior* AICoily, Coily_Behavior* playerCoily, SlickAndSam_Behavior* slick, SlickAndSam_Behavior* sam, Ugg_Behavior* ugg, Wrongway_Behavior* wrongway);
 	~LevelManagerComponent() = default;
 
 	virtual void Update(float dt) override;
 
 	void DespawnAll();
 
+	void CoilyIsPlayer(bool isPlayer);
+
 private:
-	Coily_Behavior* m_pCoily;
+	Coily_Behavior* m_pAICoily;
+	Coily_Behavior* m_pPlayerCoily;
 	SlickAndSam_Behavior* m_pSlick;
 	SlickAndSam_Behavior* m_pSam;
 	Ugg_Behavior* m_pUgg;
@@ -42,4 +45,6 @@ private:
 
 	float m_CurrentWrongwayTimer;
 	float m_MaxWrongwayTimer;
+
+	bool m_IsCoilyPlayer;
 };

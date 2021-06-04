@@ -38,18 +38,18 @@ void DemoScene::LoadScene()
 
 
 	//PLAYER(S)
-	m_pQBert = CreateQbertObject(this, m_pPlayfield, m_pDiscs);
+	m_pQBert = CreateQbert1Object(this, m_pPlayfield, m_pDiscs);
 
 	//ENEMIES
 	Ugg_Behavior* uggBehavior = CreateUggObject(this, m_pPlayfield);
 	Wrongway_Behavior* wrongwayBehavior = CreateWrongwayObject(this, m_pPlayfield);
 	SlickAndSam_Behavior* slickBehavior = CreateSlickObject(this, m_pPlayfield, scoreObserver);
 	SlickAndSam_Behavior* samBehavior = CreateSamObject(this, m_pPlayfield, scoreObserver);
-	Coily_Behavior* coilyBehavior = CreateCoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
+	Coily_Behavior* coilyBehavior = CreateAICoilyObject(this, m_pPlayfield, scoreObserver, m_pQBert->GetOwner());
 
 	//ENEMYMANAGER
 	GameObject* levelObject = new GameObject{ this };
-	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
+	m_pLevelManager = new LevelManagerComponent{ levelObject, coilyBehavior, nullptr, slickBehavior, samBehavior, uggBehavior, wrongwayBehavior };
 
 	//UI
 	GameObject* uiObject{ new GameObject{this} };

@@ -1,8 +1,9 @@
 #include "MiniginPCH.h"
 #include "InputComponent.h"
 #include "InputManager.h"
+#include "GameObject.h"
 
-using GamepadButtonInfo = std::pair<const SHORT, fox::ActionCommand>;
+using GamepadButtonInfo = std::pair<const int, fox::ActionCommand>;
 using KeyboardButtonInfo = std::pair<const int, fox::ActionCommand>;
 
 fox::InputComponent::InputComponent(GameObject* owner)
@@ -15,22 +16,24 @@ fox::InputComponent::InputComponent(GameObject* owner)
 
 void fox::InputComponent::ProcessInput()
 {
-		InputManager& inputManager = InputManager::GetInstance();
+	//if (!m_Owner->IsActive()) return;
 	
-		for (GamepadButtonInfo& action : m_GamepadActionCommands)
-		{
-			bool pressed = inputManager.IsPressed(action.first);
-			action.second.Execute(pressed);
-		}
+	InputManager& inputManager = InputManager::GetInstance();
+	
+	for (GamepadButtonInfo& action : m_GamepadActionCommands)
+	{
+		bool pressed = inputManager.IsPressed(action.first);
+		action.second.Execute(pressed);
+	}
 
-		for (KeyboardButtonInfo& action : m_KeyboardActionCommands)
-		{
-			bool pressed = inputManager.IsPressed(action.first);
-			action.second.Execute(pressed);
-		}
+	for (KeyboardButtonInfo& action : m_KeyboardActionCommands)
+	{
+		bool pressed = inputManager.IsPressed(action.first);
+		action.second.Execute(pressed);
+	}
 }
 
-void fox::InputComponent::BindAction(SHORT gamepadButton, int keyboardKey, fox::ButtonState state, std::function<void(GameObject*)> fpAction)
+void fox::InputComponent::BindAction(int gamepadButton, int keyboardKey, fox::ButtonState state, std::function<void(GameObject*)> fpAction)
 {
 	if (gamepadButton != -1)
 	{

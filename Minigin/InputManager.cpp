@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "InputManager.h"
 #include "InputComponent.h"
+#include "GameObject.h"
 
 fox::InputManager::InputManager()
 	: m_pRegisteredInputComponents{}
