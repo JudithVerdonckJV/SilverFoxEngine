@@ -16,7 +16,7 @@ fox::InputComponent::InputComponent(GameObject* owner)
 
 void fox::InputComponent::ProcessInput()
 {
-	//if (!m_Owner->IsActive()) return;
+	if (!m_Owner->IsActive()) return;
 	
 	InputManager& inputManager = InputManager::GetInstance();
 	

@@ -28,26 +28,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -124,6 +124,13 @@
 xcopy "$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86\*.dll" "$(OutputPath)" /R /Y
 xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x86;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -153,6 +160,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R 
 xcopy "$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64\*.DLL" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D </Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x64;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -185,6 +199,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
 xcopy "$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86\*.dll" "$(OutputPath)" /R /Y
 xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x86;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -220,6 +241,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R 
 xcopy "$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64\*.DLL" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D </Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x64;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imconfig.h" />
@@ -230,62 +258,35 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\Imgui_v1.81\imstb_truetype.h" />
-    <ClInclude Include="Actions.h" />
-    <ClInclude Include="ButtonComponent.h" />
-    <ClInclude Include="Coily_Behavior.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Commands.h" />
-    <ClInclude Include="DemoScene.h" />
-    <ClInclude Include="DiscsComponent.h" />
-    <ClInclude Include="Enums.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FpsComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStatics.h" />
-    <ClInclude Include="GridMovementComponent.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IObserver.h" />
-    <ClInclude Include="Level1.h" />
-    <ClInclude Include="Level2.h" />
-    <ClInclude Include="Level3.h" />
-    <ClInclude Include="LevelChange0.h" />
-    <ClInclude Include="LevelChange1.h" />
-    <ClInclude Include="LevelChange2.h" />
-    <ClInclude Include="LevelManagerComponent.h" />
-    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="ObserverManager.h" />
-    <ClInclude Include="PlayFieldComponent.h" />
-    <ClInclude Include="QBertGameInstance.h" />
-    <ClInclude Include="QBert_Behavior.h" />
     <ClInclude Include="RectColliderComponent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="SceneSetup.h" />
-    <ClInclude Include="SceneSetupHelpers.h" />
-    <ClInclude Include="ScoreMenu.h" />
-    <ClInclude Include="ScoreObserver.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="SilverFoxEngine.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="SlickAndSam_Behavior.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SubjectComponent.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureComponent.h" />
-    <ClInclude Include="TileData.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Ugg_Behavior.h" />
-    <ClInclude Include="UI.h" />
     <ClInclude Include="utils.h" />
-    <ClInclude Include="Wrongway_Behavior.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\Imgui_v1.81\imgui.cpp">
@@ -330,41 +331,21 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ButtonComponent.cpp" />
-    <ClCompile Include="Coily_Behavior.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="Commands.cpp" />
-    <ClCompile Include="DemoScene.cpp" />
-    <ClCompile Include="DiscsComponent.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FpsComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStatics.cpp" />
-    <ClCompile Include="GridMovementComponent.cpp" />
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IObserver.cpp" />
-    <ClCompile Include="Level1.cpp" />
-    <ClCompile Include="Level2.cpp" />
-    <ClCompile Include="Level3.cpp" />
-    <ClCompile Include="LevelChange0.cpp" />
-    <ClCompile Include="LevelChange1.cpp" />
-    <ClCompile Include="LevelChange2.cpp" />
-    <ClCompile Include="LevelManagerComponent.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="ObserverManager.cpp" />
-    <ClCompile Include="PlayFieldComponent.cpp" />
-    <ClCompile Include="QBertGameInstance.cpp" />
-    <ClCompile Include="QBert_Behavior.cpp" />
     <ClCompile Include="RectColliderComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SceneSetup.cpp" />
-    <ClCompile Include="ScoreMenu.cpp" />
-    <ClCompile Include="ScoreObserver.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="SilverFoxEngine.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
@@ -376,17 +357,12 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     </ClCompile>
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="SlickAndSam_Behavior.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SubjectComponent.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TextureComponent.cpp" />
-    <ClCompile Include="TileData.cpp" />
     <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Ugg_Behavior.cpp" />
-    <ClCompile Include="UI.cpp" />
-    <ClCompile Include="Wrongway_Behavior.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

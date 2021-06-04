@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <map>
+#include <cassert>
 #include "../3rdParty/Simple-SDL2-Audio-master/src/audio.h"
 
 using sound_id = unsigned short;

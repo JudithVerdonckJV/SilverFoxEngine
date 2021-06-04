@@ -22,41 +22,11 @@
     <Filter Include="Imgui">
       <UniqueIdentifier>{b24f83aa-a367-462a-a03e-c04eab5809ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="QBert">
-      <UniqueIdentifier>{fe03ccc0-43a8-42a0-b1fe-fae76c5041a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Base">
       <UniqueIdentifier>{3bff3570-a113-45fb-9fb9-8b97c99f297b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Helpers">
       <UniqueIdentifier>{20e416b6-5b36-4206-99b3-5ee30184c2cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\QBert">
-      <UniqueIdentifier>{95151d24-8777-44e7-a45d-91c0a0d6fe09}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\Grid">
-      <UniqueIdentifier>{4e698f4e-8efd-4d84-a1b5-7db017ad8cde}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\Scenes">
-      <UniqueIdentifier>{7d0978b7-3171-4c56-950b-852b50b8c25a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\UggAndWrongway">
-      <UniqueIdentifier>{ab271425-a0e1-402d-8560-d781e6c3b72c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\SlickAndSam">
-      <UniqueIdentifier>{7868a786-6e9d-412c-8ef7-a4260bf1087a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\Coily">
-      <UniqueIdentifier>{95c4e63b-b253-48c6-9901-38ea1b7b28bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\Scenes\Levels">
-      <UniqueIdentifier>{833f070a-eb49-440b-9ae8-34d283f4b9c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\Scenes\LevelChange">
-      <UniqueIdentifier>{0f95a88c-fd56-4b69-9ce5-3e624ad940dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QBert\Scenes\Menus">
-      <UniqueIdentifier>{a043277c-111b-4296-96c5-c2b30be55a47}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,92 +135,11 @@
     <ClInclude Include="MoveComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Enums.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="QBert_Behavior.h">
-      <Filter>QBert\QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="GridMovementComponent.h">
-      <Filter>QBert\Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayFieldComponent.h">
-      <Filter>QBert\Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="TileData.h">
-      <Filter>QBert\Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSetup.h">
-      <Filter>QBert\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="DemoScene.h">
-      <Filter>QBert\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Ugg_Behavior.h">
-      <Filter>QBert\UggAndWrongway</Filter>
-    </ClInclude>
-    <ClInclude Include="Wrongway_Behavior.h">
-      <Filter>QBert\UggAndWrongway</Filter>
-    </ClInclude>
-    <ClInclude Include="SlickAndSam_Behavior.h">
-      <Filter>QBert\SlickAndSam</Filter>
-    </ClInclude>
     <ClInclude Include="RectColliderComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="ColliderManager.h">
       <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Coily_Behavior.h">
-      <Filter>QBert\Coily</Filter>
-    </ClInclude>
-    <ClInclude Include="DiscsComponent.h">
-      <Filter>QBert\Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelManagerComponent.h">
-      <Filter>QBert\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSetupHelpers.h">
-      <Filter>QBert\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="QBertGameInstance.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreObserver.h">
-      <Filter>QBert\QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="Level3.h">
-      <Filter>QBert\Scenes\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="Level1.h">
-      <Filter>QBert\Scenes\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="Level2.h">
-      <Filter>QBert\Scenes\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelChange1.h">
-      <Filter>QBert\Scenes\LevelChange</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelChange2.h">
-      <Filter>QBert\Scenes\LevelChange</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelChange0.h">
-      <Filter>QBert\Scenes\LevelChange</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>QBert\Scenes\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonComponent.h">
-      <Filter>QBert</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreMenu.h">
-      <Filter>QBert\Scenes\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions.h">
-      <Filter>QBert</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,9 +224,6 @@
     <ClCompile Include="IObserver.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="MiniginPCH.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -350,83 +236,11 @@
     <ClCompile Include="MoveComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="QBert_Behavior.cpp">
-      <Filter>QBert\QBert</Filter>
-    </ClCompile>
-    <ClCompile Include="GridMovementComponent.cpp">
-      <Filter>QBert\Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayFieldComponent.cpp">
-      <Filter>QBert\Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="TileData.cpp">
-      <Filter>QBert\Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneSetup.cpp">
-      <Filter>QBert\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="DemoScene.cpp">
-      <Filter>QBert\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Ugg_Behavior.cpp">
-      <Filter>QBert\UggAndWrongway</Filter>
-    </ClCompile>
-    <ClCompile Include="Wrongway_Behavior.cpp">
-      <Filter>QBert\UggAndWrongway</Filter>
-    </ClCompile>
-    <ClCompile Include="SlickAndSam_Behavior.cpp">
-      <Filter>QBert\SlickAndSam</Filter>
-    </ClCompile>
     <ClCompile Include="RectColliderComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="ColliderManager.cpp">
       <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Coily_Behavior.cpp">
-      <Filter>QBert\Coily</Filter>
-    </ClCompile>
-    <ClCompile Include="DiscsComponent.cpp">
-      <Filter>QBert\Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelManagerComponent.cpp">
-      <Filter>QBert\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="QBertGameInstance.cpp">
-      <Filter>QBert</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreObserver.cpp">
-      <Filter>QBert\QBert</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>QBert</Filter>
-    </ClCompile>
-    <ClCompile Include="Level1.cpp">
-      <Filter>QBert\Scenes\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="Level2.cpp">
-      <Filter>QBert\Scenes\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="Level3.cpp">
-      <Filter>QBert\Scenes\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelChange1.cpp">
-      <Filter>QBert\Scenes\LevelChange</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelChange2.cpp">
-      <Filter>QBert\Scenes\LevelChange</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelChange0.cpp">
-      <Filter>QBert\Scenes\LevelChange</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>QBert\Scenes\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="ButtonComponent.cpp">
-      <Filter>QBert</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreMenu.cpp">
-      <Filter>QBert\Scenes\Menus</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

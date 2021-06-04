@@ -15,22 +15,22 @@
 #include "GameObject.h"
 #include "Scene.h"
 
-#include "SceneSetup.h"
-
 using namespace std;
 using namespace std::chrono;
 
 void fox::SilverFoxEngine::Initialize()
 {
 	m_msPerFrame = 1.f / 60.f;
-	srand((unsigned int)time);
+	srand((unsigned int)time(NULL));
 
 	InitSDL();
+
+	ResourceManager::GetInstance().Init("../Data/");
 }
 
 void fox::SilverFoxEngine::LoadGame() const
 {
-	SceneSetup sceneSetup{};
+
 }
 
 void fox::SilverFoxEngine::Cleanup()
@@ -43,15 +43,9 @@ void fox::SilverFoxEngine::Cleanup()
 
 void fox::SilverFoxEngine::Run()
 {
-	Initialize();
-
-	ResourceManager::GetInstance().Init("../Data/");
-
 	Renderer& renderer{ Renderer::GetInstance() };
 	SceneManager& sceneManager{ SceneManager::GetInstance() };
 	InputManager& input{ InputManager::GetInstance() };
-
-	LoadGame();
 
 	{
 		bool doContinue { true };

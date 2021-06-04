@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Characters">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Scenes\Levels">
+      <UniqueIdentifier>{898ee42d-c01f-44e9-be04-4d1d968cc58a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\LevelChanges">
+      <UniqueIdentifier>{a56a5cb3-24a4-4e33-8d2a-60303f7e090d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Menus">
+      <UniqueIdentifier>{886a3c9a-ef70-483f-81e6-5df79d1fb8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\QBert">
+      <UniqueIdentifier>{f5f42d5f-a4d3-40bb-9feb-eb0521ae55f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\Coily">
+      <UniqueIdentifier>{064fe24d-75bc-4a0f-92cb-a48006fa4761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\UggWrongway">
+      <UniqueIdentifier>{00615505-ee9a-4bc7-97d5-af6333549f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\SlickSam">
+      <UniqueIdentifier>{3fa05a7e-0bd5-405b-9156-7c307d3223f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Grid">
+      <UniqueIdentifier>{c09c3186-7336-46e7-a883-be7ed5fdb514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{761fe3d8-852d-4769-88cd-a53025050207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{65d3c20f-71f5-4875-bcb1-ab677e917187}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ScoreObserver.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Coily_Behavior.cpp">
+      <Filter>Characters\Coily</Filter>
+    </ClCompile>
+    <ClCompile Include="QBert_Behavior.cpp">
+      <Filter>Characters\QBert</Filter>
+    </ClCompile>
+    <ClCompile Include="SlickAndSam_Behavior.cpp">
+      <Filter>Characters\SlickSam</Filter>
+    </ClCompile>
+    <ClCompile Include="Ugg_Behavior.cpp">
+      <Filter>Characters\UggWrongway</Filter>
+    </ClCompile>
+    <ClCompile Include="Wrongway_Behavior.cpp">
+      <Filter>Characters\UggWrongway</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChange0.cpp">
+      <Filter>Scenes\LevelChanges</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChange1.cpp">
+      <Filter>Scenes\LevelChanges</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChange2.cpp">
+      <Filter>Scenes\LevelChanges</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Scenes\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreMenu.cpp">
+      <Filter>Scenes\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayFieldComponent.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GridMovementComponent.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscsComponent.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="TileData.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManagerComponent.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="QBertGameInstance.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="QBertGame.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSetup.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonComponent.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LevelManagerComponent.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSetup.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSetupHelpers.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2.h">
+      <Filter>Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelChange0.h">
+      <Filter>Scenes\LevelChanges</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelChange1.h">
+      <Filter>Scenes\LevelChanges</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelChange2.h">
+      <Filter>Scenes\LevelChanges</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreMenu.h">
+      <Filter>Scenes\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Scenes\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Wrongway_Behavior.h">
+      <Filter>Characters\UggWrongway</Filter>
+    </ClInclude>
+    <ClInclude Include="Ugg_Behavior.h">
+      <Filter>Characters\UggWrongway</Filter>
+    </ClInclude>
+    <ClInclude Include="QBert_Behavior.h">
+      <Filter>Characters\QBert</Filter>
+    </ClInclude>
+    <ClInclude Include="Coily_Behavior.h">
+      <Filter>Characters\Coily</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayFieldComponent.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridMovementComponent.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="TileData.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="SlickAndSam_Behavior.h">
+      <Filter>Characters\SlickSam</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscsComponent.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreObserver.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="QBertGameInstance.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonComponent.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>other</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
