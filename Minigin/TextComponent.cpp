@@ -67,18 +67,15 @@ void fox::TextComponent::SetSize(int size)
 
 void fox::TextComponent::CreateTexture()
 {
-	delete m_pFont;
-	//if (m_pTexture) delete m_pTexture;
+	if (m_pFont) delete m_pFont;
+	if (m_pTexture) delete m_pTexture;
 	
 	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontPath, m_Size);
-	if (m_pFont == nullptr) throw "Font not initialized";
 	
 	SDL_Surface* surface = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), m_Color);
-	if (surface == nullptr) throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
-
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(Renderer::GetInstance().GetSDLRenderer(), surface);
-	if (texture == nullptr) throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
 
-	SDL_FreeSurface(surface);
 	m_pTexture = new Texture2D{ texture };
+	
+	SDL_FreeSurface(surface);
 }

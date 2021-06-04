@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "GamePch.h"
 #include "DemoScene.h"
 
 #include "SceneManager.h"

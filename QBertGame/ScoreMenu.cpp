@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "GamePch.h"
 #include "ScoreMenu.h"
 
 #include "GameObject.h"

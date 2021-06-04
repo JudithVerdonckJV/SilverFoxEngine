@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "GamePch.h"
 #include "QBertGameInstance.h"
 #include "UI.h"
 
@@ -6,6 +6,7 @@ QBertGameInstance::QBertGameInstance()
 	: m_Health{}
 	, m_Score{}
 	, m_pUI{}
+	, GameMode{}
 {
 }
 

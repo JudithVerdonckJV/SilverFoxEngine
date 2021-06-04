@@ -21,7 +21,6 @@ class SceneSetup final
 public:
 	SceneSetup()
 	{
-
 		SceneManager::GetInstance().AddScene<Level1>("Level1");
 		SceneManager::GetInstance().AddScene<Level2>("Level2");
 		SceneManager::GetInstance().AddScene<Level3>("Level3");

@@ -1,4 +1,9 @@
 #include <iostream>
+# ifdef _DEBUG
+#include <vld.h>
+#endif
+#include "GamePch.h"
+
 #include <SilverFoxEngine.h>
 
 #include "SceneSetup.h"

@@ -1,4 +1,7 @@
-#include "MiniginPCH.h"
+#include "GamePch.h"
+
+#include <SDL.h>
+
 #include "ButtonComponent.h"
 #include "GameObject.h"
 

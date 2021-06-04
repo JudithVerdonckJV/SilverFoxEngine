@@ -116,6 +116,9 @@
     <ClCompile Include="ButtonComponent.cpp">
       <Filter>other</Filter>
     </ClCompile>
+    <ClCompile Include="GamePch.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelManagerComponent.h">
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="Enums.h">
       <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePch.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

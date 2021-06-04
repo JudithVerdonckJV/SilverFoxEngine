@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <map>
 #include <cassert>
 #include "../3rdParty/Simple-SDL2-Audio-master/src/audio.h"
@@ -12,8 +11,6 @@ struct PlayMessage
 	sound_id id;
 	int volume;
 };
-
-
 
 class SoundSystem
 {
@@ -58,9 +55,9 @@ public:
 
 			for (int i{ head_ }; i != tail_; i = (i + 1) % MAX_PENDING)
 			{
-				if (pending_[(UINT)i].id == id)
+				if (pending_[(unsigned int)i].id == id)
 				{
-					pending_[(UINT)i].volume = (int)max(volume, pending_[(UINT)i].volume);
+					//pending_[(unsigned int)i].volume = (int)max(volume, pending_[(unsigned int)i].volume);
 					return;
 				}
 			}

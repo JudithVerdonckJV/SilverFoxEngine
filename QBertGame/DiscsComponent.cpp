@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "GamePch.h"
 #include "DiscsComponent.h"
 #include "GameObject.h"
 #include "TextureComponent.h"

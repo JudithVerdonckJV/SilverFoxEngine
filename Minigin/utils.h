@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>
 
 struct FVector2
 {
@@ -14,7 +15,7 @@ struct FVector2
 
 	float Magnitude() const noexcept
 	{
-		return std::sqrt(x * x + y * y);
+		return std::sqrtf(x * x + y * y);
 	}
 
 	float MagnitudeSquared() const noexcept
