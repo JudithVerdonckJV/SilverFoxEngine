@@ -1,4 +1,6 @@
 #pragma once
+#include <map>
+#include <string>
 #include "Singleton.h"
 
 namespace fox
@@ -9,7 +11,8 @@ namespace fox
 	{
 	public:
 		void Init(const std::string& data);
-		Texture2D* LoadTexture(const std::string& file) const;
+		~ResourceManager();
+		Texture2D* LoadTexture(const std::string& file);
 		Font* LoadFont(const std::string& file, unsigned int size) const;
 
 	private:
@@ -17,5 +20,7 @@ namespace fox
 		ResourceManager() = default;
 
 		std::string m_DataPath;
+
+		std::map<const std::string, Texture2D*> m_TextureMap{};
 	};
 }

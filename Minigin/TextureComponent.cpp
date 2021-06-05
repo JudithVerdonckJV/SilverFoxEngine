@@ -24,7 +24,7 @@ fox::TextureComponent::TextureComponent(GameObject* owner, const std::string& pa
 
 fox::TextureComponent::~TextureComponent()
 {
-	delete m_pTexture;
+
 }
 
 void fox::TextureComponent::Render() const
@@ -41,7 +41,6 @@ void fox::TextureComponent::Update(float)
 
 void fox::TextureComponent::SetTexture(const std::string& texturePath)
 {
-	delete m_pTexture;
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(texturePath);
 }
 

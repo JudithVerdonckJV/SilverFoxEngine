@@ -8,6 +8,14 @@
 #include "Texture2D.h"
 #include "Font.h"
 
+fox::ResourceManager::~ResourceManager()
+{
+	for (std::pair<const std::string, Texture2D*> texture : m_TextureMap)
+	{
+		delete texture.second;
+	}
+}
+
 void fox::ResourceManager::Init(const std::string& dataPath)
 {
 	m_DataPath = dataPath;
@@ -15,6 +23,7 @@ void fox::ResourceManager::Init(const std::string& dataPath)
 	// load support for png and jpg, this takes a while!
 
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG) 
+
 	{
 		throw std::runtime_error(std::string("Failed to load support for png's: ") + SDL_GetError());
 	}
@@ -30,16 +39,24 @@ void fox::ResourceManager::Init(const std::string& dataPath)
 	}
 }
 
-fox::Texture2D* fox::ResourceManager::LoadTexture(const std::string& file) const
+fox::Texture2D* fox::ResourceManager::LoadTexture(const std::string& file)
 {
+	auto it = m_TextureMap.find(file);
+	if (it != m_TextureMap.end())
+	{
+		return it->second;
+	}
+	
 	const std::string fullPath = m_DataPath + file;
 	SDL_Texture* texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
 	if (texture == nullptr) 
 	{
 		throw std::runtime_error(std::string("Failed to load texture: ") + SDL_GetError());
 	}
-
-	return new Texture2D{ texture };
+	
+	Texture2D* tex2D = new Texture2D{ texture };
+	m_TextureMap.insert(std::pair<std::string, fox::Texture2D*>(file, tex2D));
+	return m_TextureMap[file];
 }
 
 fox::Font* fox::ResourceManager::LoadFont(const std::string& file, unsigned int size) const
