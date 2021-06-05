@@ -1,4 +1,7 @@
 #include "GamePch.h"
+
+#include "ServiceLocator.h"
+
 #include "Wrongway_Behavior.h"
 #include "GridMovementComponent.h"
 #include "GameObject.h"
@@ -45,6 +48,8 @@ void Wrongway_Behavior::Update(float dt)
 
 void Wrongway_Behavior::Spawn()
 {
+	ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::WrongwaySpawn, 100.f);
+	
 	m_Owner->SetActive(true);
 	m_Owner->SetVisibility(true);
 

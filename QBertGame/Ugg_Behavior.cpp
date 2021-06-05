@@ -1,6 +1,8 @@
 #include "GamePch.h"
 #include "Ugg_Behavior.h"
 
+#include "ServiceLocator.h"
+
 #include "GridMovementComponent.h"
 #include "GameObject.h"
 #include "Enums.h"
@@ -46,6 +48,8 @@ void Ugg_Behavior::Update(float dt)
 
 void Ugg_Behavior::Spawn()
 {
+	ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::UggSpawn, 100.f);
+	
 	m_Owner->SetActive(true);
 	m_Owner->SetVisibility(true);
 

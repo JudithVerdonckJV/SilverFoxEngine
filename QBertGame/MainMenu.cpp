@@ -51,8 +51,13 @@ void MainMenu::LoadScene()
 
 
 	//LOADING IN SOUND
-	ServiceLocator::GetSoundSystem();
-	//ss.AddSound((int)ESounds::QBertJump, "Sound/jump-3.mp3");
+	SoundSystem& ss = ServiceLocator::GetSoundSystem();
+	ss.AddSound((int)ESounds::QBertJump, "Sound/jump-3.wav");
+	ss.AddSound((int)ESounds::CoilyJump, "Sound/jump-4.wav");
+	ss.AddSound((int)ESounds::UggSpawn, "Sound/speech.wav");
+	ss.AddSound((int)ESounds::WrongwaySpawn, "Sound/speech-2.wav");
+	ss.AddSound((int)ESounds::QbertFall, "Sound/fall.wav");
+	ss.AddSound((int)ESounds::CoilyFall, "Sound/snake_fall.wav");
 }
 
 void MainMenu::Update(float )

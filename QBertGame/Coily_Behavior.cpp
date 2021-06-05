@@ -1,6 +1,8 @@
 #include "GamePch.h"
 #include "Coily_Behavior.h"
 
+#include "ServiceLocator.h"
+
 #include "GameObject.h"
 #include "GridMovementComponent.h"
 #include "TextureComponent.h"
@@ -98,6 +100,7 @@ void Coily_Behavior::Spawn()
 
 void Coily_Behavior::Despawn()
 {
+	ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::QbertFall, 100.f);
 	m_Owner->SetActive(false);
 	m_Owner->SetVisibility(false);
 }
@@ -131,6 +134,8 @@ void Coily_Behavior::SetIdleTexture()
 
 void Coily_Behavior::SetJumpingTexture()
 {
+	ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::CoilyJump, 100.f);
+	
 	if (m_IsEgg)
 	{
 		m_pTexture->SetTexture("Coily/CoilyEgg_Jump.png");
@@ -158,6 +163,8 @@ void Coily_Behavior::SetJumpingTexture()
 
 void Coily_Behavior::ChangeTexture(EDirection direction)
 {
+	ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::CoilyJump, 100.f);
+	
 	switch (direction)
 	{
 	case EDirection::DownLeft:

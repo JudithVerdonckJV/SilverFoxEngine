@@ -65,13 +65,14 @@ void QBert_Behavior::SetIdleTexture()
 
 void QBert_Behavior::Die()
 {
+	ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::QbertFall, 100.f);
 	Reset();
 	HasDied = true;
 }
 
 void QBert_Behavior::ChangeTexture(EDirection direction)
 {
-	//ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::QBertJump, 1.f);
+	ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::QBertJump, 100.f);
 	
 	switch (direction)
 	{

@@ -1,5 +1,8 @@
 #include "MiniginPCH.h"
 #include "SDLSoundSystem.h"
+#include <SDL.h>
+
+#include "..\3rdParty\Simple-SDL2-Audio-master\src\audio.c"
 
 PlayMessage SDLSoundSystem::pending_[MAX_PENDING]{};
 int SDLSoundSystem::num_pending_{ 0 };
@@ -8,7 +11,9 @@ int SDLSoundSystem::tail_{ 0 };
 
 SDLSoundSystem::SDLSoundSystem()
 	: m_Path{ "../Data/" }
-{
+{	
+	_putenv("SDL_AUDIODRIVER=DirectSound");
+	SDL_Init(SDL_INIT_AUDIO);
 	initAudio();
 }
 
@@ -79,6 +84,8 @@ void SDLSoundSystem::AddSound(sound_id id, const char* filePath)
 	auto it = m_SoundMap.find(id);
 	if (it != m_SoundMap.end()) return;
 	
-	Audio* sound = createAudio(filePath, 0, SDL_MIX_MAXVOLUME / 2);
+	std::string fullPath{ m_Path + filePath };
+
+	Audio* sound = createAudio(fullPath.c_str(), 0, SDL_MIX_MAXVOLUME / 2);
 	m_SoundMap.insert(soundPair{ id, sound });
 }

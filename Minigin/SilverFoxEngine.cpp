@@ -61,6 +61,8 @@ void fox::SilverFoxEngine::Run()
 			
 			doContinue = input.ProcessInput();
 
+			ServiceLocator::GetSoundSystem().Update();
+
 			sceneManager.Update(deltaTime);
 
 			lag += deltaTime;

@@ -44,4 +44,6 @@ enum class ESounds
 	CoilyJump = 1,
 	UggSpawn = 2,
 	WrongwaySpawn = 3,
+	QbertFall = 4,
+	CoilyFall = 5,
 };
