@@ -141,6 +141,9 @@
     <ClInclude Include="ColliderManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="SDLSoundSystem.h">
+      <Filter>other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="ColliderManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLSoundSystem.cpp">
+      <Filter>other</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

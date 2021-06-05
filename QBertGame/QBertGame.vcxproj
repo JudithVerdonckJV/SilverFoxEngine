@@ -94,7 +94,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Visual Leak Detector\include;$(SolutionDir)Minigin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>GamePch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -119,7 +119,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(Ou
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Visual Leak Detector\include;$(SolutionDir)Minigin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>GamePch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -144,7 +144,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(Ou
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Visual Leak Detector\include;$(SolutionDir)Minigin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>GamePch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -169,7 +169,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(Ou
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Visual Leak Detector\include;$(SolutionDir)Minigin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>GamePch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -191,7 +191,12 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(Ou
     <ClCompile Include="Coily_Behavior.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="DiscsComponent.cpp" />
-    <ClCompile Include="GamePch.cpp" />
+    <ClCompile Include="GamePch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="GridMovementComponent.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />

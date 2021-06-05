@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "SilverFoxEngine.h"
+#include <SDL.h>
 
 #include <chrono>
 #include <thread>

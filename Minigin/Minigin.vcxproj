@@ -77,25 +77,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\judit\OneDrive\Documenten\School\Programming 4\SilverFoxEngine\3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x64;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\judit\OneDrive\Documenten\School\Programming 4\SilverFoxEngine\3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x64;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\judit\OneDrive\Documenten\School\Programming 4\SilverFoxEngine\3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x86;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x64;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\judit\OneDrive\Documenten\School\Programming 4\SilverFoxEngine\3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\lib\x64;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)3rdParty\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -105,7 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -140,7 +140,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R 
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -178,7 +178,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -219,7 +219,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x86\*.dll" "$(OutputPath)" /R 
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Simple-SDL2-Audio-master\src;$(SolutionDir)3rdParty\Imgui_v1.81;$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)3rdParty\SDL2_image-2.0.5\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -276,6 +276,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClInclude Include="RectColliderComponent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SDLSoundSystem.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="SilverFoxEngine.h" />
     <ClInclude Include="MiniginPCH.h" />
@@ -348,6 +349,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf-2.0.15\lib\x64\*.DLL" "$(OutDir)" /y /D <
     <ClCompile Include="RectColliderComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SDLSoundSystem.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="SilverFoxEngine.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
