@@ -1,6 +1,8 @@
 #include "GamePch.h"
 #include "QBert_Behavior.h"
 
+#include "ServiceLocator.h"
+
 #include "GridMovementComponent.h"
 #include "GameObject.h"
 #include "TextureComponent.h"
@@ -69,6 +71,8 @@ void QBert_Behavior::Die()
 
 void QBert_Behavior::ChangeTexture(EDirection direction)
 {
+	//ServiceLocator::GetSoundSystem().PlayEffect((int)ESounds::QBertJump, 1.f);
+	
 	switch (direction)
 	{
 	case EDirection::DownLeft:

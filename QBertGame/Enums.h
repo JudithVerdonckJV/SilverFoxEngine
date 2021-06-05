@@ -37,3 +37,11 @@ enum class EGameModes
 	Versus = 1,
 	Coop = 2,
 };
+
+enum class ESounds
+{
+	QBertJump = 0,
+	CoilyJump = 1,
+	UggSpawn = 2,
+	WrongwaySpawn = 3,
+};

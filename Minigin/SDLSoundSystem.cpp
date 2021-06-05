@@ -7,6 +7,7 @@ int SDLSoundSystem::head_{ 0 };
 int SDLSoundSystem::tail_{ 0 };
 
 SDLSoundSystem::SDLSoundSystem()
+	: m_Path{ "../Data/" }
 {
 	initAudio();
 }
@@ -23,6 +24,9 @@ SDLSoundSystem::~SDLSoundSystem()
 
 void SDLSoundSystem::PlayEffect(const sound_id id, const float volume)
 {
+	auto it = m_SoundMap.find(id);
+	if (it == m_SoundMap.end()) return;
+	
 	if (!m_bMute)
 	{
 		assert((tail_ + 1) % MAX_PENDING != head_);
@@ -34,9 +38,9 @@ void SDLSoundSystem::PlayEffect(const sound_id id, const float volume)
 
 		for (int i{ head_ }; i != tail_; i = (i + 1) % MAX_PENDING)
 		{
-			if (pending_[(unsigned int)i].id == id)
+			if (pending_[(unsigned short)i].id == id)
 			{
-				pending_[(unsigned int)i].volume = (int)max(volume, pending_[(unsigned int)i].volume);
+				pending_[(unsigned short)i].volume = (int)max(volume, pending_[(unsigned int)i].volume);
 				return;
 			}
 		}
@@ -45,6 +49,9 @@ void SDLSoundSystem::PlayEffect(const sound_id id, const float volume)
 
 void SDLSoundSystem::PlayMusic(const sound_id id, const float volume)
 {
+	auto it = m_SoundMap.find(id);
+	if (it == m_SoundMap.end()) return;
+	
 	if (!m_bMute)
 	{
 		Audio* sound = m_SoundMap[id];
@@ -67,10 +74,11 @@ void SDLSoundSystem::Mute(bool mute)
 	else unpauseAudio();
 }
 
-sound_id SDLSoundSystem::AddSound(const char* filePath)
+void SDLSoundSystem::AddSound(sound_id id, const char* filePath)
 {
+	auto it = m_SoundMap.find(id);
+	if (it != m_SoundMap.end()) return;
+	
 	Audio* sound = createAudio(filePath, 0, SDL_MIX_MAXVOLUME / 2);
-	m_SoundMap.insert(soundPair{ m_MaxId, sound });
-	++m_MaxId;
-	return m_MaxId - 1;
+	m_SoundMap.insert(soundPair{ id, sound });
 }

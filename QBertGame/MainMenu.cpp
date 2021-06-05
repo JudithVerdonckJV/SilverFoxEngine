@@ -1,5 +1,6 @@
 #include "GamePch.h"
 #include "MainMenu.h"
+#include "ServiceLocator.h"
 
 #include "GameObject.h"
 #include "ButtonComponent.h"
@@ -47,6 +48,11 @@ void MainMenu::LoadScene()
 	fox::TextComponent* coopText = new fox::TextComponent{ coopButton, {-65, -10} };
 	coopText->SetText("COOP");
 	coopText->SetColor(255, 0, 0, 255);
+
+
+	//LOADING IN SOUND
+	ServiceLocator::GetSoundSystem();
+	//ss.AddSound((int)ESounds::QBertJump, "Sound/jump-3.mp3");
 }
 
 void MainMenu::Update(float )

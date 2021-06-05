@@ -11,5 +11,5 @@ public:
 	virtual void Update() = 0;
 
 	virtual void Mute(bool mute) = 0;
-	virtual sound_id AddSound(const char* filePath) = 0;
+	virtual void AddSound(sound_id id, const char* filePath) = 0;
 };

@@ -4,8 +4,7 @@
 #include <SDL.h>
 #include "..\3rdParty\Simple-SDL2-Audio-master\src\audio.h"
 // i know this isnt a good way of including this file, but it is literally the only way that doesnt cause it to crash.
-// dont touch
-
+// prolly got some properties wrong but I cant find it ._.
 
 using soundPair = std::pair<const sound_id, Audio*>;
 
@@ -30,12 +29,14 @@ public:
 
 	virtual void Mute(bool mute) override;
 
-	virtual sound_id AddSound(const char* filePath) override;
+	virtual void AddSound(sound_id id, const char* filePath) override;
 
 private:
 	bool m_bMute{ false };
 	sound_id m_MaxId{ 0 };
 	std::map<sound_id, Audio*> m_SoundMap{};
+
+	std::string m_Path;
 
 	//(event) sound queue
 	static const int MAX_PENDING = 16;
@@ -68,10 +69,9 @@ class Logging_SoundSystem final : public SoundSystem
 		std::cout << "Logger was muted.\n";
 	}
 
-	virtual sound_id AddSound(const char*) override
+	virtual void AddSound(sound_id, const char*) override
 	{
 		std::cout << "Sound logger will not save any sounds.\n";
-		return 0;
 	}
 
 private:
